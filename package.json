@@ -8,6 +8,8 @@
     "any-db": "0.3.x",
 		"hogan.js": "2.0.x",
 		"consolidate": "0.7.x",
+    "passport": "0.2.x",
+    "passport-facebook": "1.x",
 		"sqlite3": "2.x"
   }
 }
