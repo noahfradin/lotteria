@@ -1,5 +1,5 @@
-var fbUtils = require('./fb_utils.js');
-var dbUtils = require('./db_utils.js');
+var fb = require('./fb_utils.js');
+var db = require('./db_utils.js');
 
 var express = require('express');
 var engines = require('consolidate');
@@ -14,10 +14,14 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  db.storeUser(user, function(id) {
+    done(null, id);
+  });
 });
-passport.deserializeUser(function(user, done) {
-  done(null, user);
+passport.deserializeUser(function(id, done) {
+  db.loadUser(id, function(user) {
+    done(null, user);
+  });
 });
 
 app.use('/include', express.static(__dirname + '/include'));
