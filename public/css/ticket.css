@@ -1,0 +1,250 @@
+/* 
+Thoughts? Do you think everything should maybe be smaller?
+*/
+
+@font-face {
+font-family:"Futura";
+src:url("../fonts/Futura.ttc");
+}
+
+@font-face {
+font-family:"Arial";
+src:url("../fonts/Arial.ttf");
+}
+
+@font-face {
+font-family:"GeosansLight";
+src:url("../fonts/GeosansLight.ttf");
+}
+
+@font-face {
+font-family:"Origin-Bold";
+src:url("../fonts/Origin-Bold.ttf");
+}
+
+@font-face {
+font-family:"Gram";
+src:url("../fonts/Gram.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-width:1040px;
+    margin: 0;
+    padding: 0;
+}
+
+#powerbucks{
+    text-align: right;
+    font: 12pt "GeosansLight", sans-serif;
+    background-color: white;
+    position: fixed;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    top: 0px;
+    width: 100%;
+    z-index: 9998;
+}
+
+#header_wrapper {
+    position: fixed;
+    top: 38px;
+    width: 100%; 
+    background-color:#FFCC33;
+    height: 70px;
+    display: inline-block;
+    z-index: 9999;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logo a {
+    color: transparent;
+    margin: 0 auto;
+}
+
+ul#top_nav {
+    display:inline-block;
+    position: absolute;
+    height: 70px;
+    border: 0;
+    min-width: 1024px;
+    margin-left: 40px;
+}
+
+ul#top_nav * {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    height: 69px;
+    margin-right: -1px;
+}
+
+ul#top_nav li p {
+    height: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #404040;
+    font: 16pt "Futura", sans-serif;
+}
+
+ul#top_nav li a {
+    margin: auto;
+    position: absolute;
+}
+
+#nav_nticket p {
+    color: white !important;
+    border: solid;
+    border-width: 1px;
+}
+
+#nav_tickets p {
+    color: #FFCC33 !important;
+}
+
+
+#nav_nticket {
+    padding-top:1px;
+}
+
+#nav_nticket:hover {
+    background-color: #FFD018;
+}
+
+#nav_tickets {
+    background-color: white;
+    padding-top: 2px;
+}
+
+#nav_tickets:hover {
+}
+
+#nav_rewards {
+    padding-top: 2px;
+    height: 68px !important;
+}
+
+#nav_rewards:hover {
+    background-color: #FFD018;
+}
+
+#nav_settings {
+    padding-top: 2px;
+    height: 68px !important;
+}
+
+#nav_settings:hover {
+    background-color: #FFD018;
+}
+
+
+#mid{
+    font: 24pt "GeosansLight", sans-serif;
+    text-align: center;
+    position: relative;
+    margin: 150px auto 50px auto;
+    width: 1000px;
+    color: #FFCC33;
+}
+
+#yourtix {
+    width: 850px;
+    margin: 5px auto;
+    font: 24pt "GeosansLight", sans-serif;
+}
+
+#tickets{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 600px;
+}
+
+#tickets li {
+    width: 850px;
+    height: 160px;
+    margin: 20px auto;
+    list-style-type: none;
+    border: solid #FFCC33 1px;
+}
+
+#tickpic {
+    height: 140px;
+    margin: 12px;
+    display:inline-block;
+}
+
+#tickets li h2 {
+    position: relative;
+    font: 20pt "Futura", sans-serif;
+    display: inline-block;
+    top: -110px;
+    left: -10px;
+}
+
+#tickets li h3 {
+    position: relative;
+    font: 16pt "GeosansLight", sans-serif;
+    display: inline-block;
+    left: 165px;
+    top: -155px;
+}
+
+.playerpic {
+    height: 70px;
+    margin-left: 5px;
+    display: inline-block;
+    position: relative;
+    left: 180px;
+    top: -120px
+}
+
+#more {
+    width: 100px;
+    position: relative;
+    left: 500px;
+    bottom: 175px;
+    font: 12pt "GeosansLight", sans-serif;
+}
+
+#drawdate {
+    position: relative;
+    top: -165px;
+    color: #FFCC33;
+    font: 16pt "GeosansLight", sans-serif;
+    margin-right: 30px;
+    text-align:right
+}
+
+#invite {
+    position: relative;
+    top: -165px;
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 30px;
+    width: 200px;
+    font: 12pt "Futura", sans-serif;
+    color: white;
+    left: 630px;
+    top: -180px;
+}
+
+#feed{
+    height: 100px;
+}
+
+#footer {
+    background-color: #FFCC33;
+    width: 100%;
+    height: 40px;
+}
+
