@@ -5,7 +5,7 @@ CREATE TABLE users (
   photo TEXT,
   tickets BLOB,
   pools BLOB,
-  facebook_id TEXT,
+  facebook_id TEXT
 );
 CREATE TABLE tickets(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
