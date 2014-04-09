@@ -6,13 +6,139 @@ window.addEventListener('load',function(){
     var buyButton = document.getElementById("buyButton");
     var draws = document.getElementById("draws");
     var powerPlay = document.getElementById("powerPlay");
+    var number1 = document.getElementById("number1");
+    var number2 = document.getElementById("number2");
+    var number3 = document.getElementById("number3");
+    var number4 = document.getElementById("number4");
+    var number5 = document.getElementById("number5");
+    var powerball = document.getElementById("powerball");
+    
     
     randomizeButton.addEventListener("click", function() { randomizeNumbers();});
     resetButton.addEventListener("click", function() { resetNumbers();});
     draws.addEventListener("change",function(){ updateTotal();});
     powerPlay.addEventListener("change",function(){ updateTotal();});
+    number1.addEventListener("keyup",function(){ moveInputCursor(number1,number2);});
+    number2.addEventListener("keyup",function(){ moveInputCursor(number2,number3);});
+    number3.addEventListener("keyup",function(){ moveInputCursor(number3,number4);});
+    number4.addEventListener("keyup",function(){ moveInputCursor(number4,number5);});
+    number5.addEventListener("keyup",function(){ moveInputCursor(number5,powerball);});
+    number1.addEventListener("change",function(){ checkComplete(number1);});
+    number2.addEventListener("change",function(){ checkComplete(number2);});
+    number3.addEventListener("change",function(){ checkComplete(number3);});
+    number4.addEventListener("change",function(){ checkComplete(number4);});
+    number5.addEventListener("change",function(){ checkComplete(number5);});
+    
+    powerball.addEventListener("change",function(){checkPowerball();});
+    
 
 },false);
+
+function moveInputCursor(number,numberMove){
+    console.log(number.value)
+    console.log(number.value.length)
+    var number1 = document.getElementById("number1");
+    var number2 = document.getElementById("number2");
+    var number3 = document.getElementById("number3");
+    var number4 = document.getElementById("number4");
+    var number5 = document.getElementById("number5");
+  
+    if (number.value.length == 2) {
+        if (!(/^\d+$/.test(number.value))){
+            alert("Must input numbers");
+            number.value = "";
+            number.focus();
+        }
+        else if(parseInt(number.value) < 1 || parseInt(number.value) > 59){
+            alert("Numbers must be between 1 and 59");
+            number.value = "";
+            number.focus();    
+        }else{
+            if(number.value == number1.value && number != number1){
+                alert("Non powerball numbers cannot be repeated");
+                number.value = "";
+                number.focus();      
+            }
+            else if(number.value == number2.value && number != number2){
+                alert("Non powerball numbers cannot be repeated");
+                number.value = "";
+                number.focus();      
+            }
+            else if(number.value == number3.value && number != number3){
+                alert("Non powerball numbers cannot be repeated");
+                number.value = "";
+                number.focus();      
+            }
+            else if(number.value == number4.value && number != number4){
+                alert("Non powerball numbers cannot be repeated");
+                number.value = "";
+                number.focus();      
+            }
+            else if(number.value == number5.value && number != number5){
+                alert("Non powerball numbers cannot be repeated");
+                number.value = "";
+                number.focus();      
+            }else{
+                numberMove.focus();     
+            }      
+        }
+         
+    }
+}
+
+function checkComplete(number){
+    if (!(/^\d+$/.test(number.value))){
+        alert("Must input numbers");
+        number.value = "";
+        number.focus();
+    }
+    else if(parseInt(number.value) < 1 || parseInt(number.value) > 59){
+        alert("Numbers must be between 1 and 59");
+        number.value = "";
+        number.focus();    
+    }else{
+        if(number.value == number1.value && number != number1){
+            alert("Non powerball numbers cannot be repeated");
+            number.value = "";
+            number.focus();      
+        }
+        else if(number.value == number2.value && number != number2){
+            alert("Non powerball numbers cannot be repeated");
+            number.value = "";
+            number.focus();      
+        }
+        else if(number.value == number3.value && number != number3){
+            alert("Non powerball numbers cannot be repeated");
+            number.value = "";
+            number.focus();      
+        }
+        else if(number.value == number4.value && number != number4){
+            alert("Non powerball numbers cannot be repeated");
+            number.value = "";
+            number.focus();      
+        }
+        else if(number.value == number5.value && number != number5){
+            alert("Non powerball numbers cannot be repeated");
+            number.value = "";
+            number.focus();      
+        }   
+    }
+}
+
+function checkPowerball(){
+     var powerball = document.getElementById("powerball");
+    console.log(powerball.value);
+     if (!(/^\d+$/.test(powerball.value)))
+     {
+        alert("Must input numbers");
+        powerball.value = "";
+        powerball.focus();
+     }else if(parseInt(powerball.value) < 1 || parseInt(powerball.value) > 35){
+        alert("Powerball number must be between 1 and 35");
+        powerball.value = "";
+        powerball.focus();    
+     }
+}
 
 function updateTotal(){
     console.log("hefddfg");
