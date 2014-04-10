@@ -1,0 +1,43 @@
+html{
+    font-family:futura;
+    
+    
+}
+
+.header{
+    height: 100px;
+    background-color:#d9d941;
+}
+
+.ticketBoard{
+    background-color: #0bd90b;
+}
+
+.number{
+    background:transparent;
+    background-image:url("../../images/powerBallCircle.png");
+    background-size:140px 140px;
+}
+
+.number, textarea { 
+    padding: 9px; 
+    border: none; 
+    outline: none; 
+    font: normal 70px/100% futura, Tahoma, sans-serif; 
+    width: 150px; 
+    height: 150px;
+    } 
+   
+.number, textarea { 
+    width: 400px; 
+    max-width: 150px; 
+    height: 150px; 
+    line-height: 150%; 
+    text-align:center;
+    background-color:blue;
+    }
+
+#powerball{
+    background-color:red;
+/*    need image with transparent center*/
+}
