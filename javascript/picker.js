@@ -35,8 +35,6 @@ window.addEventListener('load',function(){
 },false);
 
 function moveInputCursor(number,numberMove){
-    console.log(number.value)
-    console.log(number.value.length)
     var number1 = document.getElementById("number1");
     var number2 = document.getElementById("number2");
     var number3 = document.getElementById("number3");
