@@ -3,9 +3,19 @@ html{
     
     
 }
+
+.header{
+    height: 100px;
+    background-color:#d9d941;
+}
+
+.ticketBoard{
+    background-color: #0bd90b;
+}
+
 .number{
     background:transparent;
-    background-image:url("../images/powerBallCircle.png");
+    background-image:url("../../images/powerBallCircle.png");
     background-size:140px 140px;
 }
 
@@ -18,7 +28,7 @@ html{
     height: 150px;
     } 
    
-.number, ;textarea { 
+.number, textarea { 
     width: 400px; 
     max-width: 150px; 
     height: 150px; 
