@@ -1,0 +1,89 @@
+/* 
+Thoughts? Do you think everything should maybe be smaller?
+*/
+
+@font-face {
+font-family:"Futura";
+src:url("../fonts/Futura.ttc");
+}
+
+@font-face {
+font-family:"Arial";
+src:url("../fonts/Arial.ttf");
+}
+
+@font-face {
+font-family:"GeosansLight";
+src:url("../fonts/GeosansLight.ttf");
+}
+
+@font-face {
+font-family:"Origin-Bold";
+src:url("../fonts/Origin-Bold.ttf");
+}
+
+@font-face {
+font-family:"Gram";
+src:url("../fonts/Gram.ttf");
+}
+
+* {
+margin: 0;
+padding: 0;
+}
+
+body{
+min-width:1040px;
+margin: 0;
+padding: 0;
+}
+
+#topbar {
+    background-color: #FFCC33;
+    width: 100%;
+    height: 60px;
+    margin-top: 40px;
+}
+
+#mid{
+    font: 60pt "GeosansLight", sans-serif;
+    text-align: center;
+    position: relative;
+    margin: 70px auto;
+    width: 1000px;
+    color: #FFCC33;
+}
+
+#mid img{
+    height: 70px;
+    margin-bottom: 30px;
+}
+
+#signup{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-color: #E6E5E6;
+    border-top: solid;
+    border-bottom: solid;
+    border-width: 1px;
+    border-color:#404040;
+    font: 40pt "GeosansLight", sans-serif;
+    color:#404040;
+    text-align: center;
+}
+
+#signup input{
+    height: 80px;
+    margin: 10px auto 0 auto;
+}
+
+#feed{
+    height: 100px;
+}
+
+#footer {
+    background-color: #FFCC33;
+    width: 100%;
+    height: 40px;
+}
+

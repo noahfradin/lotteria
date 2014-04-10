@@ -1,0 +1,91 @@
+<html>
+    <head>
+    
+        <script type = "text/javascript" src = "../javascript/picker.js"></script>
+        <link rel="stylesheet" href="../css/picker.css" type="text/css" />
+    </head>
+    <body>
+    
+        <div class = "ticketBoard">
+            <div class = "ticketHeader">
+            
+            </div>   
+            <div class = "ticketNumbers">
+                <input type="text" id="number1" class="number" maxlength="2" tabindex="1" value="">
+                <input type="text" id="number2" class="number" maxlength="2" tabindex="2" value="">
+                <input type="text" id="number3" class="number" maxlength="2" tabindex="3" value="">
+                <input type="text" id="number4" class="number" maxlength="2" tabindex="4" value="">
+                <input type="text" id="number5" class="number" maxlength="2" tabindex="5" value="">
+                <p>Choose Numbers 1-59</p>
+            </div>
+            
+            <div class = "ticketPowerball">
+                 <input type="text" id="powerball" class="number" name="normalcells" maxlength="2" tabindex="6" quickpick="false" value="">
+                 <p>Choose Numbers 1-35</p>
+            </div>
+        </div>
+        
+        <div class = "resetRandomizeHeader">
+           
+                <button id = "resetButton" tabindex="7" type="button">Reset</button>
+        
+          
+                <button id = "randomizeButton" tabindex="8" type="button">Randomize</button>
+          
+        
+        </div>
+            
+        
+        <div class = "powerPlayToggle">
+            <p>Power Play?</p>
+            <input type="checkbox" tabindex="401" name="multiplier" tabindex="9" id="powerPlay" value="true">
+        </div>
+        
+        <div class = "drawingSelector">
+            <p>Draws</p>
+            <select class="customSelect" id="draws" name="duration" tabindex="10" autocomplete="off" >
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+
+                
+                
+            </select>
+        </div>
+        <div class = "buyHeader">
+            <div class = "total">
+                <p>Total: $ </p>
+                <span id = "amount">2.00</span>
+            </div>
+           
+                <button id = "buyButton" tabindex="11" type="button">Buy</button>
+        
+            
+                <button id = "cancelButton" tabindex="12" type="button">Cancel</button>
+        
+        </div>
+    
+    </body>
+</html>

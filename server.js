@@ -10,6 +10,10 @@ app.engine('html', engines.hogan);
 app.set('views', __dirname + '/templates');
 app.use(express.session({secret: 'badsecret'}));
 
+//Database setup
+var anyDB = require('any-db');
+var conn = anyDB.createConnection('sqlite3://lotteria.db');
+
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 app.use(passport.initialize());
@@ -51,8 +55,19 @@ app.get('/login', function(request, response) {
   response.render('login.html', {});
 });
 
-app.get('/', function(request, response) {
+app.post('/auth', function(request, response){
   response.redirect('/auth/facebook');
+});
+
+app.get('/', function(request, response) {
+  response.render('home(nostache).html', {});
+  //Create tables
+  conn.query('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,first_name TEXT, last_name TEXT, photo TEXT, tickets BLOB,pools BLOB, facebook_id TEXT')
+  .on('error', console.error);
+  conn.query('CREATE TABLE IF NOT EXISTS tickets (id INTEGER PRIMARY KEY AUTOINCREMENT, user INTEGER, numbers TEXT, draw_date TEXT, purchase_date TEXT, power_play INTEGER)')
+  .on('error', console.error);
+  conn.query('CREATE TABLE IF NOT EXISTS pools (id INTEGER PRIMARY KEY AUTOINCREMENT, size INTEGER, users BLOB, tickets BLOB)')
+  .on('error', console.error);
 });
  
 app.listen(8080, function() {
