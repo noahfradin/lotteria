@@ -8,17 +8,20 @@ var passport = require('passport');
 var app = express();
 app.engine('html', engines.hogan);
 app.set('views', __dirname + '/templates');
+app.use(express.session({secret: 'badsecret'}));
 
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 app.use(passport.initialize());
-app.use(passport.session());
+//app.use(passport.session());
 passport.serializeUser(function(user, done) {
+  console.log("ses");
   db.storeUser(user, function(id) {
     done(null, id);
   });
 });
 passport.deserializeUser(function(id, done) {
+  console.log("des");
   db.loadUser(id, function(user) {
     done(null, user);
   });
@@ -31,11 +34,7 @@ passport.use(new FacebookStrategy({
     clientSecret: "53edb26e9544e5b7ec79b47903746798",
     callbackURL: "http://localhost:8080/auth/facebook/callback"
   },
-  function (accessToken, refreshToken, profile, done) {
-    // find or create the user
-    var user = new Object();
-    done(null, user);
-  }
+  db.createUser
 ));
 
 app.get('/auth/facebook', passport.authenticate('facebook'));
@@ -45,7 +44,7 @@ app.get('/auth/facebook/callback',
                                       failureRedirect: '/login' }));
                                       
 app.get('/dummy_page', function(request, response) {
-  response.render('dummy.html', {});
+  response.render('dummy.html', {name: request.user.displayName});
 });
 
 app.get('/login', function(request, response) {

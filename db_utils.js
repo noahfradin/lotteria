@@ -11,3 +11,10 @@ exports.loadUser = function(user, callback) {
   // TODO
   callback(new Object());
 };
+
+// creates the user from a facebook callback, then calls done
+exports.createUser = function (accessToken, refreshToken, profile, done) {
+  // TODO
+  var user = profile;
+  done(null, user);  // null could be an error object maybe
+};
