@@ -1,21 +1,201 @@
-html{
-    font-family:futura;
-    
-    
+@font-face {
+font-family:"Futura";
+src:url("../fonts/Futura.ttc");
 }
 
-.header{
-    height: 100px;
-    background-color:#d9d941;
+@font-face {
+font-family:"Arial";
+src:url("../fonts/Arial.ttf");
+}
+
+@font-face {
+font-family:"GeosansLight";
+src:url("../fonts/GeosansLight.ttf");
+}
+
+html{
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-width:1040px;
+    margin: 0;
+    padding: 0;
+}
+
+#powerbucks{
+    text-align: right;
+    font: 12pt "GeosansLight", sans-serif;
+    background-color: white;
+    position: fixed;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    top: 0px;
+    width: 100%;
+    z-index: 9998;
+}
+
+#header_wrapper {
+    position: fixed;
+    top: 38px;
+    width: 100%; 
+    background-color:#FFCC33;
+    height: 70px;
+    display: inline-block;
+    z-index: 9999;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logo a {
+    color: transparent;
+    margin: 0 auto;
+}
+
+ul#top_nav {
+    display:inline-block;
+    position: absolute;
+    height: 70px;
+    border: 0;
+    min-width: 1024px;
+    margin-left: 40px;
+}
+
+ul#top_nav * {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    height: 69px;
+    margin-right: -1px;
+}
+
+ul#top_nav li p {
+    height: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #404040;
+    font: 16pt "Futura", sans-serif;
+}
+
+ul#top_nav li a {
+    margin: auto;
+    position: absolute;
+}
+
+#nav_nticket p {
+    color: white !important;
+    border: solid;
+    border-width: 1px;
+}
+
+#nav_tickets p {
+    color: #FFCC33 !important;
+}
+
+
+#nav_nticket {
+    padding-top:1px;
+}
+
+#nav_nticket:hover {
+    background-color: #FFD018;
+}
+
+#nav_tickets {
+    background-color: white;
+    padding-top: 2px;
+}
+
+#nav_tickets:hover {
+}
+
+#nav_rewards {
+    padding-top: 2px;
+    height: 68px !important;
+}
+
+#nav_rewards:hover {
+    background-color: #FFD018;
+}
+
+#nav_settings {
+    padding-top: 2px;
+    height: 68px !important;
+}
+
+#nav_settings:hover {
+    background-color: #FFD018;
+}
+
+#pick{
+    font: 30pt "GeosansLight", sans-serif;
+    position: relative; 
+    margin-top: 200px;
+    text-align: center;
+}
+
+p {
+    font: 18pt "GeosansLight", sans-serif;
+    position: relative;
+}
+
+.total, .powerPlayToggle, .drawingSelector{
+    position: relative;
+    bottom: 170px;
+    text-align: center;
+}
+
+.total{
+    left: 250px;
+    bottom: 217px;
+}
+
+.powerPlayToggle{
+    right: 250px;
+    bottom: 125px;
+}
+
+#amount {
+    font: 18pt "GeosansLight", sans-serif;
+    position: relative;
 }
 
 .ticketBoard{
-    background-color: #0bd90b;
+    position: relative;
+    margin-top: 80px;
+    
+}
+
+.ticketBoard p {
+    font: 18pt "GeosansLight", sans-serif;
+    position: relative;
+}
+
+.ticketNumbers p {
+    bottom: 190px;
+    margin-left: 36%;
+}
+
+.ticketPowerball p {
+    margin-left: 70%;
+    bottom: 365px;
 }
 
 .number{
+    left: 16%;
+    position: relative;
+    display: inline-block;
     background:transparent;
     background-image:url("../images/circle_white.png");
+    background-repeat:no-repeat;
     background-size:140px 140px;
 }
 
@@ -23,21 +203,36 @@ html{
     padding: 9px; 
     border: none; 
     outline: none; 
-    font: normal 70px/100% futura, Tahoma, sans-serif; 
+    font: normal 70px/100% "Futura", sans-serif; 
     width: 150px; 
     height: 150px;
-    } 
-   
-.number, textarea { 
-    width: 400px; 
-    max-width: 150px; 
-    height: 150px; 
     line-height: 150%; 
     text-align:center;
-    background-color:blue;
-    }
+    } 
+
+button {
+    position: relative;
+    font: normal 70px/100% "Futura", sans-serif;
+    background-color: white;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 30px;
+    width: 200px;
+    font: 12pt "Futura", sans-serif;
+    left: 475px;
+    top: -170px;
+}
+
+#buyButton{
+    color: white;
+    background-color: #FFCC33 !important;
+}
 
 #powerball{
-    background-color:red;
-/*    need image with transparent center*/
+    position: relative;
+    display: inline-block;
+    background-image:url("../images/circle_red.png");
+    color: white;
+    top: -180px;
+    margin-left: 770px;
 }

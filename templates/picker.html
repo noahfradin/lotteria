@@ -1,18 +1,24 @@
 <html>
     <head>
     
-        <script type = "text/javascript" src = "../javascript/picker.js"></script>
+        <script type = "text/javascript" src = "../public/javascript/picker.js"></script>
         <link rel="stylesheet" href="../public/css/picker.css" type="text/css" />
     </head>
     <body>
-        <div class= "header">
-        
-        
-        </div>
+    <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <header>
+		<div id="header_wrapper">
+			<h1 id="logo"><a href="#">Lotteria</a></h1>
+			<ul id="top_nav">
+				<li id="nav_nticket"><a href="#"></a><p>NEW POOL</p></li>
+				<li id="nav_tickets"><a href="#"></a><p>MY POOLS</p></li>
+				<li id="nav_rewards"><a href="#"></a><p>REWARDS</p></li>
+				<li id="nav_settings"><a href="#"></a><p>SETTINGS</p></li>
+			</ul>
+		</div>
+	</header>
+        <p id="pick">Pick numbers to play:</p>
         <div class = "ticketBoard">
-            <div class = "ticketHeader">
-            
-            </div>   
             <div class = "ticketNumbers">
                 <input type="text" id="number1" class="number" maxlength="2" tabindex="1" value="">
                 <input type="text" id="number2" class="number" maxlength="2" tabindex="2" value="">
@@ -30,10 +36,10 @@
         
         <div class = "resetRandomizeHeader">
            
-                <button id = "resetButton" tabindex="7" type="button">Reset</button>
+                <button id = "resetButton" tabindex="7" type="button">RESET</button>
         
           
-                <button id = "randomizeButton" tabindex="8" type="button">Randomize</button>
+                <button id = "randomizeButton" tabindex="8" type="button">RANDOMIZE</button>
           
         
         </div>
@@ -83,10 +89,13 @@
                 <span id = "amount">2.00</span>
             </div>
            
-                <button id = "buyButton" tabindex="11" type="button">Buy</button>
+                            
+                <button id = "cancelButton" tabindex="12" type="button">CANCEL</button>
+            
+                <button id = "buyButton" tabindex="11" type="button">BUY</button>
         
             
-                <button id = "cancelButton" tabindex="12" type="button">Cancel</button>
+
         
         </div>
     

@@ -43,8 +43,8 @@ body{
     font: 12pt "GeosansLight", sans-serif;
     background-color: white;
     position: fixed;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     top: 0px;
     width: 100%;
     z-index: 9998;
