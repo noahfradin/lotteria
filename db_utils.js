@@ -18,3 +18,12 @@ exports.createUser = function (accessToken, refreshToken, profile, done) {
   var user = profile;
   done(null, user);  // null could be an error object maybe
 };
+
+exports.newTables = function() {
+  conn.query("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,first_name TEXT, last_name TEXT, photo TEXT, tickets BLOB,pools BLOB, facebook_id TEXT")
+  .on('error', console.error);
+  conn.query("CREATE TABLE IF NOT EXISTS tickets (id INTEGER PRIMARY KEY AUTOINCREMENT, user INTEGER, numbers TEXT, draw_date TEXT, purchase_date TEXT, power_play INTEGER)")
+  .on('error', console.error);
+  conn.query("CREATE TABLE IF NOT EXISTS pools (id INTEGER PRIMARY KEY AUTOINCREMENT, size INTEGER, users BLOB, tickets BLOB)")
+  .on('error', console.error);
+}

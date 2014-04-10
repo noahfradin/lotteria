@@ -8,30 +8,30 @@ var passport = require('passport');
 var app = express();
 app.engine('html', engines.hogan);
 app.set('views', __dirname + '/templates');
+app.use(express.cookieParser());
 app.use(express.session({secret: 'badsecret'}));
-
-//Database setup
-var anyDB = require('any-db');
-var conn = anyDB.createConnection('sqlite3://lotteria.db');
 
 var passport = require('passport');
 var FacebookStrategy = require('passport-facebook').Strategy;
 app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.session());
 passport.serializeUser(function(user, done) {
-  console.log("ses");
   db.storeUser(user, function(id) {
     done(null, id);
   });
 });
 passport.deserializeUser(function(id, done) {
-  console.log("des");
   db.loadUser(id, function(user) {
     done(null, user);
   });
 });
 
+// Static redirects
 app.use('/include', express.static(__dirname + '/include'));
+
+// Database setup
+var anyDB = require('any-db');
+var conn = anyDB.createConnection('sqlite3://lotteria.db');
 
 passport.use(new FacebookStrategy({
     clientID: "220803898117351",
@@ -52,6 +52,7 @@ app.get('/dummy_page', function(request, response) {
 });
 
 app.get('/login', function(request, response) {
+  // this should be the page that prompts you to log in
   response.render('login.html', {});
 });
 
@@ -59,15 +60,14 @@ app.post('/auth', function(request, response){
   response.redirect('/auth/facebook');
 });
 
+app.get('/reset', function(request, response) {
+  // Create tables
+  db.newTables();
+  response.redirect('/');
+});
+
 app.get('/', function(request, response) {
   response.render('home(nostache).html', {});
-  //Create tables
-  conn.query('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,first_name TEXT, last_name TEXT, photo TEXT, tickets BLOB,pools BLOB, facebook_id TEXT')
-  .on('error', console.error);
-  conn.query('CREATE TABLE IF NOT EXISTS tickets (id INTEGER PRIMARY KEY AUTOINCREMENT, user INTEGER, numbers TEXT, draw_date TEXT, purchase_date TEXT, power_play INTEGER)')
-  .on('error', console.error);
-  conn.query('CREATE TABLE IF NOT EXISTS pools (id INTEGER PRIMARY KEY AUTOINCREMENT, size INTEGER, users BLOB, tickets BLOB)')
-  .on('error', console.error);
 });
  
 app.listen(8080, function() {
