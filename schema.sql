@@ -1,11 +1,9 @@
 CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  first_name TEXT,
-  last_name TEXT,
-  photo TEXT,
+  access_token INTEGER,
+  profile BLOB,
   tickets BLOB,
-  pools BLOB,
-  facebook_id TEXT
+  pools BLOB
 );
 CREATE TABLE tickets(
   id INTEGER PRIMARY KEY AUTOINCREMENT,
