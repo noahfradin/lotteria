@@ -32,6 +32,10 @@ src:url("../fonts/Gram.ttf");
     padding: 0;
 }
 
+html{
+    overflow-y:hidden;
+}
+
 body{
     min-width:1040px;
     margin: 0;
@@ -48,6 +52,7 @@ body{
     top: 0px;
     width: 100%;
     z-index: 9998;
+    
 }
 
 #header_wrapper {
@@ -157,29 +162,76 @@ ul#top_nav li a {
     
 }
 
-
-
-.playerpic {
-    height: 70px;
-    margin-left: 5px;
-    display: inline-block;
-    position: relative;
-    left: 180px;
-    top: -120px
+.profile{
+    height:185px;
+    width:500px;
+    margin-left:30px;
+    border-bottom:solid 1px black;
+}
+.profile p{
+    color:black;
+    
 }
 
-#drawdate {
-    position: relative;
-    top: -165px;
-    color: #FFCC33;
-    font: 16pt "GeosansLight", sans-serif;
-    margin-right: 30px;
-    text-align:right
+#profileText,#profileImage{
+    display:inline-block;
+    vertical-align:top;
+    float:left;
+    
+    
+}
+
+#profileText *{
+    float:left;
+    clear:both;
+
+}
+
+#profileImage{
+    margin-left:30px;
+}
+
+#profileText{
+    margin-left:10px;
+}
+
+#profilePicture{
+    height: 135px;   
+    border: solid 1px black;
+}
+
+#ticketName{
+    font: 24pt "GeosansLight", sans-serif;
+}
+
+
+#drawing {
+        font: 14pt "GeosansLight", sans-serif;
+}
+
+#totalPeople{
+    font: 14pt "GeosansLight", sans-serif; 
+}
+
+#shares{
+    font: 14pt "GeosansLight", sans-serif;
+}
+
+#privacy{
+    float:right;
+    display:block;
+    margin-right: 10px;
+    font: 12pt "GeosansLight", sans-serif;
+        margin-top:14px;
+}
+
+#privacyDiv{
+
+    clear:both;
 }
 
 #invite {
     position: relative;
-    top: -165px;
     background-color: #FFCC33;
     border: solid 1px;
     border-color: #E5E6E5;
@@ -187,8 +239,7 @@ ul#top_nav li a {
     width: 200px;
     font: 12pt "Futura", sans-serif;
     color: white;
-    left: 630px;
-    top: -180px;
+
 }
 
 #footer {
@@ -197,3 +248,152 @@ ul#top_nav li a {
     height: 40px;
 }
 
+.message{
+    
+}
+
+.message img{
+    float:left;
+}
+#name{
+    color: black;
+}
+
+.chatTextBox{
+    width: 770px;
+    height: 200px;
+    margin-left:220px;
+    
+    
+}
+
+.chatTextBox p{
+    color: black;
+    float: left;
+    padding-bottom: 10px;
+    margin-left:20px;
+}
+
+#chatText{
+    width: 770px;
+    height: 70px;
+
+}
+#send {
+    position: relative;
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 40px;
+    width: 90px;
+    font: 16pt "Futura", sans-serif;
+    color: white;
+    margin-top:20px;
+    margin-left: 670px;
+
+}
+
+.leftPage, .rightPage{
+    display:inline-block;
+
+    
+    
+    vertical-align:top;
+}
+
+.leftPage{
+    width: 550px;
+    height: 0px;
+    
+}
+
+
+.rightPage{
+    width:365px;
+    height:580px;
+    border-left: solid 1px black;
+}
+
+.rightPage #currentPlayers{
+    color:black;
+    font: 18pt "Futura", sans-serif;
+}
+
+
+
+.currentPlayers{
+    height: 30px;
+}
+
+.rightPage .player{
+    display: inline-block;
+    float:left;
+    margin-left:15px;
+
+}
+
+.otherPlayers{
+    float:left;
+    width:70px;
+    border: solid 1px black;
+    
+}  
+.players{
+    overflow-y:scroll;
+    height:540px;;
+    margin-left:8px;
+}
+
+.player{
+    color:black;
+    margin-top:10px;
+    height: 90px;
+    width: 70px;
+    font: 14pt "Futura", sans-serif;
+}
+
+
+.userInfo{
+    color:black;
+    margin-top:10px;
+    height: 90px;
+    width: 70px;
+    font: 14pt "Futura", sans-serif;
+}
+
+.userInfo P{
+    float:left;
+}
+
+.userInfo img{
+   float:left;
+    width:70px;
+    border: solid 1px black;
+}
+
+.userInfo, .messageText{
+    display:inline-block;
+    vertical-align:top;
+    float:left;
+    margin-left:30px;
+}
+.messageText{
+    color:black;
+    font: 14pt "Futura", sans-serif;  
+    margin-top:10px;
+    margin-left: 15px;
+    width:400px;
+    text-align:center;
+}
+
+
+#messages{
+    overflow-y:scroll;
+    height: 380px;
+}
+
+#messages li{
+    list-style:none;
+    float:left;
+    margin-top:5px;
+}
