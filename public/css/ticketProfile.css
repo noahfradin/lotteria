@@ -1,0 +1,399 @@
+/* 
+Thoughts? Do you think everything should maybe be smaller?
+*/
+
+@font-face {
+font-family:"Futura";
+src:url("../fonts/Futura.ttc");
+}
+
+@font-face {
+font-family:"Arial";
+src:url("../fonts/Arial.ttf");
+}
+
+@font-face {
+font-family:"GeosansLight";
+src:url("../fonts/GeosansLight.ttf");
+}
+
+@font-face {
+font-family:"Origin-Bold";
+src:url("../fonts/Origin-Bold.ttf");
+}
+
+@font-face {
+font-family:"Gram";
+src:url("../fonts/Gram.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html{
+    overflow-y:hidden;
+}
+
+body{
+    min-width:1040px;
+    margin: 0;
+    padding: 0;
+}
+
+#powerbucks{
+    text-align: right;
+    font: 12pt "GeosansLight", sans-serif;
+    background-color: white;
+    position: fixed;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    top: 0px;
+    width: 100%;
+    z-index: 9998;
+    
+}
+
+#header_wrapper {
+    position: fixed;
+    top: 38px;
+    width: 100%; 
+    background-color:#FFCC33;
+    height: 70px;
+    display: inline-block;
+    z-index: 9999;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logo a {
+    color: transparent;
+    margin: 0 auto;
+}
+
+ul#top_nav {
+    display:inline-block;
+    position: absolute;
+    height: 70px;
+    border: 0;
+    min-width: 1024px;
+    margin-left: 40px;
+}
+
+ul#top_nav * {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    height: 69px;
+    margin-right: -1px;
+}
+
+ul#top_nav li p {
+    height: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #404040;
+    font: 16pt "Futura", sans-serif;
+}
+
+ul#top_nav li a {
+    margin: auto;
+    position: absolute;
+}
+
+#nav_nticket p {
+    color: white !important;
+    border: solid;
+    border-width: 1px;
+}
+
+#nav_tickets p {
+    color: #FFCC33 !important;
+}
+
+
+#nav_nticket {
+    padding-top:1px;
+}
+
+#nav_nticket:hover {
+    background-color: #FFD018;
+}
+
+#nav_tickets {
+    background-color: white;
+    padding-top: 2px;
+}
+
+#nav_tickets:hover {
+}
+
+#nav_rewards {
+    padding-top: 2px;
+    height: 68px !important;
+}
+
+#nav_rewards:hover {
+    background-color: #FFD018;
+}
+
+#nav_settings {
+    padding-top: 2px;
+    height: 68px !important;
+}
+
+#nav_settings:hover {
+    background-color: #FFD018;
+}
+
+
+#mid{
+    font: 24pt "GeosansLight", sans-serif;
+    text-align: center;
+    position: relative;
+    margin: 150px auto 50px auto;
+    width: 1000px;
+    color: #FFCC33;
+    
+}
+
+.profile{
+    height:185px;
+    width:500px;
+    margin-left:30px;
+    border-bottom:solid 1px black;
+}
+.profile p{
+    color:black;
+    
+}
+
+#profileText,#profileImage{
+    display:inline-block;
+    vertical-align:top;
+    float:left;
+    
+    
+}
+
+#profileText *{
+    float:left;
+    clear:both;
+
+}
+
+#profileImage{
+    margin-left:30px;
+}
+
+#profileText{
+    margin-left:10px;
+}
+
+#profilePicture{
+    height: 135px;   
+    border: solid 1px black;
+}
+
+#ticketName{
+    font: 24pt "GeosansLight", sans-serif;
+}
+
+
+#drawing {
+        font: 14pt "GeosansLight", sans-serif;
+}
+
+#totalPeople{
+    font: 14pt "GeosansLight", sans-serif; 
+}
+
+#shares{
+    font: 14pt "GeosansLight", sans-serif;
+}
+
+#privacy{
+    float:right;
+    display:block;
+    margin-right: 10px;
+    font: 12pt "GeosansLight", sans-serif;
+        margin-top:14px;
+}
+
+#privacyDiv{
+
+    clear:both;
+}
+
+#invite {
+    position: relative;
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 30px;
+    width: 200px;
+    font: 12pt "Futura", sans-serif;
+    color: white;
+
+}
+
+#footer {
+    background-color: #FFCC33;
+    width: 100%;
+    height: 40px;
+}
+
+.message{
+    
+}
+
+.message img{
+    float:left;
+}
+#name{
+    color: black;
+}
+
+.chatTextBox{
+    width: 770px;
+    height: 200px;
+    margin-left:220px;
+    
+    
+}
+
+.chatTextBox p{
+    color: black;
+    float: left;
+    padding-bottom: 10px;
+    margin-left:20px;
+}
+
+#chatText{
+    width: 770px;
+    height: 70px;
+
+}
+#send {
+    position: relative;
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 40px;
+    width: 90px;
+    font: 16pt "Futura", sans-serif;
+    color: white;
+    margin-top:20px;
+    margin-left: 670px;
+
+}
+
+.leftPage, .rightPage{
+    display:inline-block;
+
+    
+    
+    vertical-align:top;
+}
+
+.leftPage{
+    width: 550px;
+    height: 0px;
+    
+}
+
+
+.rightPage{
+    width:365px;
+    height:580px;
+    border-left: solid 1px black;
+}
+
+.rightPage #currentPlayers{
+    color:black;
+    font: 18pt "Futura", sans-serif;
+}
+
+
+
+.currentPlayers{
+    height: 30px;
+}
+
+.rightPage .player{
+    display: inline-block;
+    float:left;
+    margin-left:15px;
+
+}
+
+.otherPlayers{
+    float:left;
+    width:70px;
+    border: solid 1px black;
+    
+}  
+.players{
+    overflow-y:scroll;
+    height:540px;;
+    margin-left:8px;
+}
+
+.player{
+    color:black;
+    margin-top:10px;
+    height: 90px;
+    width: 70px;
+    font: 14pt "Futura", sans-serif;
+}
+
+
+.userInfo{
+    color:black;
+    margin-top:10px;
+    height: 90px;
+    width: 70px;
+    font: 14pt "Futura", sans-serif;
+}
+
+.userInfo P{
+    float:left;
+}
+
+.userInfo img{
+   float:left;
+    width:70px;
+    border: solid 1px black;
+}
+
+.userInfo, .messageText{
+    display:inline-block;
+    vertical-align:top;
+    float:left;
+    margin-left:30px;
+}
+.messageText{
+    color:black;
+    font: 14pt "Futura", sans-serif;  
+    margin-top:10px;
+    margin-left: 15px;
+    width:400px;
+    text-align:center;
+}
+
+
+#messages{
+    overflow-y:scroll;
+    height: 380px;
+}
+
+#messages li{
+    list-style:none;
+    float:left;
+    margin-top:5px;
+}

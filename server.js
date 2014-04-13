@@ -22,11 +22,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(function(user, done) {
   db.storeUser(user, conn, function(id) {
+    console.log("stored user with id " + id);
     done(null, id);
   });
 });
 passport.deserializeUser(function(id, done) {
   db.loadUser(id, conn, function(user) {
+    console.log("loaded user with id " + user.facebook_id);
     done(null, user);
   });
 });
@@ -40,7 +42,7 @@ passport.use(new FacebookStrategy({
     callbackURL: "http://localhost:8080/auth/facebook/callback"
   },
   function (accessToken, refreshToken, profile, done) {
-    db.createUser(accessToken, refreshToken, profile, done, conn);
+    db.findOrCreate(accessToken, refreshToken, profile, done, conn);
   }
 ));
 
@@ -51,7 +53,9 @@ app.get('/auth/facebook/callback',
                                       failureRedirect: '/login' }));
                                       
 app.get('/dummy_page', function(request, response) {
-  response.render('dummy.html', {name: request.user.displayName});
+  console.log("user is: " + request.user.profile.displayName);
+  console.log(request.user);
+  response.render('dummy.html', {name: request.user.profile.displayName});
 });
 
 app.get('/login', function(request, response) {
