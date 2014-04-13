@@ -42,14 +42,23 @@ padding: 0;
     background-color: #FFCC33;
     width: 100%;
     height: 60px;
-    margin-top: 40px;
+    margin-top: 140px;
+}
+
+#logo {
+    position: relative;
+    width: 300px;
+    left: 36%;
+    background-color: white;
+    bottom: 90px;
+    padding: 0 40px;
 }
 
 #mid{
     font: 60pt "GeosansLight", sans-serif;
     text-align: center;
     position: relative;
-    margin: 70px auto;
+    margin: 140px auto 90px auto;
     width: 1000px;
     color: #FFCC33;
 }

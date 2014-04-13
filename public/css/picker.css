@@ -39,6 +39,15 @@ body{
     z-index: 9998;
 }
 
+#logoimage {
+    position: relative;
+    width: 130pt;
+    background-color: white;
+    padding: 0 20px;
+    right: 10px;
+    bottom: 25px;
+}
+
 #header_wrapper {
     position: fixed;
     top: 38px;
