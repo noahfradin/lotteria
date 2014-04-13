@@ -32,10 +32,6 @@ src:url("../fonts/Gram.ttf");
     padding: 0;
 }
 
-html{
-    overflow-y:hidden;
-}
-
 body{
     min-width:1040px;
     margin: 0;
@@ -47,12 +43,11 @@ body{
     font: 12pt "GeosansLight", sans-serif;
     background-color: white;
     position: fixed;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     top: 0px;
     width: 100%;
     z-index: 9998;
-    
 }
 
 #header_wrapper {
@@ -69,6 +64,15 @@ body{
     margin-left: 50px;
     width: 200px;
     display:inline-block;
+}
+
+#logoimage {
+    position: relative;
+    width: 130pt;
+    background-color: white;
+    padding: 0 20px;
+    right: 10px;
+    bottom: 25px;
 }
 
 #logo a {
@@ -358,11 +362,14 @@ ul#top_nav li a {
     margin-top:10px;
     height: 90px;
     width: 70px;
-    font: 14pt "Futura", sans-serif;
+    font: 12pt "Futura", sans-serif;
 }
 
 .userInfo P{
+    position: relative;
     float:left;
+    text-align: center;
+    left: 10px;
 }
 
 .userInfo img{
@@ -379,8 +386,8 @@ ul#top_nav li a {
 }
 .messageText{
     color:black;
-    font: 14pt "Futura", sans-serif;  
-    margin-top:10px;
+    font: 12pt "Futura", sans-serif;  
+    margin-top:20px;
     margin-left: 15px;
     width:400px;
     text-align:center;
@@ -396,4 +403,5 @@ ul#top_nav li a {
     list-style:none;
     float:left;
     margin-top:5px;
+    
 }

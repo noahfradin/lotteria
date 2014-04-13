@@ -1,3 +1,7 @@
+/* 
+Thoughts? Do you think everything should maybe be smaller?
+*/
+
 @font-face {
 font-family:"Futura";
 src:url("../fonts/Futura.ttc");
@@ -13,7 +17,14 @@ font-family:"GeosansLight";
 src:url("../fonts/GeosansLight.ttf");
 }
 
-html{
+@font-face {
+font-family:"Origin-Bold";
+src:url("../fonts/Origin-Bold.ttf");
+}
+
+@font-face {
+font-family:"Gram";
+src:url("../fonts/Gram.ttf");
 }
 
 * {
@@ -37,15 +48,6 @@ body{
     top: 0px;
     width: 100%;
     z-index: 9998;
-}
-
-#logoimage {
-    position: relative;
-    width: 130pt;
-    background-color: white;
-    padding: 0 20px;
-    right: 10px;
-    bottom: 25px;
 }
 
 #header_wrapper {
@@ -144,104 +146,141 @@ ul#top_nav li a {
     background-color: #FFD018;
 }
 
-#pick{
-    font: 30pt "GeosansLight", sans-serif;
-    position: relative; 
-    margin-top: 200px;
+
+#mid{
+    font: 24pt "GeosansLight", sans-serif;
     text-align: center;
-}
-
-p {
-    font: 18pt "GeosansLight", sans-serif;
     position: relative;
+    margin: 150px auto 50px auto;
+    width: 1000px;
+    color: #FFCC33;
 }
 
-.total, .powerPlayToggle, .drawingSelector{
+#yourtix {
+    width: 850px;
+    margin: 5px auto;
+    font: 24pt "GeosansLight", sans-serif;
+}
+
+#tickets{
+
+}
+
+#tickets li {
+    width: 850px;
+    height: 160px;
+    margin: 20px auto;
+    list-style-type: none;
+    border: solid #FFCC33 1px;
+}
+
+
+.tickpic {
+    height: 140px;
+    margin: 12px;
+    display:inline-block;
+    margin-left:-450px;
+}
+
+#tickets li h2 {
     position: relative;
-    bottom: 170px;
-    text-align: center;
+    font: 20pt "Futura", sans-serif;
+    display: inline-block;
+    top: -110px;
+    left: -10px;
+    color:black;
 }
 
-.total{
-    left: 250px;
-    bottom: 217px;
-}
-
-.powerPlayToggle{
-    right: 250px;
-    bottom: 125px;
-}
-
-#amount {
-    font: 18pt "GeosansLight", sans-serif;
+#tickets li h3 {
     position: relative;
+    font: 16pt "GeosansLight", sans-serif;
+    display: inline-block;
+    left: 165px;
+    top: -155px;
 }
 
-.ticketBoard{
+.playerpic {
+    height: 70px;
+    margin-left: 5px;
+    display: inline-block;
     position: relative;
-    margin-top: 80px;
+    left: 180px;
+    top: -120px
+}
+
+.more {
+    width: 100px;
+    position: relative;
+    left: 500px;
+    bottom: 175px;
+    font: 12pt "GeosansLight", sans-serif;
+}
+
+.drawdate {
+    position: relative;
+    top: -165px;
+    color: #FFCC33;
+    font: 16pt "GeosansLight", sans-serif;
+    margin-right: 30px;
+    text-align:right
     
 }
 
-.ticketBoard p {
-    font: 18pt "GeosansLight", sans-serif;
+.invite {
     position: relative;
-}
-
-.ticketNumbers p {
-    bottom: 190px;
-    margin-left: 36%;
-}
-
-.ticketPowerball p {
-    margin-left: 70%;
-    bottom: 365px;
-}
-
-.number{
-    left: 16%;
-    position: relative;
-    display: inline-block;
-    background:transparent;
-    background-image:url("../images/circle_white.png");
-    background-repeat:no-repeat;
-    background-size:140px 140px;
-}
-
-.number, textarea { 
-    padding: 9px; 
-    border: none; 
-    outline: none; 
-    font: normal 70px/100% "Futura", sans-serif; 
-    width: 150px; 
-    height: 150px;
-    line-height: 150%; 
-    text-align:center;
-    } 
-
-button {
-    position: relative;
-    font: normal 70px/100% "Futura", sans-serif;
-    background-color: white;
+    top: -165px;
+    background-color: #FFCC33;
     border: solid 1px;
     border-color: #E5E6E5;
     height: 30px;
     width: 200px;
     font: 12pt "Futura", sans-serif;
-    left: 475px;
-    top: -170px;
-}
-
-#buyButton{
     color: white;
-    background-color: #FFCC33 !important;
-}
-
-#powerball{
-    position: relative;
-    display: inline-block;
-    background-image:url("../images/circle_red.png");
-    color: white;
+    left: 280px;
     top: -180px;
-    margin-left: 770px;
+    
 }
+
+
+#tickets{
+    height:100%;   
+    
+}
+
+#poolText, poolText{
+    display:inline-block;
+}
+
+#poolText{
+    text-align:center;
+    color:black;
+    height:74px;
+}
+#poolFeed{
+    background-color: #FFCC33;
+    height:74px;
+    width: 842px;
+    margin-left:auto;
+    border: solid 1px black;
+    margin-right:auto;
+    
+}
+
+#chatText{
+    width: 700px;
+    height: 70px;
+    font: 24pt "GeosansLight", sans-serif;
+    text-align: left;
+    position: relative;
+    line-height:30px;
+    color:#dbdbdb;
+    font-weight:bolder;
+    
+}
+
+.otherPlayers{
+    display:inline-block;
+    margin-left:-300px;
+    color:black;
+}
+
