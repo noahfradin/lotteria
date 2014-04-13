@@ -66,6 +66,15 @@ body{
     display:inline-block;
 }
 
+#logoimage {
+    position: relative;
+    width: 130pt;
+    background-color: white;
+    padding: 0 20px;
+    right: 10px;
+    bottom: 25px;
+}
+
 #logo a {
     color: transparent;
     margin: 0 auto;
