@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lotteria</title>
+    <link rel="stylesheet" href="../public/css/ticket.css" type="text/css" />
+    <script type="text/javascript" src="/public/javascript/home.js"></script>
+</head>
+<body>
+    <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <header>
+		<div id="header_wrapper">
+			<h1 id="logo"><a href="#">Lotteria</a></h1>
+			<ul id="top_nav">
+				<li id="nav_nticket"><a href="#"></a><p>NEW POOL</p></li>
+				<li id="nav_tickets"><a href="#"></a><p>MY POOLS</p></li>
+				<li id="nav_rewards"><a href="#"></a><p>REWARDS</p></li>
+				<li id="nav_settings"><a href="#"></a><p>SETTINGS</p></li>
+			</ul>
+		</div>
+	</header>
+    <div id="mid">
+        <h1 id="jackpot">Current Jackpot: $80,000,000</h1>
+    </div>
+    <p id="yourtix">Your Pools:</p>
+    <div id="ticketscroll">
+        <ul id="tickets">
+            {{#pools}}
+            <li class="pool_entry">
+              <img src = "{{main_pic_url}}" id= "tickpic" >
+              <h2>{{name}}</h2>
+              <p id="drawdate">Draw on {{draw_string}}</p>
+              <h3>Players:</h3>
+              {{#sample_user}}
+                <img src = "http://graph.facebook.com/{{facebook_id}}/picture?type=square" class= "playerpic" >
+              {{/sample_user}}
+              <p id="more">{{more_text}}</p>
+              <button id="invite">INVITE FRIENDS</button>
+            </li>
+            {{/#pools}}
+          </ul>
+    </div>
+    <div id="feed"></div>
+    <div id="footer"></div>
+</body>
+    
+    
+</html>

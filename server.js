@@ -34,7 +34,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 // Static redirects
-app.use('/include', express.static(__dirname + '/include'));
+app.use('/public', express.static(__dirname + '/public'));
 
 passport.use(new FacebookStrategy({
     clientID: "220803898117351",
@@ -49,7 +49,7 @@ passport.use(new FacebookStrategy({
 app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', { successRedirect: '/dummy_page',
+  passport.authenticate('facebook', { successRedirect: '/home',
                                       failureRedirect: '/login' }));
                                       
 app.get('/dummy_page', function(request, response) {
@@ -63,6 +63,21 @@ app.get('/login', function(request, response) {
   response.render('login.html', {});
 });
 
+app.get('/home', function(request, response) {
+  // this should be the page that prompts you to log in
+  response.render('login.html', {});
+});
+
+app.get('/mytickets', function(request, response) {
+  // page with all your tickets
+  response.render('mytickets.html', {});
+});
+
+app.get('/picker', function(request, response) {
+  // buy into a pool
+  response.render('picker.html', {});
+});
+
 app.post('/auth', function(request, response){
   response.redirect('/auth/facebook');
 });
@@ -70,6 +85,12 @@ app.post('/auth', function(request, response){
 app.get('/reset', function(request, response) {
   // Create tables
   db.newTables(conn);
+  response.redirect('/');
+});
+
+app.get('/create_samples', function(request, response) {
+  // Create tables
+  db.createSamples(conn);
   response.redirect('/');
 });
 
