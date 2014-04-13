@@ -22,9 +22,14 @@ html{
 }
 
 body{
-    min-width:1040px;
-    margin: 0;
+    min-width:1350px;
+    margin: 0 auto;
     padding: 0;
+}
+
+#centerables {
+    width: 1350px;
+    margin: 0 auto;
 }
 
 #powerbucks{
