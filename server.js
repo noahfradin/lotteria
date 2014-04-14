@@ -50,17 +50,12 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { successRedirect: '/home',
-                                      failureRedirect: '/login' }));
+                                      failureRedirect: '/' }));
                                       
 app.get('/dummy_page', function(request, response) {
   console.log("user is: " + request.user.profile.displayName);
   console.log(request.user);
   response.render('dummy.html', {name: request.user.profile.displayName});
-});
-
-app.get('/login', function(request, response) {
-  // this should be the page that prompts you to log in
-  response.render('login.html', {});
 });
 
 app.get('/home', function(request, response) {
