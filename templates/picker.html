@@ -18,6 +18,7 @@
 		</div>
 	</header>
         <div id="centerables">
+        <form method="POST" action="/buyin/{{pool.id}}" id="pickerForm">
         <p id="pick">Pick numbers to play:</p>
         <div class = "ticketBoard">
             <div class = "ticketNumbers">
@@ -93,12 +94,13 @@
                             
                 <button id = "cancelButton" tabindex="12" type="button">CANCEL</button>
             
-                <button id = "buyButton" tabindex="11" type="button">BUY</button>
+                <button id = "buyButton" tabindex="11" type="submit">BUY</button>
         
             
 
         
         </div>
+        </form>
     </div>
     </body>
 </html>
