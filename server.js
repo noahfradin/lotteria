@@ -66,14 +66,22 @@ app.get('/home', function(request, response) {
 
 app.get('/mytickets', function(request, response) {
   // page with all your tickets
-  db.loadAllPoolsForUser(conn, request.user, function(pools) {
-    response.render('mytickets.html', {pools: pools});
-  });
+  if (request.user) {
+    db.loadAllPoolsForUser(conn, request.user, function(pools) {
+      response.render('mytickets.html', {pools: pools});
+    });
+  } else {
+    response.redirect('/');
+  }
 });
 
 app.get('/picker', function(request, response) {
   // buy into a pool
-  response.render('picker.html', {});
+  if (request.user) {
+    response.render('picker.html', {});
+  } else {
+    response.redirect('/');
+  }
 });
 
 app.post('/auth', function(request, response){
@@ -83,7 +91,7 @@ app.post('/auth', function(request, response){
 app.get('/reset', function(request, response) {
   // Create tables
   db.newTables(conn);
-  response.redirect('/');
+  response.redirect('/create_samples');
 });
 
 app.get('/create_samples', function(request, response) {
@@ -93,7 +101,11 @@ app.get('/create_samples', function(request, response) {
 });
 
 app.get('/', function(request, response) {
-  response.render('home(nostache).html', {});
+  if (request.user) {
+    response.redirect('/home');
+  } else {
+    response.render('login.html', {});
+  }
 });
  
 app.listen(8080, function() {
