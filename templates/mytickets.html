@@ -26,8 +26,8 @@
         <ul id="tickets">
             {{#pools}}
             <li class="pool_entry">
-              <img src = '{{info.main_pic_url}}' id= "tickpic" >
-              <h2>{{info.name}}</h2>
+              <a href="/ticketProfile"><img src = '{{info.main_pic_url}}' id= "tickpic" ></a>
+              <a href="/ticketProfile"><h2>{{info.name}}</h2></a>
               <p id="drawdate">Draw on {{info.draw_string}}</p>
               <h3>Players:</h3>
               {{#info.sample_users}}

@@ -100,6 +100,10 @@ app.get('/create_samples', function(request, response) {
   response.redirect('/');
 });
 
+app.get('/ticketprofile', function(request, response) {
+  response.render('ticketProfile.html', {});
+});
+
 app.get('/', function(request, response) {
   if (request.user) {
     response.redirect('/home');

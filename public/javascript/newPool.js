@@ -15,22 +15,22 @@ window.addEventListener('load',function(){
 
 function deleteMonthDefault(field){
    var month = document.getElementById("month");
-    if(month.value = "Month"){
+    if(month.value = "MM"){
         month.value = "";    
     }
 }
        
 function deleteDayDefault(field){
    var day = document.getElementById("day");
-    if(day.value = "Day"){
+    if(day.value = "DD"){
         day.value = "";    
     }
 }
 
 function deleteYearDefault(field){
    var year = document.getElementById("year");
-    if(year.value = "Year"){
+    if(year.value = "YYYY"){
         year.value = "";    
     }
 }
-   
+

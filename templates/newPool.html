@@ -18,42 +18,71 @@
 	</header>
         
         <div id = "poolFields">
-                     
-         <img src ="../public/images/eventPhoto.jpg" id="eventImage">
-        <div class = "fieldDiv">  
-            <p>Ticket Title:</p>
-            <input type="text" class = "field" id="ticketTitle" value=""> 
-        </div>
-        <button class = "button" id = "upload">UPLOAD PHOTO</button>
-        <div class = "fieldDiv"> 
-            <p>Description:</p>
-             <input type="text" class = "field" id="ticketDescription" value=""> 
-         </div> 
-       
+            <div id ="mainFields">
             
-        
-        <p>Draw Date:</p>
-        <div class = "fieldDiv">   
-            <p>Month:&nbsp;&nbsp;</p>
-            <input type="text" class = "dateField" id="month" value="Month"> 
-        </div> 
-            <div class = "fieldDiv"> 
-            <p>Day:&nbsp;&nbsp;</p>
-            <input type="text" class = "dateField" id="day" value="Day"> 
-       </div> 
-        <div class = "fieldDiv">  
-              <p>Year:&nbsp;&nbsp;</p>
-            <input type="text" class = "dateField" id="year" value="Year"> 
-        </div> 
+            
+                <div id ="imageDiv">
+                     <img src ="../public/images/eventPhoto.jpg" id="eventImage">
+                     <button class = "button" id = "upload">UPLOAD PHOTO</button>
+                </div>
+                <div id = "textDivs">
+                       <div class = "fieldDiv">  
 
-        <div class = "fieldDiv"> 
-            <p>Invite Only?</p>
-            <input type="checkbox" tabindex="401"  id="privacy" value="true">
-        </div> 
-            
-        <button class = "button" id="invite">INVITE FRIENDS</button>
         
+                                    <p>Ticket Title:</p>
+                <input type="text" class = "field" id="ticketTitle" value=""> 
+                           
+                            </div> 
+                    <div class = "dateFieldDiv">   
+                           <p>Draw Date:</p>
+                    </div>
+        <div class = "dateFieldDiv">   
+            <p>Month:&nbsp;&nbsp;</p>
+            <input type="text" class = "dateField" id="month" value="MM"> 
+        </div> 
+            <div class = "dateFieldDiv"> 
+            <p>Day:&nbsp;&nbsp;</p>
+            <input type="text" class = "dateField" id="day" value="DD"> 
+       </div> 
+        <div class = "dateFieldDiv">  
+              <p>Year:&nbsp;&nbsp;</p>
+            <input type="text" class = "dateField" id="year" value="YYYY"> 
+        </div> 
+           
+                        
+        <div class = "invite">
+                       <button class = "button" id="invite">INVITE FRIENDS</button>
+                    
+                         <div class = "fieldDiv2"> 
+        <p>Invite Only:</p>
+            <input type="checkbox" tabindex="401"  id="privacy" value="true">      
+                        
+                    </div>
+  
+ 
+           
+        </div> 
+                 </div>
+                
+                
+         
+        <div class = "descriptionDiv"> 
+            <p>Description:</p>
+            
+         </div> 
+             <input type="text" class = "field" id="ticketDescription" value=""> 
+       
+
+
+   
+            
+
         </div>
+            <div class ="footer">
+                <button class = "submit" id = "submit">SUBMIT </button>
+        
+            </div>
+            </div>
         
 
 
