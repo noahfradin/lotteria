@@ -103,7 +103,8 @@ app.get('/create_samples', function(request, response) {
 app.get('/ticketprofile/:id', function(request, response) {
   if (request.user) {
     db.loadPoolByID(conn, request.params.id, function(pool) {
-      response.render('ticketProfile.html', {pool: pool});
+        var usernumber = pool.buyins.length;
+      response.render('ticketProfile.html', {pool: pool, usernumber: usernumber});
     });
   } else {
     response.redirect('/');
