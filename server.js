@@ -8,6 +8,7 @@ var passport = require('passport');
 var app = express();
 app.engine('html', engines.hogan);
 app.set('views', __dirname + '/templates');
+app.use(express.bodyParser());
 app.use(express.cookieParser());
 app.use(express.session({secret: 'badsecret'}));
 
@@ -84,6 +85,15 @@ app.get('/picker', function(request, response) {
   }
 });
 
+app.get('/newPool', function(request, response) {
+  // create a new pool
+  if (request.user) {
+    response.render('newPool.html', {user: request.user});
+  } else {
+    response.redirect('/');
+  }
+});
+
 app.post('/auth', function(request, response){
   response.redirect('/auth/facebook');
 });
@@ -115,6 +125,23 @@ app.get('/', function(request, response) {
     response.redirect('/home');
   } else {
     response.render('login.html', {});
+  }
+});
+
+app.post('/create', function(request, response) {
+  if (request.user) {
+    console.log(request.body);
+    var info = new Object();
+    info.name = request.body.name;
+    info.desc = request.body.desc;
+    info.private = request.body.private;
+    info.draw_string = request.body.year + "/" + request.body.day + "/" + request.body.month;
+    info.main_pic_url = '/public/images/eventPhoto.jpg';
+    db.createPool(conn, info, request.user, function(pool) {
+      response.redirect('/ticketprofile/' + pool.id);
+    });
+  } else {
+    response.redirect('/');
   }
 });
  

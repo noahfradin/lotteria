@@ -93,6 +93,7 @@ function createPool(conn, info, user, callback) {
   info.more_text = "";
   info.sample_users = new Array();
   info.sample_users.push({facebook_id: user.facebook_id});
+  info.founder = user.facebook_id;
   var buyins = new Array();
   buyins.push({id: user.facebook_id, shares: 0});
   var vars = [
@@ -205,12 +206,14 @@ function createSamples(conn) {
     user.facebook_id = user.id;
     createUser("", "", user, null, conn);
     
-    var poolInfo = new Object();
-    poolInfo.name = "Sample Pool " + user.facebook_id;
-    poolInfo.draw_string = "12/12/14";
-    poolInfo.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
+    var info = new Object();
+    info.name = "Sample Pool " + user.facebook_id;
+    info.desc = "My first sample pool!";
+    info.private = true;
+    info.draw_string = 12 + "/" + 12 + "/" + 14;
+    info.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
     loadUser(user.facebook_id, conn, function(user2) {
-      createPool(conn, poolInfo, user2, function(pool) {
+      createPool(conn, info, user2, function(pool) {
         i += 1;
         if (i < users.length) {
           poolFunc();
