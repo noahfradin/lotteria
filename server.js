@@ -59,13 +59,16 @@ app.get('/dummy_page', function(request, response) {
 });
 
 app.get('/home', function(request, response) {
-  // this should be the page that prompts you to log in
-  response.render('login.html', {});
+  // this is the user's personal homepage with their tickets and friend tickets
+  // right now it just redirects to your tickets
+  response.redirect('/mytickets');
 });
 
 app.get('/mytickets', function(request, response) {
   // page with all your tickets
-  response.render('mytickets.html', {});
+  db.loadAllPoolsForUser(conn, request.user, function(pools) {
+    response.render('mytickets.html', {pools: pools});
+  });
 });
 
 app.get('/picker', function(request, response) {

@@ -24,6 +24,6 @@ CREATE TABLE pools(
 -- name             name of pool
 -- draw_string      when the ticket is drawn, string format
 -- main_pic_url     url of pic to display to represent pool
--- sample user      list of sample users:
+-- sample user      list of sample user objects:
 ---- facebook_id    identifier for user
 -- more_text        "+ 13 more" etc
