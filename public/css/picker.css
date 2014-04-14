@@ -164,7 +164,9 @@ p {
 .total, .powerPlayToggle, .drawingSelector{
     position: relative;
     bottom: 170px;
+    margin: 0 auto;
     text-align: center;
+    width: 120px;
 }
 
 .total{
