@@ -95,7 +95,12 @@ function createPool(conn, info, user, callback) {
   info.sample_users.push({facebook_id: user.facebook_id});
   var buyins = new Array();
   buyins.push({id: user.facebook_id, shares: 0});
-  var vars = [JSON.stringify(info), new Array(), moment().unix(), buyins, 0];
+  var vars = [
+    JSON.stringify(info),
+    new Array(),
+    moment().unix(),
+    JSON.stringify(buyins),
+    0];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
     var q = conn.query(sql, [], function(error, result) {
@@ -125,6 +130,7 @@ function loadPoolByID(conn, id, callback) {
       var pool = result.rows[0];
       pool.info = JSON.parse(pool.info);
       pool.tickets = JSON.parse(pool.tickets);
+      pool.buyins = JSON.parse(pool.buyins);
       callback(pool);
     } else if (result.rowCount > 1) {
       console.log("too many pools with id " + id + "!!");

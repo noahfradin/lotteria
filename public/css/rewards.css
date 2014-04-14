@@ -32,6 +32,10 @@ margin: 0;
 padding: 0;
 }
 
+h2{
+    font: 30pt "GeosansLight", sans-serif;
+}
+
 body{
 min-width:1040px;
 margin: 0;
@@ -164,7 +168,7 @@ ul#top_nav li a {
     list-style: none;
 }
 .reward{
- display: inline;
+ display: inline-block;
 }
 .reward_photo{
     padding-top: 20;
@@ -173,9 +177,10 @@ ul#top_nav li a {
 }
 .reward_text{
     display: block;
+    text-align: center;
     width: 300;
    color: white; 
-   font: bold 24px/45px Helvetica, Sans-Serif; 
+   font: bold 24px/45px "GeosansLight", Sans-Serif; 
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.7);
 }
@@ -183,7 +188,7 @@ ul#top_nav li a {
     display: block;
     width: 300;
    color: white; 
-   font: bold 15px/45px Helvetica, Sans-Serif; 
+   font: bold 15px/45px "GeosansLight", Sans-Serif; 
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.7);
 }
