@@ -100,9 +100,10 @@ function createPool(conn, info, user, callback) {
       buyin.id = result.rows[0]['last_insert_rowid()'];
       buyin.shares = 0;
       user.pools.push(buyin);
+      console.log("user with ID " + user.facebook_id + " created pool with id " + buyin.id);
       storeUser(user, conn, function(facebook_id) {
         if (callback) {
-          callback(id);
+          callback(buyin.id);
         }
       });
     });
@@ -129,8 +130,6 @@ function loadPoolByID(conn, id, callback) {
 
 // DB call for the mytickets page
 function loadAllPoolsForUser(conn, user, callback) {
-  console.log("loadallpools");
-  console.log(user);
   var pools = [];
   var loaded = 0;
   var loadFunc = function(pool) {
@@ -184,20 +183,27 @@ function createSamples(conn) {
   ameade.id = 1067881337;
   crfitz.id = 599381317;
   nfradin.id = 685294752;
-  for (var i = 0; i < users.length; i += 1) {
+  
+  var i = 0;
+  var poolFunc = function() {
     var user = users[i];
     user.facebook_id = user.id;
     createUser("", "", user, null, conn);
     
     var poolInfo = new Object();
-    poolInfo.name = "Your Personal Sample Pool";
+    poolInfo.name = "Sample Pool " + user.facebook_id;
     poolInfo.draw_string = "12/12/14";
     poolInfo.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
     loadUser(user.facebook_id, conn, function(user2) {
-      console.log(user);
-      createPool(conn, poolInfo, user2, null);
+      createPool(conn, poolInfo, user2, function(pool) {
+        i += 1;
+        if (i < users.length) {
+          poolFunc();
+        }
+      });
     });
   }
+  poolFunc();
 }
 
 exports.newTables = newTables;

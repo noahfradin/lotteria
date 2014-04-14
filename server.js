@@ -109,5 +109,7 @@ app.get('/', function(request, response) {
 });
  
 app.listen(8080, function() {
+  db.newTables(conn);
+  db.createSamples(conn);
 	console.log("- Server listening on port 8080");
 });
