@@ -27,3 +27,7 @@ CREATE TABLE pools(
 -- sample user      list of sample user objects:
 ---- facebook_id    identifier for user
 -- more_text        "+ 13 more" etc
+
+-- Buyin
+-- id               user id of guy who bought
+-- shares           how many shares they bought

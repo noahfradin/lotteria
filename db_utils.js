@@ -1,5 +1,7 @@
 // various database and user management utilities
 
+var moment = require('moment');
+
 // stores the user in the database, then calls callback with that user's id
 // this should NOT be used for new users
 function storeUser(user, conn, callback) {
@@ -87,11 +89,13 @@ function findOrCreate(accessToken, refreshToken, profile, done, conn) {
 // user: the user object that created the pool
 // callback: called with id of created pool after insertion
 function createPool(conn, info, user, callback) {
-  var sql = 'INSERT INTO pools (info, tickets) VALUES ($1, $2)';
+  var sql = 'INSERT INTO pools (info, tickets, created, buyins, shares) VALUES ($1, $2, $3, $4, $5)';
   info.more_text = "";
   info.sample_users = new Array();
   info.sample_users.push({facebook_id: user.facebook_id});
-  var vars = [JSON.stringify(info), new Array()];
+  var buyins = new Array();
+  buyins.push({id: user.facebook_id, shares: 0});
+  var vars = [JSON.stringify(info), new Array(), moment().unix(), buyins, 0];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
     var q = conn.query(sql, [], function(error, result) {
@@ -151,6 +155,11 @@ function loadAllPoolsForUser(conn, user, callback) {
   }
 }
 
+// DB call for the homepage
+function loadRelevantPools(conn, user, callback) {
+  // TODO
+}
+
 // resets the tables
 function newTables(conn) {
 
@@ -164,7 +173,7 @@ function newTables(conn) {
   .on('error', console.error);
   conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT)")
   .on('error', console.error);
-  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB)")
+  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB, created INTEGER, buyins BLOB, shares INTEGER)")
   .on('error', console.error);
 }
 

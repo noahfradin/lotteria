@@ -153,9 +153,11 @@ ul#top_nav li a {
 
 #poolFields{
     margin-top:200px;
-    width: 800px;
+    width: 1000px;
     margin-left:auto;
     margin-right:auto;
+    border-top: solid 3px black;
+    border-bottom: solid 3px black;
 }
 
 .button {
@@ -163,10 +165,11 @@ ul#top_nav li a {
     background-color: #FFCC33;
     border: solid 1px;
     border-color: #E5E6E5;
-    height: 30px;
-    width: 200px;
-    font: 12pt "Futura", sans-serif;
+    height: 50px;
+    width: 300px;
+    font: 18pt "Futura", sans-serif;
     color: white;
+    margin-top:12px;
 
     
 }
@@ -175,13 +178,175 @@ ul#top_nav li a {
     color: gray;
 }
 
+#eventImage{
+    width:320px;
+    margin-left:20px;
+    margin-top:20px;
+}
+
 .fieldDiv{
-    vertical-align: top;
-    width: 400px;
+    width: 462px;
     border: solid 1px black;
+    background-color: #FFCC33;
+    height:40px;
+    font: 24pt "GeosansLight", sans-serif;
 }
 
 .fieldDiv *{
+    vertical-align:top;
+    display: inline-block;
+
+}
+
+.fieldDiv input{
+    height:40px;
+    border:solid 1px black;
+}
+
+#mainFields div{
     display: inline-block;
 }
+
+#imageDiv{
+    width: 320px;
+}
+
+#imageDiv .button{
+    margin-top:2px;
+    margin-left:20;
+    width:320px;
+    background-color:black;
+}
+
+#textDivs, #imageDiv{
+    vertical-align:top;
+}
+
+#textDivs{
+       margin-left:20px;
+    margin-top:20px;
+    width:300px;
+}
+#textDivs *{
+    clear: both;
+
+}
+
+.dateFieldDiv{
+    
+    width: 161px;
+    border: solid 1px black;
+    background-color: #FFCC33;
+    height:40px;
+    font: 24pt "GeosansLight", sans-serif;
+    margin-top: 7px;
+}
+
+.dateFieldDiv *{
+    vertical-align:top;
+    display: inline-block;
+}
+.dateFieldDiv input{
+    height:40px;
+    border:solid 1px black;
+  
+}
+
+.descriptionDiv{
+    margin-top:20px;
+    text-align:center;
+    width:980px;
+    margin-left:20px;
+     background-color: #FFCC33;
+}
+
+.descriptionDiv p{
+    font: 30pt "GeosansLight", sans-serif;
+}
+
+#ticketDescription{ 
+    width:960px;
+    margin-top:15px;
+    margin-left:30px;
+    height: 200px;
+    margin-bottom:3px;
+    
+}
+
+#day{
+    margin-left:30px;
+}
+
+#year{
+    margin-left:24px;
+}
+
+#month{
+    
+}
+
+#month, #day, #year{
+    width:50px;
+}
+
+#ticketTitle{
+    width:300px;
+    margin-left:20px;
+}
+
+#invite{
+    height: 50px;
+    margin-top:5px;
+}
+
+.invite{
+    width: 700px;
+}
+
+.invite *{
+    vertical-align:top;
+    display:inline-block;
+    border-color:black;
+}
+
+
+.fieldDiv2{
+    margin-top:6px;
+    width: 300px;
+    margin-left:30px;
+    height:50px;
+    font: 24pt "GeosansLight", sans-serif;
+}
+
+.fieldDiv2 *{
+    vertical-align:top;
+    display: inline-block;
+
+}
+
+.fieldDiv2 input{
+    height:40px;
+    border:solid 1px black;
+}
+
+.submit {
+    position: relative;
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 50px;
+    font: 18pt "Futura", sans-serif;
+    color: white;
+    margin-top:12px;
+    text-align:center;
+        width:400px;
+    margin-left:340px;
+     background-color: #FFCC33;
+    margin-bottom:20px;
+    
+}
+
+
+
+
 
