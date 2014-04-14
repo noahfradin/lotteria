@@ -111,6 +111,10 @@ app.get('/ticketprofile/:id', function(request, response) {
   }
 });
 
+app.get('/rewards', function(request, response){
+  response.render('rewards.html');
+});
+
 app.get('/', function(request, response) {
   if (request.user) {
     response.redirect('/home');
