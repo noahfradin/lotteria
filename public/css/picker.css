@@ -21,6 +21,7 @@ html{
     padding: 0;
 }
 
+
 body{
     min-width:1350px;
     margin: 0 auto;
@@ -75,6 +76,8 @@ body{
 }
 
 ul#top_nav {
+    left: 250px;
+    top: 0px;
     display:inline-block;
     position: absolute;
     height: 70px;
@@ -102,6 +105,7 @@ ul#top_nav li p {
 ul#top_nav li a {
     margin: auto;
     position: absolute;
+    z-index: 9988;
 }
 
 #nav_nticket p {

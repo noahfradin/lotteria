@@ -226,7 +226,6 @@ ul#top_nav li a {
     display:block;
     margin-right: 10px;
     font: 12pt "GeosansLight", sans-serif;
-        margin-top:14px;
 }
 
 #privacyDiv{
@@ -234,16 +233,22 @@ ul#top_nav li a {
     clear:both;
 }
 
-#invite {
+#invite, #buy {
     position: relative;
+    display: inline-block;
     background-color: #FFCC33;
     border: solid 1px;
     border-color: #E5E6E5;
     height: 30px;
-    width: 200px;
+    width: 160px;
     font: 12pt "Futura", sans-serif;
     color: white;
+}
 
+#buy {
+    background-color: #F26C6E;
+    left: 170px;
+    bottom: 30px;
 }
 
 #footer {

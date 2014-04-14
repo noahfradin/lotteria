@@ -27,10 +27,11 @@
                 <div id="profileText">
                     <p id="ticketName">{{pool.info.name}}</p>
                     <p id="drawing">{{pool.info.draw_string}}</p>
-                    <p id="totalPeople">Total people: 17</p>
-                    <p id="shares">Shares: 28</p>
+                    <p id="totalPeople">Total people: {{usernumber}}</p>
+                    <p id="shares">Shares: {{pool.shares}}</p>
                 
                 <button id = "invite">INVITE FRIENDS</button>
+                <button id = "buy" onclick="document.location='/picker/{{pool.id}}'">BUY SHARES</button>
                 
                 </div>
                 <div id= "privacyDiv">
