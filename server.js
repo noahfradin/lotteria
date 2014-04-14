@@ -100,8 +100,14 @@ app.get('/create_samples', function(request, response) {
   response.redirect('/');
 });
 
-app.get('/ticketprofile', function(request, response) {
-  response.render('ticketProfile.html', {});
+app.get('/ticketprofile/:id', function(request, response) {
+  if (request.user) {
+    db.loadPoolByID(conn, request.params.id, function(pool) {
+      response.render('ticketProfile.html', {pool: pool});
+    });
+  } else {
+    response.redirect('/');
+  }
 });
 
 app.get('/', function(request, response) {
