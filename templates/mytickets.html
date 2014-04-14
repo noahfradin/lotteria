@@ -26,17 +26,17 @@
         <ul id="tickets">
             {{#pools}}
             <li class="pool_entry">
-              <img src = "{{main_pic_url}}" id= "tickpic" >
-              <h2>{{name}}</h2>
-              <p id="drawdate">Draw on {{draw_string}}</p>
+              <a href="/ticketProfile"><img src = '{{info.main_pic_url}}' id= "tickpic" ></a>
+              <a href="/ticketProfile"><h2>{{info.name}}</h2></a>
+              <p id="drawdate">Draw on {{info.draw_string}}</p>
               <h3>Players:</h3>
-              {{#sample_user}}
-                <img src = "http://graph.facebook.com/{{facebook_id}}/picture?type=square" class= "playerpic" >
-              {{/sample_user}}
-              <p id="more">{{more_text}}</p>
+              {{#info.sample_users}}
+                <img src = "http://graph.facebook.com/{{facebook_id}}/picture?type=normal" class= "playerpic" >
+              {{/info.sample_users}}
+              <p id="more">{{info.more_text}}</p>
               <button id="invite">INVITE FRIENDS</button>
             </li>
-            {{/#pools}}
+            {{/pools}}
           </ul>
     </div>
     <div id="feed"></div>

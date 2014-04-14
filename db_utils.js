@@ -88,10 +88,10 @@ function findOrCreate(accessToken, refreshToken, profile, done, conn) {
 // callback: called with id of created pool after insertion
 function createPool(conn, info, user, callback) {
   var sql = 'INSERT INTO pools (info, tickets) VALUES ($1, $2)';
-  var vars = [JSON.stringify(info), new Array()];
   info.more_text = "";
   info.sample_users = new Array();
-  info.sample_users.push(user.facebook_id);
+  info.sample_users.push({facebook_id: user.facebook_id});
+  var vars = [JSON.stringify(info), new Array()];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
     var q = conn.query(sql, [], function(error, result) {
@@ -100,9 +100,10 @@ function createPool(conn, info, user, callback) {
       buyin.id = result.rows[0]['last_insert_rowid()'];
       buyin.shares = 0;
       user.pools.push(buyin);
+      console.log("user with ID " + user.facebook_id + " created pool with id " + buyin.id);
       storeUser(user, conn, function(facebook_id) {
         if (callback) {
-          callback(id);
+          callback(buyin.id);
         }
       });
     });
@@ -127,11 +128,38 @@ function loadPoolByID(conn, id, callback) {
   });
 }
 
+// DB call for the mytickets page
+function loadAllPoolsForUser(conn, user, callback) {
+  var pools = [];
+  var loaded = 0;
+  var loadFunc = function(pool) {
+    console.log("loaded pool:");
+    console.log(pool);
+    pools.push(pool);
+    loaded += 1;
+    if (loaded == user.pools.length) {
+      callback(pools);
+    } else {
+      console.log("loading pool with id: " + user.pools[loaded].id);
+      loadPoolByID(conn, user.pools[loaded].id, loadFunc);
+    }
+  }
+  if (user.pools.length == 0) {
+    callback(pools);
+  } else {
+    loadPoolByID(conn, user.pools[loaded].id, loadFunc);
+  }
+}
+
 // resets the tables
 function newTables(conn) {
+
+  // remove existing
   conn.query("DROP TABLE users").on('error', console.error);
   conn.query("DROP TABLE tickets").on('error', console.error);
   conn.query("DROP TABLE pools").on('error', console.error);
+  
+  // create anew!!
   conn.query("CREATE TABLE users (facebook_id TEXT PRIMARY KEY, access_token INTEGER, profile BLOB, pools BLOB)")
   .on('error', console.error);
   conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT)")
@@ -155,17 +183,27 @@ function createSamples(conn) {
   ameade.id = 1067881337;
   crfitz.id = 599381317;
   nfradin.id = 685294752;
-  for (var i = 0; i < users.length; i += 1) {
+  
+  var i = 0;
+  var poolFunc = function() {
     var user = users[i];
     user.facebook_id = user.id;
     createUser("", "", user, null, conn);
+    
+    var poolInfo = new Object();
+    poolInfo.name = "Sample Pool " + user.facebook_id;
+    poolInfo.draw_string = "12/12/14";
+    poolInfo.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
+    loadUser(user.facebook_id, conn, function(user2) {
+      createPool(conn, poolInfo, user2, function(pool) {
+        i += 1;
+        if (i < users.length) {
+          poolFunc();
+        }
+      });
+    });
   }
-  
-  var poolInfo = new Object();
-  loadUser(adk.facebook_id, conn, function(user) {
-    console.log(user);
-    createPool(conn, poolInfo, user, null);
-  });
+  poolFunc();
 }
 
 exports.newTables = newTables;
@@ -174,5 +212,6 @@ exports.loadUser = loadUser;
 exports.storeUser = storeUser;
 exports.findOrCreate = findOrCreate;
 exports.loadPoolByID = loadPoolByID;
+exports.loadAllPoolsForUser = loadAllPoolsForUser;
 exports.createPool = createPool;
 exports.createSamples = createSamples;

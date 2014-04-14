@@ -245,6 +245,12 @@ ul#top_nav li a {
     color: white;
     left: 630px;
     top: -180px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #404040;
 }
 
 #feed{
