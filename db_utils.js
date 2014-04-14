@@ -120,6 +120,22 @@ function createPool(conn, info, user, callback) {
   });
 }
 
+// stores the given pool in database, then calls callback with the pool id
+function storePool(conn, pool, callback) {
+  var sql = 'UPDATE pools SET info=$1, tickets=$2, buyins=$3, shares=$4 WHERE id=$5';
+  var vars = [
+    JSON.stringify(pool.info),
+    JSON.stringify(pool.tickets),
+    JSON.stringify(pool.buyins),
+    pool.shares,
+    pool.id];
+  var q = conn.query(sql, vars, function(error, result) {
+    if (callback) {
+      callback(pool.id);
+    }
+  });
+}
+
 // loads the pool with the given id, then calls callback with the json pool
 function loadPoolByID(conn, id, callback) {
   var sql = 'SELECT * FROM pools WHERE id=$1';
@@ -165,6 +181,47 @@ function loadAllPoolsForUser(conn, user, callback) {
 // DB call for the homepage
 function loadRelevantPools(conn, user, callback) {
   // TODO
+}
+
+// records the user as having bought into a pool
+// most args are stored in the info blob and collected from POST params
+// TODO flesh this out by creating a ticket
+function recordBuyin(conn, info, callback) {
+  loadPoolByID(conn, info.pool_id, function(pool) {
+    var buyin = null;
+    for (var i = 0; i < pool.buyins.length; i += 1) {
+      if (pool.buyins[i].id == info.user.facebook_id) {
+        buyin = pool.buyins[i];
+      }
+    }
+    if (buyin != null) {
+      buyin.shares += 1;
+    } else {
+      buyin = {id: info.user.facebook_id, shares: 1};
+      pool.buyins.push(buyin);
+    }
+    pool.shares += 1;
+    pool.info.sample_users.push({facebook_id: info.user.facebook_id});
+    storePool(conn, pool, function(pool_id) {
+      var buyin = null;
+      for (var i = 0; i < info.user.pools.length; i += 1) {
+        if (info.user.pools[i].id == pool_id) {
+          buyin = info.user.pools[i];
+        }
+      }
+      if (buyin != null) {
+        buyin.shares += 1;
+      } else {
+        buyin = {id: pool_id, shares: 1};
+        info.user.pools.push(buyin);
+      }
+      storeUser(info.user, conn, function(facebook_id) {
+        if (callback) {
+          callback(pool_id);
+        }
+      });
+    });
+  });
 }
 
 // resets the tables
@@ -233,3 +290,4 @@ exports.loadPoolByID = loadPoolByID;
 exports.loadAllPoolsForUser = loadAllPoolsForUser;
 exports.createPool = createPool;
 exports.createSamples = createSamples;
+exports.recordBuyin = recordBuyin;

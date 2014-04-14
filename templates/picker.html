@@ -22,16 +22,16 @@
         <p id="pick">Pick numbers to play:</p>
         <div class = "ticketBoard">
             <div class = "ticketNumbers">
-                <input type="text" id="number1" class="number" maxlength="2" tabindex="1" value="">
-                <input type="text" id="number2" class="number" maxlength="2" tabindex="2" value="">
-                <input type="text" id="number3" class="number" maxlength="2" tabindex="3" value="">
-                <input type="text" id="number4" class="number" maxlength="2" tabindex="4" value="">
-                <input type="text" id="number5" class="number" maxlength="2" tabindex="5" value="">
+                <input type="text" id="number1" class="number" maxlength="2" tabindex="1" name="n1" value="">
+                <input type="text" id="number2" class="number" maxlength="2" tabindex="2" name="n2" value="">
+                <input type="text" id="number3" class="number" maxlength="2" tabindex="3" name="n3" value="">
+                <input type="text" id="number4" class="number" maxlength="2" tabindex="4" name="n4" value="">
+                <input type="text" id="number5" class="number" maxlength="2" tabindex="5" name="n5" value="">
                 <p>Choose Numbers 1-59</p>
             </div>
             
             <div class = "ticketPowerball">
-                 <input type="text" id="powerball" class="number" name="normalcells" maxlength="2" tabindex="6" quickpick="false" value="">
+                 <input type="text" id="powerball" class="number" name="normalcells" maxlength="2" tabindex="6" quickpick="false" name="powerball" value="">
                  <p>Choose Numbers 1-35</p>
             </div>
         </div>
@@ -49,7 +49,7 @@
         
         <div class = "powerPlayToggle">
             <p>Power Play?</p>
-            <input type="checkbox" tabindex="401" name="multiplier" tabindex="9" id="powerPlay" value="true">
+            <input type="checkbox" tabindex="401" name="multiplier" tabindex="9" id="powerPlay" name="powerplay" value="true">
         </div>
         
         <div class = "drawingSelector">
@@ -94,7 +94,7 @@
                             
                 <button id = "cancelButton" tabindex="12" type="button">CANCEL</button>
             
-                <button id = "buyButton" tabindex="11" type="submit">BUY</button>
+                <button id = "buyButton" tabindex="11" type="submit" action="submit">BUY</button>
         
             
 
