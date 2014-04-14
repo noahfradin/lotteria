@@ -188,16 +188,16 @@ function createSamples(conn) {
     var user = users[i];
     user.facebook_id = user.id;
     createUser("", "", user, null, conn);
+    
+    var poolInfo = new Object();
+    poolInfo.name = "Your Personal Sample Pool";
+    poolInfo.draw_string = "12/12/14";
+    poolInfo.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
+    loadUser(user.facebook_id, conn, function(user2) {
+      console.log(user);
+      createPool(conn, poolInfo, user2, null);
+    });
   }
-  
-  var poolInfo = new Object();
-  poolInfo.name = "Sample Pool";
-  poolInfo.draw_string = "12/12/14";
-  poolInfo.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
-  loadUser(adk.facebook_id, conn, function(user) {
-    console.log(user);
-    createPool(conn, poolInfo, user, null);
-  });
 }
 
 exports.newTables = newTables;
