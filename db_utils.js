@@ -199,9 +199,9 @@ function recordBuyin(conn, info, callback) {
     } else {
       buyin = {id: info.user.facebook_id, shares: 1};
       pool.buyins.push(buyin);
+	  pool.info.sample_users.push({facebook_id: info.user.facebook_id});
     }
     pool.shares += 1;
-    pool.info.sample_users.push({facebook_id: info.user.facebook_id});
     storePool(conn, pool, function(pool_id) {
       var buyin = null;
       for (var i = 0; i < info.user.pools.length; i += 1) {
