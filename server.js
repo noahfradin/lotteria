@@ -94,8 +94,13 @@ app.get('/newPool', function(request, response) {
   }
 });
 
-app.post('/auth', function(request, response){
+app.post('/auth', function(request, response) {
   response.redirect('/auth/facebook');
+});
+
+app.get('/logout', function(request, response) {
+  request.logout();
+  response.redirect('/');
 });
 
 app.get('/reset', function(request, response) {
