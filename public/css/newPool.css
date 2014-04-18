@@ -77,6 +77,8 @@ body{
 }
 
 ul#top_nav {
+    left: 250px;
+    top: 0px;
     display:inline-block;
     position: absolute;
     height: 70px;
@@ -92,7 +94,6 @@ ul#top_nav * {
     height: 69px;
     margin-right: -1px;
 }
-
 ul#top_nav li p {
     height: 30px;
     margin-top: 20px;
