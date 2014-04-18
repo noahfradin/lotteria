@@ -31,6 +31,11 @@ CREATE TABLE pools(
 -- desc             user-given pool description
 -- founder          facebook_id of user that created it
 
+-- Message blob:
+-- name             display name of the user with the message
+-- message          message from that user
+-- facebook_id      facebook id of the user
+
 -- Buyin info blob:
 -- id               user id of guy who bought
 -- shares           how many shares they bought
