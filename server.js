@@ -8,6 +8,7 @@ var passport = require('passport');
 var app = express();
 app.engine('html', engines.hogan);
 app.set('views', __dirname + '/templates');
+app.use(express.bodyParser());
 app.use(express.cookieParser());
 app.use(express.session({secret: 'badsecret'}));
 
@@ -75,10 +76,21 @@ app.get('/mytickets', function(request, response) {
   }
 });
 
-app.get('/picker', function(request, response) {
+app.get('/picker/:id', function(request, response) {
   // buy into a pool
   if (request.user) {
-    response.render('picker.html', {});
+    db.loadPoolByID(conn, request.params.id, function(pool) {
+      response.render('picker.html', {pool: pool});
+    });
+  } else {
+    response.redirect('/');
+  }
+});
+
+app.get('/newPool', function(request, response) {
+  // create a new pool
+  if (request.user) {
+    response.render('newPool.html', {user: request.user});
   } else {
     response.redirect('/');
   }
@@ -100,8 +112,20 @@ app.get('/create_samples', function(request, response) {
   response.redirect('/');
 });
 
-app.get('/ticketprofile', function(request, response) {
-  response.render('ticketProfile.html', {});
+app.get('/ticketprofile/:id', function(request, response) {
+  if (request.user) {
+    db.loadPoolByID(conn, request.params.id, function(pool) {
+      console.log(pool);
+      var usernumber = pool.buyins.length;
+      response.render('ticketProfile.html', {pool: pool, usernumber: usernumber});
+    });
+  } else {
+    response.redirect('/');
+  }
+});
+
+app.get('/rewards', function(request, response){
+  response.render('rewards.html');
 });
 
 app.get('/', function(request, response) {
@@ -109,6 +133,42 @@ app.get('/', function(request, response) {
     response.redirect('/home');
   } else {
     response.render('login.html', {});
+  }
+});
+
+app.post('/create', function(request, response) {
+  if (request.user) {
+    var info = new Object();
+    info.name = request.body.name;
+    info.desc = request.body.desc;
+    info.private = request.body.private;
+    info.draw_string = request.body.year + "/" + request.body.day + "/" + request.body.month;
+    info.main_pic_url = '/public/images/eventPhoto.jpg';
+    db.createPool(conn, info, request.user, function(pool_id) {
+      console.log("created pool...");
+      response.redirect('/ticketprofile/' + pool_id);
+    });
+  } else {
+    response.redirect('/');
+  }
+});
+
+app.post('/buyin/:id', function(request, response) {
+  if (request.user) {
+    var info = new Object();
+    info.user = request.user;
+    info.pool_id = request.params.id;
+    info.n1 = request.body.n1;
+    info.n1 = request.body.n2;
+    info.n1 = request.body.n3;
+    info.n1 = request.body.n4;
+    info.n1 = request.body.n5;
+    db.recordBuyin(conn, info, function(pool_id) {
+      console.log("bought into pool...");
+      response.redirect('/ticketprofile/' + pool_id);
+    });
+  } else {
+    response.redirect('/');
   }
 });
  

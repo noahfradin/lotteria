@@ -1,5 +1,7 @@
 // various database and user management utilities
 
+var moment = require('moment');
+
 // stores the user in the database, then calls callback with that user's id
 // this should NOT be used for new users
 function storeUser(user, conn, callback) {
@@ -87,11 +89,19 @@ function findOrCreate(accessToken, refreshToken, profile, done, conn) {
 // user: the user object that created the pool
 // callback: called with id of created pool after insertion
 function createPool(conn, info, user, callback) {
-  var sql = 'INSERT INTO pools (info, tickets) VALUES ($1, $2)';
+  var sql = 'INSERT INTO pools (info, tickets, created, buyins, shares) VALUES ($1, $2, $3, $4, $5)';
   info.more_text = "";
   info.sample_users = new Array();
   info.sample_users.push({facebook_id: user.facebook_id});
-  var vars = [JSON.stringify(info), new Array()];
+  info.founder = user.facebook_id;
+  var buyins = new Array();
+  buyins.push({id: user.facebook_id, shares: 0});
+  var vars = [
+    JSON.stringify(info),
+    new Array(),
+    moment().unix(),
+    JSON.stringify(buyins),
+    0];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
     var q = conn.query(sql, [], function(error, result) {
@@ -110,6 +120,22 @@ function createPool(conn, info, user, callback) {
   });
 }
 
+// stores the given pool in database, then calls callback with the pool id
+function storePool(conn, pool, callback) {
+  var sql = 'UPDATE pools SET info=$1, tickets=$2, buyins=$3, shares=$4 WHERE id=$5';
+  var vars = [
+    JSON.stringify(pool.info),
+    JSON.stringify(pool.tickets),
+    JSON.stringify(pool.buyins),
+    pool.shares,
+    pool.id];
+  var q = conn.query(sql, vars, function(error, result) {
+    if (callback) {
+      callback(pool.id);
+    }
+  });
+}
+
 // loads the pool with the given id, then calls callback with the json pool
 function loadPoolByID(conn, id, callback) {
   var sql = 'SELECT * FROM pools WHERE id=$1';
@@ -121,6 +147,7 @@ function loadPoolByID(conn, id, callback) {
       var pool = result.rows[0];
       pool.info = JSON.parse(pool.info);
       pool.tickets = JSON.parse(pool.tickets);
+      pool.buyins = JSON.parse(pool.buyins);
       callback(pool);
     } else if (result.rowCount > 1) {
       console.log("too many pools with id " + id + "!!");
@@ -151,6 +178,52 @@ function loadAllPoolsForUser(conn, user, callback) {
   }
 }
 
+// DB call for the homepage
+function loadRelevantPools(conn, user, callback) {
+  // TODO
+}
+
+// records the user as having bought into a pool
+// most args are stored in the info blob and collected from POST params
+// TODO flesh this out by creating a ticket
+function recordBuyin(conn, info, callback) {
+  loadPoolByID(conn, info.pool_id, function(pool) {
+    var buyin = null;
+    for (var i = 0; i < pool.buyins.length; i += 1) {
+      if (pool.buyins[i].id == info.user.facebook_id) {
+        buyin = pool.buyins[i];
+      }
+    }
+    if (buyin != null) {
+      buyin.shares += 1;
+    } else {
+      buyin = {id: info.user.facebook_id, shares: 1};
+      pool.buyins.push(buyin);
+	  pool.info.sample_users.push({facebook_id: info.user.facebook_id});
+    }
+    pool.shares += 1;
+    storePool(conn, pool, function(pool_id) {
+      var buyin = null;
+      for (var i = 0; i < info.user.pools.length; i += 1) {
+        if (info.user.pools[i].id == pool_id) {
+          buyin = info.user.pools[i];
+        }
+      }
+      if (buyin != null) {
+        buyin.shares += 1;
+      } else {
+        buyin = {id: pool_id, shares: 1};
+        info.user.pools.push(buyin);
+      }
+      storeUser(info.user, conn, function(facebook_id) {
+        if (callback) {
+          callback(pool_id);
+        }
+      });
+    });
+  });
+}
+
 // resets the tables
 function newTables(conn) {
 
@@ -164,7 +237,7 @@ function newTables(conn) {
   .on('error', console.error);
   conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT)")
   .on('error', console.error);
-  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB)")
+  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB, created INTEGER, buyins BLOB, shares INTEGER)")
   .on('error', console.error);
 }
 
@@ -190,12 +263,14 @@ function createSamples(conn) {
     user.facebook_id = user.id;
     createUser("", "", user, null, conn);
     
-    var poolInfo = new Object();
-    poolInfo.name = "Sample Pool " + user.facebook_id;
-    poolInfo.draw_string = "12/12/14";
-    poolInfo.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
+    var info = new Object();
+    info.name = "Sample Pool " + user.facebook_id;
+    info.desc = "My first sample pool!";
+    info.private = true;
+    info.draw_string = 12 + "/" + 12 + "/" + 14;
+    info.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
     loadUser(user.facebook_id, conn, function(user2) {
-      createPool(conn, poolInfo, user2, function(pool) {
+      createPool(conn, info, user2, function(pool) {
         i += 1;
         if (i < users.length) {
           poolFunc();
@@ -215,3 +290,4 @@ exports.loadPoolByID = loadPoolByID;
 exports.loadAllPoolsForUser = loadAllPoolsForUser;
 exports.createPool = createPool;
 exports.createSamples = createSamples;
+exports.recordBuyin = recordBuyin;

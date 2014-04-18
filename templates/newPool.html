@@ -16,8 +16,8 @@
 			</ul>
 		</div>
 	</header>
-        
-        <div id = "poolFields">
+        <form method="POST" action="create" id="sendForm">
+          <div id = "poolFields">
             <div id ="mainFields">
             
             
@@ -32,7 +32,7 @@
 
         
                                     <p>Ticket Title:</p>
-                <input type="text" class = "field" id="ticketTitle" value=""> 
+                <input type="text" class = "field" id="ticketTitle" name="name" value=""> 
                            
                             </div> 
                     <div class = "dateFieldDiv">   
@@ -40,15 +40,15 @@
                     </div>
         <div class = "dateFieldDiv">   
             <p>Month:&nbsp;&nbsp;</p>
-            <input type="text" class = "dateField" id="month" value="MM"> 
+            <input type="text" class = "dateField" id="month" name="month" value="MM"> 
         </div> 
             <div class = "dateFieldDiv"> 
             <p>Day:&nbsp;&nbsp;</p>
-            <input type="text" class = "dateField" id="day" value="DD"> 
+            <input type="text" class = "dateField" id="day" name="day" value="DD"> 
        </div> 
         <div class = "dateFieldDiv">  
               <p>Year:&nbsp;&nbsp;</p>
-            <input type="text" class = "dateField" id="year" value="YYYY"> 
+            <input type="text" class = "dateField" id="year" name="year" value="YYYY"> 
         </div> 
            
                         
@@ -57,7 +57,7 @@
                     
                          <div class = "fieldDiv2"> 
         <p>Invite Only:</p>
-            <input type="checkbox" tabindex="401"  id="privacy" value="true">      
+            <input type="checkbox" tabindex="401"  id="privacy" name="private" value="true">      
                         
                     </div>
   
@@ -72,7 +72,7 @@
             <p>Description:</p>
             
          </div> 
-             <input type="text" class = "field" id="ticketDescription" value=""> 
+             <input type="text" class = "field" id="ticketDescription" name="desc" value=""> 
        
 
 
@@ -81,11 +81,13 @@
 
         </div>
             <div class ="footer">
+
                 <button onclick = "location.href='/picker'"class = "submit" id = "submit">SUBMIT </button>
+
         
             </div>
             </div>
-        
+        </form>
 
 
     </body>

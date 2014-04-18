@@ -27,3 +27,10 @@ CREATE TABLE pools(
 -- sample user      list of sample user objects:
 ---- facebook_id    identifier for user
 -- more_text        "+ 13 more" etc
+-- private          boolean value, this is the "friends only"
+-- desc             user-given pool description
+-- founder          facebook_id of user that created it
+
+-- Buyin info blob:
+-- id               user id of guy who bought
+-- shares           how many shares they bought

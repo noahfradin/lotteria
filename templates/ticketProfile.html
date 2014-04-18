@@ -21,16 +21,17 @@
         <div class = "leftPage">
             <div class = "profile">
                 <div id = "profileImage">
-                    <img id ="profilePicture" src = "../public/images/miley.png"  >
+                    <img id ="profilePicture" src = "{{pool.info.main_pic_url}}"  >
                 </div>
                 
                 <div id="profileText">
-                    <p id="ticketName">Bill's Wedding Pool</p>
-                    <p id="drawing">Draw Date: 12/14/14</p>
-                    <p id="totalPeople">Total people: 17</p>
-                    <p id="shares">Shares: 28</p>
+                    <p id="ticketName">{{pool.info.name}}</p>
+                    <p id="drawing">{{pool.info.draw_string}}</p>
+                    <p id="totalPeople">Total people: {{usernumber}}</p>
+                    <p id="shares">Shares: {{pool.shares}}</p>
                 
                 <button id = "invite">INVITE FRIENDS</button>
+                <button id = "buy" onclick="document.location='/picker/{{pool.id}}'">BUY SHARES</button>
                 
                 </div>
                 <div id= "privacyDiv">

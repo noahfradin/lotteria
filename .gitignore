@@ -16,3 +16,4 @@ Thumbs.db
 # node.js stuff #
 #################
 node_modules/
+lotteria.db
