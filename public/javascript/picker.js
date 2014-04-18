@@ -30,6 +30,7 @@ window.addEventListener('load',function(){
     number5.addEventListener("change",function(){ checkComplete(number5);});
     
     powerball.addEventListener("change",function(){checkPowerball();});
+    powerball.addEventListener("keyup",function(){ checkPowerball2();});
     
 
 },false);
@@ -131,6 +132,24 @@ function checkPowerball(){
         alert("Must input numbers");
         powerball.value = "";
         powerball.focus();
+     }else if(parseInt(powerball.value) < 1 || parseInt(powerball.value) > 35){
+        alert("Powerball number must be between 1 and 35");
+        powerball.value = "";
+        powerball.focus();    
+     }
+}
+
+function checkPowerball2(){
+     var powerball = document.getElementById("powerball");
+    console.log(powerball.value);
+     if (!(/^\d+$/.test(powerball.value)))
+     {
+        if(powerball.value!= ""){
+            alert("Must input numbers");
+            powerball.value = "";
+            powerball.focus();    
+        }
+        
      }else if(parseInt(powerball.value) < 1 || parseInt(powerball.value) > 35){
         alert("Powerball number must be between 1 and 35");
         powerball.value = "";

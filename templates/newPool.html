@@ -23,7 +23,9 @@
             
                 <div id ="imageDiv">
                      <img src ="../public/images/eventPhoto.jpg" id="eventImage">
-                     <button class = "button" id = "upload">UPLOAD PHOTO</button>
+                     <form enctype="multipart/form-data" action="/upload/image" method="post">
+                     <input type="file" class = "button" id = "upload">UPLOAD PHOTO</button>
+                     </form>
                 </div>
                 <div id = "textDivs">
                        <div class = "fieldDiv">  
