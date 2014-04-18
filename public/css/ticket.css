@@ -68,11 +68,11 @@ body{
 
 #logoimage {
     position: relative;
-    width: 130pt;
+    height: 73px;
     background-color: white;
-    padding: 0 20px;
+    padding: 2px 20px;
     right: 10px;
-    bottom: 25px;
+    bottom:7px;
 }
 
 #logo a {
@@ -110,12 +110,6 @@ ul#top_nav li a {
     position: absolute;
 }
 
-#nav_nticket p {
-    color: white !important;
-    border: solid;
-    border-width: 1px;
-}
-
 #nav_tickets p {
     color: #FFCC33 !important;
 }
@@ -123,6 +117,7 @@ ul#top_nav li a {
 
 #nav_nticket {
     padding-top:1px;
+    height: 68px !important;
 }
 
 #nav_nticket:hover {
@@ -250,10 +245,11 @@ ul#top_nav li a {
 .drawdate {
     position: absolute;
     bottom: 120px;
-    left: 670px;
+    left: 630px;
+    width: 200px;
     color: #FFCC33;
     font: 16pt "GeosansLight", sans-serif;
-    text-align:right;
+    text-align: right;
 }
 
 .invite {

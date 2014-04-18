@@ -64,11 +64,11 @@ body{
 
 #logoimage {
     position: relative;
-    width: 130pt;
+    height: 73px;
     background-color: white;
-    padding: 0 20px;
+    padding: 2px 20px;
     right: 10px;
-    bottom: 25px;
+    bottom:7px;
 }
 
 #logo a {
@@ -108,35 +108,32 @@ ul#top_nav li a {
 }
 
 #nav_nticket p {
-    color: white !important;
-    border: solid;
-    border-width: 1px;
-}
-
-#nav_tickets p {
     color: #FFCC33 !important;
 }
 
 
 #nav_nticket {
-    padding-top:1px;
+    padding-top:3px;
+    height: 68px !important;
+    background-color: white;
 }
 
 #nav_nticket:hover {
-    background-color: #FFD018;
+
 }
 
 #nav_tickets {
-    background-color: white;
+    height: 66px !important;
     padding-top: 2px;
 }
 
 #nav_tickets:hover {
+    background-color: #FFD018;
 }
 
 #nav_rewards {
     padding-top: 2px;
-    height: 68px !important;
+    height: 66px !important;
 }
 
 #nav_rewards:hover {
@@ -144,8 +141,8 @@ ul#top_nav li a {
 }
 
 #nav_settings {
+    height: 66px !important;
     padding-top: 2px;
-    height: 68px !important;
 }
 
 #nav_settings:hover {
