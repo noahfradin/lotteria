@@ -1,24 +1,22 @@
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  facebook_id TEXT PRIMARY KEY,
   access_token INTEGER,
   profile BLOB,
+  pools BLOB,
+);
+CREATE TABLE tickets (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+);
+CREATE TABLE pools (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  info BLOB,
   tickets BLOB,
-  pools BLOB
-);
-CREATE TABLE tickets(
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  user INTEGER,
-  numbers TEXT,
-  draw_date TEXT,
-  purchase_date TEXT,
-  power_play INTEGER
-);
-CREATE TABLE pools(
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  size INTEGER,
-  users BLOB,
-  tickets BLOB
-);
+  created INTEGER,
+  buyins BLOB,
+  shares INTEGER,
+  messages BLOB,
+)
+
 
 -- Pool info blob:
 -- name             name of pool
