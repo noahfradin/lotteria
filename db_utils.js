@@ -21,7 +21,6 @@ function storeUser(user, conn, callback) {
 
 // loads the user from the database, then calls callback with the user object
 function loadUser(id, conn, callback) {
-  console.log("trying to load user for id " + id + "...");
   var sql = 'SELECT * FROM users WHERE facebook_id=$1';
   var vars = [id];
   var q = conn.query(sql, vars, function(error, result) {
@@ -89,7 +88,7 @@ function findOrCreate(accessToken, refreshToken, profile, done, conn) {
 // user: the user object that created the pool
 // callback: called with id of created pool after insertion
 function createPool(conn, info, user, callback) {
-  var sql = 'INSERT INTO pools (info, tickets, created, buyins, shares) VALUES ($1, $2, $3, $4, $5)';
+  var sql = 'INSERT INTO pools (info, tickets, created, buyins, shares, messages) VALUES ($1, $2, $3, $4, $5, $6)';
   info.more_text = "";
   info.sample_users = new Array();
   info.sample_users.push({facebook_id: user.facebook_id});
@@ -101,7 +100,8 @@ function createPool(conn, info, user, callback) {
     new Array(),
     moment().unix(),
     JSON.stringify(buyins),
-    0];
+    0,
+    JSON.stringify(new Array())];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
     var q = conn.query(sql, [], function(error, result) {
@@ -122,12 +122,13 @@ function createPool(conn, info, user, callback) {
 
 // stores the given pool in database, then calls callback with the pool id
 function storePool(conn, pool, callback) {
-  var sql = 'UPDATE pools SET info=$1, tickets=$2, buyins=$3, shares=$4 WHERE id=$5';
+  var sql = 'UPDATE pools SET info=$1, tickets=$2, buyins=$3, shares=$4, messages=$5 WHERE id=$6';
   var vars = [
     JSON.stringify(pool.info),
     JSON.stringify(pool.tickets),
     JSON.stringify(pool.buyins),
     pool.shares,
+    JSON.stringify(pool.messages),
     pool.id];
   var q = conn.query(sql, vars, function(error, result) {
     if (callback) {
@@ -148,6 +149,7 @@ function loadPoolByID(conn, id, callback) {
       pool.info = JSON.parse(pool.info);
       pool.tickets = JSON.parse(pool.tickets);
       pool.buyins = JSON.parse(pool.buyins);
+      pool.messages = JSON.parse(pool.messages);
       callback(pool);
     } else if (result.rowCount > 1) {
       console.log("too many pools with id " + id + "!!");
@@ -160,8 +162,6 @@ function loadAllPoolsForUser(conn, user, callback) {
   var pools = [];
   var loaded = 0;
   var loadFunc = function(pool) {
-    console.log("loaded pool:");
-    console.log(pool);
     pools.push(pool);
     loaded += 1;
     if (loaded == user.pools.length) {
@@ -183,6 +183,21 @@ function loadRelevantPools(conn, user, callback) {
   // TODO
 }
 
+// records the user's message to a pool
+// callback will be called with the final message object
+function recordMessage(conn, pool_id, user, message, callback) {
+  loadPoolByID(conn, pool_id, function(pool) {
+    var msg = new Object();
+    msg.message = message;
+    msg.name = user.profile.name.givenName;
+    msg.facebook_id = user.facebook_id;
+    pool.messages.push(msg);
+    storePool(conn, pool, function(pool_id) {
+      callback(msg);
+    });
+  });
+}
+
 // records the user as having bought into a pool
 // most args are stored in the info blob and collected from POST params
 // TODO flesh this out by creating a ticket
@@ -199,7 +214,7 @@ function recordBuyin(conn, info, callback) {
     } else {
       buyin = {id: info.user.facebook_id, shares: 1};
       pool.buyins.push(buyin);
-	  pool.info.sample_users.push({facebook_id: info.user.facebook_id});
+      pool.info.sample_users.push({facebook_id: info.user.facebook_id});
     }
     pool.shares += 1;
     storePool(conn, pool, function(pool_id) {
@@ -237,7 +252,7 @@ function newTables(conn) {
   .on('error', console.error);
   conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT)")
   .on('error', console.error);
-  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB, created INTEGER, buyins BLOB, shares INTEGER)")
+  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB, created INTEGER, buyins BLOB, shares INTEGER, messages BLOB)")
   .on('error', console.error);
 }
 
@@ -291,3 +306,4 @@ exports.loadAllPoolsForUser = loadAllPoolsForUser;
 exports.createPool = createPool;
 exports.createSamples = createSamples;
 exports.recordBuyin = recordBuyin;
+exports.recordMessage = recordMessage;

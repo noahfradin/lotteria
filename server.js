@@ -23,13 +23,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(function(user, done) {
   db.storeUser(user, conn, function(id) {
-    console.log("stored user with id " + id);
     done(null, id);
   });
 });
 passport.deserializeUser(function(id, done) {
   db.loadUser(id, conn, function(user) {
-    console.log("loaded user with id " + user.facebook_id);
     done(null, user);
   });
 });
@@ -96,8 +94,13 @@ app.get('/newPool', function(request, response) {
   }
 });
 
-app.post('/auth', function(request, response){
+app.post('/auth', function(request, response) {
   response.redirect('/auth/facebook');
+});
+
+app.get('/logout', function(request, response) {
+  request.logout();
+  response.redirect('/');
 });
 
 app.get('/reset', function(request, response) {
@@ -115,7 +118,6 @@ app.get('/create_samples', function(request, response) {
 app.get('/ticketprofile/:id', function(request, response) {
   if (request.user) {
     db.loadPoolByID(conn, request.params.id, function(pool) {
-      console.log(pool);
       var usernumber = pool.buyins.length;
       response.render('ticketProfile.html', {pool: pool, usernumber: usernumber});
     });
@@ -146,6 +148,17 @@ app.post('/create', function(request, response) {
     info.main_pic_url = '/public/images/eventPhoto.jpg';
     db.createPool(conn, info, request.user, function(pool_id) {
       console.log("created pool...");
+      response.redirect('/ticketprofile/' + pool_id);
+    });
+  } else {
+    response.redirect('/');
+  }
+});
+
+app.post('/ticketprofile/:id/newmessage', function(request, response) {
+  if (request.user) {
+    var pool_id = request.params.id;
+    db.recordMessage(conn, pool_id, request.user, request.body.message, function(msg) {
       response.redirect('/ticketprofile/' + pool_id);
     });
   } else {

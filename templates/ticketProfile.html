@@ -21,7 +21,7 @@
 				<li id="nav_nticket"><a href="/newPool"></a><p>NEW POOL</p></li>
 				<li id="nav_tickets"><a href="/mytickets"></a><p>MY POOLS</p></li>
 				<li id="nav_rewards"><a href="/rewards"></a><p>REWARDS</p></li>
-				<li id="nav_settings"><a href="/"></a><p>LOGOUT</p></li>
+				<li id="nav_settings"><a href="/logout"></a><p>LOGOUT</p></li>
 			</ul>
 		</div>
 	</header>
@@ -53,77 +53,20 @@
             </div>
              <div class = "chatMessages">
                 <ul id= "messages">
-                  <li>
-                           <div class = "message">
-                        <div class = "userInfo">
-                                <img id ="chatProfilePicture" src = "../public/images/miley.png"  >
-                        <p id= "name">Miley:</p>
-                        </div>
-                        <div  class ="messageText">
-                             <p> True I wish Bdfgd All the sdfa sadf fdsfgsd ks dfgdsfg gfsdfg dsfgsda ds. sadfasdfsa .sfasdfas</p>
-                        </div>
-                       
-                    </div>
-                </li>
-                    
-                         <li>
-                           <div class = "message">
-                        <div class = "userInfo">
-                                <img id ="chatProfilePicture" src = "../public/images/miley.png"  >
-                        <p id= "name">Miley:</p>
-                        </div>
-                        <div  class ="messageText">
-                             <p> True I wish Bdfgd All the sdfa sadf fdsfgsd ks dfgdsfg gfsdfg dsfgsda ds. sadfasdfsa .sfasdfas</p>
-                        </div>
-                       
-                    </div>
-                </li>
-                    
-                         <li>
-                           <div class = "message">
-                        <div class = "userInfo">
-                                <img id ="chatProfilePicture" src = "../public/images/miley.png"  >
-                        <p id= "name">Miley:</p>
-                        </div>
-                        <div  class ="messageText">
-                             <p> True I wish Bdfgd All the sdfa sadf fdsfgsd ks dfgdsfg gfsdfg dsfgsda ds. sadfasdfsa .sfasdfas</p>
-                        </div>
-                       
-                    </div>
-                </li>
-                       </li>
-                    
-                         <li>
-                           <div class = "message">
-                        <div class = "userInfo">
-                                <img id ="chatProfilePicture" src = "../public/images/miley.png"  >
-                        <p id= "name">Miley:</p>
-                        </div>
-                        <div  class ="messageText">
-                             <p> True I wish Bdfgd All the sdfa sadf fdsfgsd ks dfgdsfg gfsdfg dsfgsda ds. sadfasdfsa .sfasdfas</p>
-                        </div>
-                       
-                    </div>
-                </li>
-                 
-                    </li>
-                    
-                         <li>
-                           <div class = "message">
-                        <div class = "userInfo">
-                                <img id ="chatProfilePicture" src = "../public/images/miley.png"  >
-                        <p id= "name">Miley:</p>
-                        </div>
-                        <div  class ="messageText">
-                             <p> True I wish Bdfgd All the sdfa sadf fdsfgsd ks dfgdsfg gfsdfg dsfgsda ds. sadfasdfsa .sfasdfas</p>
-                        </div>
-                       
-                    </div>
-                </li>
-                  
-                    
-        
                 
+                  {{#pool.messages}}
+                  <li>
+                    <div class = "message">
+                      <div class = "userInfo">
+                        <img id ="chatProfilePicture" src="http://graph.facebook.com/{{facebook_id}}/picture?type=normal">
+                        <p id= "name">{{name}}:</p>
+                      </div>
+                      <div  class ="messageText">
+                        <p>{{message}}</p>
+                      </div>
+                    </div>
+                  </li>
+                  {{/pool.messages}}
                 
                 </ul>
             </div>
@@ -136,83 +79,19 @@
             </div>
             
             <div class = "players">
-               
-                    <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
+            {{#pool.buyins}}
+                <div class = "player">
+                    <img class ="otherPlayers" src = "http://graph.facebook.com/{{id}}/picture?type=normal"  > <p class = "otherPlayerName"> </p>
                 </div>
-                
-                 <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                
-                 <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                
-                 <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                  <div class = "player">
-                          <img class ="otherPlayers" src = "../public/images/miley.png"  > <p class = "otherPlayerName">Miley</p>
-                </div>
-                      
-
-                
-            
+            {{/pool.buyins}}
             </div> 
         </div>
             
         <div class = "chatTextBox">
             <p>Send the group a message:</p>
-            <input type="text" id="chatText" value="">  
-            <button id= "SEND">SEND</button>
+            <form method="POST" action="/ticketprofile/{{pool.id}}/newmessage" id="sendForm">
+            <input type="text" id="chatText" name="message" value="">
+            <button class="submit" id="SEND" type="submit">SEND</button>
         </div>
     </div>    
     </body>
