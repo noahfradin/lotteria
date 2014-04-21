@@ -68,11 +68,11 @@ body{
 
 #logoimage {
     position: relative;
-    height: 73px;
+    width: 130pt;
     background-color: white;
-    padding: 2px 20px;
+    padding: 0 20px;
     right: 10px;
-    bottom:7px;
+    bottom: 25px;
 }
 
 #logo a {
@@ -110,6 +110,12 @@ ul#top_nav li a {
     position: absolute;
 }
 
+#nav_nticket p {
+    color: white !important;
+    border: solid;
+    border-width: 1px;
+}
+
 #nav_tickets p {
     color: #FFCC33 !important;
 }
@@ -117,7 +123,6 @@ ul#top_nav li a {
 
 #nav_nticket {
     padding-top:1px;
-    height: 68px !important;
 }
 
 #nav_nticket:hover {
@@ -407,14 +412,16 @@ ul#top_nav li a {
 
 #invite p{
    /*color:  !important;*/
-   font-size: 10;
-}
-
-#invite_text{
-    display: inline-block;
-    left: 10px;
+   font-size: 12;
+   display: inline-block;
 }
 
 .fb-send{
     display: inline-block;
+    float: left;
+    width: 10px;
+}
+
+#fb{
+    display: inline;
 }
