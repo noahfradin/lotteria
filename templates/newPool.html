@@ -23,9 +23,12 @@
             
                 <div id ="imageDiv">
                      <img src ="../public/images/eventPhoto.jpg" id="eventImage">
+                    <button class ="button">UPLOAD IMAGE</button>
+<!--
                      <form enctype="multipart/form-data" action="/upload/image" method="post">
                      <input type="file" class = "button" id = "upload">UPLOAD PHOTO</button>
                      </form>
+-->
                 </div>
                 <div id = "textDivs">
                        <div class = "fieldDiv">  
@@ -72,8 +75,11 @@
             <p>Description:</p>
             
          </div> 
-             <input type="text" class = "field" id="ticketDescription" name="desc" value=""> 
-       
+         
+            <form method="get" action="http://www.web-wise-wizard.com/cgi-bin/cgi-tests/textarea-wrap-test.cgi">
+            <textarea id="ticketDescription" name="userInput" cols="36" rows="5" wrap="virtual">Default Text</textarea>
+            <input   type="hidden" name="wrapAttribute" value="virtual">
+            </form>
 
 
    
