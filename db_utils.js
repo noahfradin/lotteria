@@ -5,7 +5,6 @@ var moment = require('moment');
 // stores the user in the database, then calls callback with that user's id
 // this should NOT be used for new users
 function storeUser(user, conn, callback) {
-  console.log("trying to store user with id " + user.facebook_id + "...");
   var sql = 'UPDATE users SET access_token=$1, profile=$2, pools=$3 WHERE facebook_id=$4';
   var vars = [
     user.access_token,
@@ -49,7 +48,6 @@ function loadUser(id, conn, callback) {
 // conn: connection to the database
 // returns the created user
 function createUser(accessToken, refreshToken, profile, done, conn) {
-  console.log("creating user with id " + profile.id + "...");
   var newUser = new Object();
   newUser.profile = profile;
   newUser.facebook_id = profile.id;
@@ -71,10 +69,11 @@ function findOrCreate(accessToken, refreshToken, profile, done, conn) {
     if (user) {
       console.log("user exists with id " + user.facebook_id);
       user.profile = profile;
-      user.accessToken = accessToken;
-      user.refreshToken = refreshToken
-      storeUser(user, conn);
-      done(null, user);
+      user.access_token = accessToken;
+      user.refresh_token = refreshToken
+      storeUser(user, conn, function(result) {
+        done(null, user);
+      });
     } else {
       console.log("user with id " + profile.id + " does not exist, make new");
       createUser(accessToken, refreshToken, profile, done, conn);
@@ -178,10 +177,36 @@ function loadAllPoolsForUser(conn, user, callback) {
   }
 }
 
-// DB call for the homepage
-function loadRelevantPools(conn, user, callback) {
-  // TODO
+// DB call for the home page
+function loadAllPoolsForGroup(conn, ids, callback) {
+  var loadFunc = function(loaded, pools) {
+    loadUser(ids[loaded], conn, function(user) {
+      loadAllPoolsForUser(conn, user, function(userPools) {
+        pools = pools.concat(userPools);
+        loaded += 1;
+        if (loaded < ids.length) {
+          loadFunc(loaded, pools);
+        } else {
+          callback(arrayUnique(pools));
+        }
+      });
+    });
+  };
+  loadFunc(0, []);
 }
+
+// removes duplicates from an array
+function arrayUnique(array) {
+  var a = array.concat();
+  for (var i=0; i<a.length; ++i) {
+    for (var j=i+1; j<a.length; ++j) {
+      if (a[i] === a[j]) {
+        a.splice(j--, 1);
+      }
+    }
+  }
+  return a;
+};
 
 // records the user's message to a pool
 // callback will be called with the final message object
@@ -239,6 +264,26 @@ function recordBuyin(conn, info, callback) {
   });
 }
 
+// filters a list of users to remove users who have not registered on the site
+// once done, callback is called with the update users list
+function filterUsers(conn, ids, callback) {
+  var loadFunc = function(filtered, result) {
+    var id = ids[filtered];
+    loadUser(id, conn, function(user) {
+      if (user) {
+        result.push(id);
+      }
+      filtered += 1;
+      if (filtered < ids.length) {
+        loadFunc(filtered, result);
+      } else {
+        callback(result);
+      }
+    });
+  }
+  loadFunc(0, []);
+}
+
 // resets the tables
 function newTables(conn) {
 
@@ -248,7 +293,7 @@ function newTables(conn) {
   conn.query("DROP TABLE pools").on('error', console.error);
   
   // create anew!!
-  conn.query("CREATE TABLE users (facebook_id TEXT PRIMARY KEY, access_token INTEGER, profile BLOB, pools BLOB)")
+  conn.query("CREATE TABLE users (facebook_id TEXT PRIMARY KEY, access_token TEXT, profile BLOB, pools BLOB)")
   .on('error', console.error);
   conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT)")
   .on('error', console.error);
@@ -307,3 +352,5 @@ exports.createPool = createPool;
 exports.createSamples = createSamples;
 exports.recordBuyin = recordBuyin;
 exports.recordMessage = recordMessage;
+exports.filterUsers = filterUsers;
+exports.loadAllPoolsForGroup = loadAllPoolsForGroup;
