@@ -131,7 +131,7 @@ app.get('/home', function(request, response) {
       db.filterUsers(conn, friend_ids, function(ids) {
         ids.push(request.user.facebook_id);
         db.loadAllPoolsForGroup(conn, ids, function(pools) {
-          response.render('mytickets.html', {pools: pools});
+          response.render('newsfeed.html', {pools: pools});
         });
       });
     });
