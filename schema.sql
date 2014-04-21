@@ -1,6 +1,6 @@
 CREATE TABLE users (
   facebook_id TEXT PRIMARY KEY,
-  access_token INTEGER,
+  access_token TEXT,
   profile BLOB,
   pools BLOB,
 );

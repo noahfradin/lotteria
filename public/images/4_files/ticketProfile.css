@@ -39,23 +39,25 @@ body{
 }
 
 #powerbucks{
+    text-align: right;
     font: 12pt "GeosansLight", sans-serif;
-    color: black;
+    background-color: white;
     position: fixed;
-    top: 29px;
-    left: 1150px;
-    z-index: 9999;
-    width: 400px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    top: 0px;
+    width: 100%;
+    z-index: 9998;
 }
 
 #header_wrapper {
     position: fixed;
-    top: 0px;
+    top: 38px;
     width: 100%; 
     background-color:#FFCC33;
-    height: 77px;
+    height: 70px;
     display: inline-block;
-    z-index: 9997;
+    z-index: 9999;
 }
 
 #logo {
@@ -66,12 +68,12 @@ body{
 
 #logoimage {
     position: relative;
-    height: 73px;
+    width: 130pt;
     background-color: white;
-    padding: 2px 20px;
+    padding: 0 20px;
     right: 10px;
+    bottom: 25px;
 }
-
 
 #logo a {
     color: transparent;
@@ -91,7 +93,7 @@ ul#top_nav * {
     display: inline-block;
     text-align: center;
     width: 200px;
-    height: 75px;
+    height: 69px;
     margin-right: -1px;
 }
 
@@ -108,6 +110,12 @@ ul#top_nav li a {
     position: absolute;
 }
 
+#nav_nticket p {
+    color: white !important;
+    border: solid;
+    border-width: 1px;
+}
+
 #nav_tickets p {
     color: #FFCC33 !important;
 }
@@ -115,7 +123,6 @@ ul#top_nav li a {
 
 #nav_nticket {
     padding-top:1px;
-    height: 75px !important;
 }
 
 #nav_nticket:hover {
@@ -132,7 +139,7 @@ ul#top_nav li a {
 
 #nav_rewards {
     padding-top: 2px;
-    height: 75px !important;
+    height: 68px !important;
 }
 
 #nav_rewards:hover {
@@ -141,7 +148,7 @@ ul#top_nav li a {
 
 #nav_settings {
     padding-top: 2px;
-    height: 75px !important;
+    height: 68px !important;
 }
 
 #nav_settings:hover {
@@ -193,7 +200,6 @@ ul#top_nav li a {
 
 #profilePicture{
     height: 135px;   
-    width: 135px; 
     border: solid 1px black;
 }
 
@@ -406,14 +412,16 @@ ul#top_nav li a {
 
 #invite p{
    /*color:  !important;*/
-   font-size: 10;
-}
-
-#invite_text{
-    display: inline-block;
-    left: 10px;
+   font-size: 12;
+   display: inline-block;
 }
 
 .fb-send{
     display: inline-block;
+    float: left;
+    width: 10px;
+}
+
+#fb{
+    display: inline;
 }

@@ -1,0 +1,14 @@
+body{
+    min-width:1350px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#centerables {
+    width: 1350px;
+    margin: 0 auto;
+}
+#gtech-image{
+    width: 800px;
+    margin: auto;
+}
