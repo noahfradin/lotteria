@@ -68,11 +68,11 @@ body{
 
 #logoimage {
     position: relative;
-    width: 130pt;
+    height: 73px;
     background-color: white;
-    padding: 0 20px;
+    padding: 2px 20px;
     right: 10px;
-    bottom: 25px;
+    bottom:7px;
 }
 
 #logo a {
@@ -110,12 +110,6 @@ ul#top_nav li a {
     position: absolute;
 }
 
-#nav_nticket p {
-    color: white !important;
-    border: solid;
-    border-width: 1px;
-}
-
 #nav_tickets p {
     color: #FFCC33 !important;
 }
@@ -123,6 +117,7 @@ ul#top_nav li a {
 
 #nav_nticket {
     padding-top:1px;
+    height: 68px !important;
 }
 
 #nav_nticket:hover {
@@ -177,16 +172,25 @@ ul#top_nav li a {
     height: 600px;
 }
 
+.ticketwrapper {
+    position: relative;
+    width: 850px;
+    height: 160px;
+}
+
 #tickets li {
     width: 850px;
     height: 160px;
     margin: 20px auto;
     list-style-type: none;
     border: solid #FFCC33 1px;
+    position: relative;
 }
 
-#tickpic {
+.tickpic {
+    position: absolute;
     height: 140px;
+    width: 140px;
     margin: 12px;
     display:inline-block;
 }
@@ -195,47 +199,61 @@ ul#top_nav li a {
     position: relative;
     font: 20pt "Futura", sans-serif;
     display: inline-block;
-    top: -110px;
-    left: -10px;
+    top: 15px;
+    left: 170px;
+}
+
+.titlelink {
+    width: 100%;
+    top: 15px;
 }
 
 #tickets li h3 {
-    position: relative;
+    position: absolute;
     font: 16pt "GeosansLight", sans-serif;
     display: inline-block;
-    left: 165px;
-    top: -155px;
+    left: 180px;
+    bottom: 40px;
+    text-align: left;
+}
+
+.playerpics {
+    position: absolute;
+    height: 80px;
+    width: 230px;
 }
 
 .playerpic {
     height: 70px;
+    width: 70px;
     margin-left: 5px;
     display: inline-block;
     position: relative;
-    left: 180px;
-    top: -120px
+    top: 40px;
+    left: 260px;
+    float: left;
 }
 
-#more {
+.more {
     width: 100px;
-    position: relative;
+    position: absolute;
     left: 500px;
-    bottom: 175px;
+    /*bottom: 175px; */
     font: 12pt "GeosansLight", sans-serif;
 }
 
-#drawdate {
-    position: relative;
-    top: -165px;
+.drawdate {
+    position: absolute;
+    bottom: 120px;
+    left: 630px;
+    width: 200px;
     color: #FFCC33;
     font: 16pt "GeosansLight", sans-serif;
-    margin-right: 30px;
-    text-align:right
+    text-align: right;
 }
 
-#invite {
-    position: relative;
-    top: -165px;
+.invite {
+    position:absolute;
     background-color: #FFCC33;
     border: solid 1px;
     border-color: #E5E6E5;
@@ -244,7 +262,7 @@ ul#top_nav li a {
     font: 12pt "Futura", sans-serif;
     color: white;
     left: 630px;
-    top: -180px;
+    bottom: 20px;
     text-align: center;
 }
 
