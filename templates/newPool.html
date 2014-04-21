@@ -4,7 +4,6 @@
         <link rel="stylesheet" href="../public/css/newPool.css" type="text/css" />
     </head>
     <body>
-         <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
     <header>
 		<div id="header_wrapper">
 			<h1 id="logo"><img src ="../public/images/Logo-Large.png" alt = "Pool Party Logo" id="logoimage"><a href="#">Lotteria</a></h1>
@@ -14,6 +13,7 @@
 				<li id="nav_rewards"><a href="/rewards"></a><p>REWARDS</p></li>
 				<li id="nav_settings"><a href="/logout"></a><p>LOGOUT</p></li>
 			</ul>
+            <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 		</div>
 	</header>
         <form method="POST" action="create" id="sendForm">
@@ -23,12 +23,10 @@
             
                 <div id ="imageDiv">
                      <img src ="../public/images/eventPhoto.jpg" id="eventImage">
-                    <button class ="button">UPLOAD IMAGE</button>
-<!--
-                     <form enctype="multipart/form-data" action="/upload/image" method="post">
-                     <input type="file" class = "button" id = "upload">UPLOAD PHOTO</button>
+                     <form enctype="multipart/form-data" action="/upload/image" method="post" id="upform">
+                     <input type="file" class = "button" id = "upload"></input>
                      </form>
--->
+
                 </div>
                 <div id = "textDivs">
                        <div class = "fieldDiv">  
@@ -39,7 +37,7 @@
                            
                             </div> 
                     <div class = "dateFieldDiv">   
-                           <p>Draw Date:</p>
+                           <p>Draw Date</p>
                     </div>
         <div class = "dateFieldDiv">   
             <p>Month:&nbsp;&nbsp;</p>

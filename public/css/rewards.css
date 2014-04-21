@@ -44,25 +44,23 @@ padding: 0;
 
 
 #powerbucks{
-    text-align: right;
     font: 12pt "GeosansLight", sans-serif;
-    background-color: white;
+    color: black;
     position: fixed;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    top: 0px;
-    width: 100%;
-    z-index: 9998;
+    top: 29px;
+    left: 1150px;
+    z-index: 9999;
+    width: 400px;
 }
 
 #header_wrapper {
     position: fixed;
-    top: 38px;
+    top: 0px;
     width: 100%; 
     background-color:#FFCC33;
-    height: 70px;
+    height: 77px;
     display: inline-block;
-    z-index: 9999;
+    z-index: 9997;
 }
 
 #logo {
@@ -77,7 +75,6 @@ padding: 0;
     background-color: white;
     padding: 2px 20px;
     right: 10px;
-    bottom:7px;
 }
 
 #logo a {
@@ -98,7 +95,7 @@ ul#top_nav * {
     display: inline-block;
     text-align: center;
     width: 200px;
-    height: 69px;
+    height: 77px;
     margin-right: -1px;
 }
 
@@ -122,7 +119,7 @@ ul#top_nav li a {
 
 #nav_nticket {
     padding-top:1px;
-    height: 68px !important;
+    height: 74px !important;
 }
 
 #nav_nticket:hover {
@@ -131,7 +128,7 @@ ul#top_nav li a {
 
 #nav_tickets {
     padding-top: 2px;
-    height: 68px !important;
+    height: 74px !important;
 }
 
 #nav_tickets:hover {
@@ -141,7 +138,7 @@ ul#top_nav li a {
 #nav_rewards {
     background-color: white;
     padding-top: 2px;
-    height: 68px !important;
+    height: 75px !important;
 }
 
 #nav_rewards:hover {
@@ -149,7 +146,7 @@ ul#top_nav li a {
 
 #nav_settings {
     padding-top: 2px;
-    height: 68px !important;
+    height: 74px !important;
 }
 
 #nav_settings:hover {

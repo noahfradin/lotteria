@@ -35,25 +35,23 @@ body{
 }
 
 #powerbucks{
-    text-align: right;
     font: 12pt "GeosansLight", sans-serif;
-    background-color: white;
+    color: black;
     position: fixed;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    top: 0px;
-    width: 100%;
-    z-index: 9998;
+    top: 29px;
+    left: 1150px;
+    z-index: 9999;
+    width: 400px;
 }
 
 #header_wrapper {
     position: fixed;
-    top: 38px;
+    top: 0px;
     width: 100%; 
     background-color:#FFCC33;
-    height: 70px;
+    height: 77px;
     display: inline-block;
-    z-index: 9999;
+    z-index: 9997;
 }
 
 #logo {
@@ -68,7 +66,6 @@ body{
     background-color: white;
     padding: 2px 20px;
     right: 10px;
-    bottom:7px;
 }
 
 #logo a {
@@ -81,7 +78,7 @@ ul#top_nav {
     top: 0px;
     display:inline-block;
     position: absolute;
-    height: 70px;
+    height: 77px;
     border: 0;
     min-width: 1024px;
     margin-left: 40px;
@@ -91,7 +88,7 @@ ul#top_nav * {
     display: inline-block;
     text-align: center;
     width: 200px;
-    height: 69px;
+    height: 77px;
     margin-right: -1px;
 }
 ul#top_nav li p {
@@ -109,16 +106,14 @@ ul#top_nav li a {
 
 #nav_nticket p {
 
-    color: white !important;
-    border: solid;
-    border-width: 1px;
+    color: #FFCC33 !important;
 }
 
 
 
 #nav_nticket {
     padding-top:3px;
-    height: 68px !important;
+    height: 77px !important;
     background-color: white;
 }
 
@@ -127,7 +122,7 @@ ul#top_nav li a {
 }
 
 #nav_tickets {
-    height: 66px !important;
+    height: 74px !important;
     padding-top: 2px;
 }
 
@@ -137,7 +132,7 @@ ul#top_nav li a {
 
 #nav_rewards {
     padding-top: 2px;
-    height: 66px !important;
+    height: 74px !important;
 }
 
 #nav_rewards:hover {
@@ -145,7 +140,7 @@ ul#top_nav li a {
 }
 
 #nav_settings {
-    height: 66px !important;
+    height: 74px !important;
     padding-top: 2px;
 }
 
@@ -154,12 +149,10 @@ ul#top_nav li a {
 }
 
 #poolFields{
-    margin-top:200px;
+    margin-top:90px;
     width: 1000px;
     margin-left:auto;
     margin-right:auto;
-    border-top: solid 3px black;
-    border-bottom: solid 3px black;
 }
 
 .button {
@@ -172,8 +165,18 @@ ul#top_nav li a {
     font: 18pt "Futura", sans-serif;
     color: white;
     margin-top:12px;
+}
 
+
+#upload {
+    width: 300px;
+    height: 50px;
     
+}
+
+#upform {
+    width: 200px;
+    height: 50px;
 }
 
 .dateField{
@@ -188,8 +191,6 @@ ul#top_nav li a {
 
 .fieldDiv{
     width: 462px;
-    border: solid 1px black;
-    background-color: #FFCC33;
     height:40px;
     font: 24pt "GeosansLight", sans-serif;
 }
@@ -202,7 +203,6 @@ ul#top_nav li a {
 
 .fieldDiv input{
     height:40px;
-    border:solid 1px black;
 }
 
 #mainFields div{
@@ -237,8 +237,6 @@ ul#top_nav li a {
 .dateFieldDiv{
     
     width: 161px;
-    border: solid 1px black;
-    background-color: #FFCC33;
     height:40px;
     font: 24pt "GeosansLight", sans-serif;
     margin-top: 7px;
@@ -250,7 +248,6 @@ ul#top_nav li a {
 }
 .dateFieldDiv input{
     height:40px;
-    border:solid 1px black;
   
 }
 
@@ -315,7 +312,6 @@ textarea{
 .invite *{
     vertical-align:top;
     display:inline-block;
-    border-color:black;
 }
 
 
@@ -335,7 +331,6 @@ textarea{
 
 .fieldDiv2 input{
     height:40px;
-    border:solid 1px black;
 }
 
 .submit {
