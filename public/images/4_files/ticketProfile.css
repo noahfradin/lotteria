@@ -412,14 +412,16 @@ ul#top_nav li a {
 
 #invite p{
    /*color:  !important;*/
-   font-size: 10;
-}
-
-#invite_text{
-    display: inline-block;
-    left: 10px;
+   font-size: 12;
+   display: inline-block;
 }
 
 .fb-send{
     display: inline-block;
+    float: left;
+    width: 10px;
+}
+
+#fb{
+    display: inline;
 }
