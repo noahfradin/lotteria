@@ -93,7 +93,7 @@ function createPool(conn, info, user, callback) {
   info.sample_users.push({facebook_id: user.facebook_id});
   info.founder = user.facebook_id;
   var buyins = new Array();
-  buyins.push({id: user.facebook_id, shares: 0});
+  buyins.push({id: user.facebook_id, tickets: []});
   var vars = [
     JSON.stringify(info),
     new Array(),
@@ -107,7 +107,7 @@ function createPool(conn, info, user, callback) {
       if (error) { console.error(error); }
       var buyin = new Object();
       buyin.id = result.rows[0]['last_insert_rowid()'];
-      buyin.shares = 0;
+      buyin.tickets = [];
       user.pools.push(buyin);
       console.log("user with ID " + user.facebook_id + " created pool with id " + buyin.id);
       storeUser(user, conn, function(facebook_id) {
@@ -284,6 +284,46 @@ function filterUsers(conn, ids, callback) {
   loadFunc(0, []);
 }
 
+// creates a new ticket in the database
+// the numbers are in the form [n1, n2, n3, n4, n5, powerball]
+// callback is called with id of new ticket
+function createTicket(conn, pool_id, user_id, numbers, powerplay, callback) {
+  var sql = 'INSERT INTO tickets (pool_id, user_id, n1, n2, n3, n4, n5, powerball, powerplay) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+  var vars = [
+    pool_id,
+    user_id,
+    numbers[0], numbers[1], numbers[2], numbers[3], numbers[4],
+    numbers[5],
+    powerplay ? 1 : 0];
+  var q = conn.query(sql, vars, function(error, result) {
+    var sql = 'SELECT last_insert_rowid()';
+    var q = conn.query(sql, [], function(error, result) {
+      if (error) { console.error(error); }
+      var id = result.rows[0]['last_insert_rowid()'];
+      if (callback) {
+        callback(id);
+      }
+    });
+  });
+}
+
+// loads the ticket with the given id, then calls callback with the json ticket
+function loadTicketByID(conn, id, callback) {
+  var sql = 'SELECT * FROM tickets WHERE id=$1';
+  var vars = [id];
+  var q = conn.query(sql, vars, function(error, result) {
+    if (result.rowCount == 0) {
+      callback(null);
+    } else if (result.rowCount == 1) {
+      var ticket = result.rows[0];
+      ticket.powerplay = (ticket.powerplay == 1);
+      callback(ticket);
+    } else if (result.rowCount > 1) {
+      console.log("too many tickets with id " + id + "!!");
+    }
+  });
+}
+
 // resets the tables
 function newTables(conn) {
 
@@ -295,9 +335,11 @@ function newTables(conn) {
   // create anew!!
   conn.query("CREATE TABLE users (facebook_id TEXT PRIMARY KEY, access_token TEXT, profile BLOB, pools BLOB)")
   .on('error', console.error);
-  conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT)")
+  conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT, pool_id TEXT, user_id TEXT, n1 TEXT, " +
+      "n2 TEXT, n3 TEXT, n4 TEXT, n5 TEXT, powerball TEXT, powerplay INTEGER)")
   .on('error', console.error);
-  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB, created INTEGER, buyins BLOB, shares INTEGER, messages BLOB)")
+  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB, created INTEGER, " +
+      "buyins BLOB, shares INTEGER, messages BLOB)")
   .on('error', console.error);
 }
 

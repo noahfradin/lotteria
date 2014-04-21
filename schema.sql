@@ -22,8 +22,7 @@ CREATE TABLE pools (
 -- name             name of pool
 -- draw_string      when the ticket is drawn, string format
 -- main_pic_url     url of pic to display to represent pool
--- sample user      list of sample user objects:
----- facebook_id    identifier for user
+-- [sample user]    list of sample user facebook ids
 -- more_text        "+ 13 more" etc
 -- private          boolean value, this is the "friends only"
 -- desc             user-given pool description
@@ -34,6 +33,10 @@ CREATE TABLE pools (
 -- message          message from that user
 -- facebook_id      facebook id of the user
 
--- Buyin info blob:
+-- Pool buyin info blob:
 -- id               user id of guy who bought
--- shares           how many shares they bought
+-- [ticket_id]      list of the tickets that user bought
+
+-- User buyin info blob:
+-- id               id of the pool the user bought into
+-- [ticket_id]      list of the tickets the user bought
