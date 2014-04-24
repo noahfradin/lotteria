@@ -3,8 +3,9 @@
 <head>
     <title>Lotteria</title>
     <link rel="stylesheet" href="../public/css/newsfeed.css" type="text/css" />
+
     <link rel="stylesheet" href="../public/css/ticket.css" type="text/css" />
-    <script type="text/javascript" src="/public/javascript/home.js"></script>
+    <script type="text/javascript" src="/public/javascript/newsfeed.js"></script>
 </head>
 <body>
     <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -28,9 +29,12 @@
            
         
             <input type="text" id="chatText" value="Find a Pool and Join the Fun!">  
+            
+         <h2 id ="noPool">No Pools Match Your Search</h2>
        
         </div>
     <p id="yourtix">Your Friends' Pools:</p>
+
     <div id="ticketscroll">
         <ul id="tickets">
             {{#pools}}
