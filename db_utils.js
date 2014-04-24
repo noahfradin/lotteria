@@ -225,40 +225,43 @@ function recordMessage(conn, pool_id, user, message, callback) {
 
 // records the user as having bought into a pool
 // most args are stored in the info blob and collected from POST params
-// TODO flesh this out by creating a ticket
 function recordBuyin(conn, info, callback) {
-  loadPoolByID(conn, info.pool_id, function(pool) {
-    var buyin = null;
-    for (var i = 0; i < pool.buyins.length; i += 1) {
-      if (pool.buyins[i].id == info.user.facebook_id) {
-        buyin = pool.buyins[i];
-      }
-    }
-    if (buyin != null) {
-      buyin.shares += 1;
-    } else {
-      buyin = {id: info.user.facebook_id, shares: 1};
-      pool.buyins.push(buyin);
-      pool.info.sample_users.push({facebook_id: info.user.facebook_id});
-    }
-    pool.shares += 1;
-    storePool(conn, pool, function(pool_id) {
+  createTicket(conn, info.pool_id, info.user.facebook_id,
+      [info.n1, info.n2, info.n3, info.n4, info.n5, info.powerball],
+      info.powerplay, function(ticket_id) {
+    loadPoolByID(conn, info.pool_id, function(pool) {
       var buyin = null;
-      for (var i = 0; i < info.user.pools.length; i += 1) {
-        if (info.user.pools[i].id == pool_id) {
-          buyin = info.user.pools[i];
+      for (var i = 0; i < pool.buyins.length; i += 1) {
+        if (pool.buyins[i].id == info.user.facebook_id) {
+          buyin = pool.buyins[i];
         }
       }
       if (buyin != null) {
-        buyin.shares += 1;
+        buyin.tickets.push(ticket_id);
       } else {
-        buyin = {id: pool_id, shares: 1};
-        info.user.pools.push(buyin);
+        buyin = {id: info.user.facebook_id, tickets: [ticket_id]};
+        pool.buyins.push(buyin);
+        pool.info.sample_users.push({facebook_id: info.user.facebook_id});
       }
-      storeUser(info.user, conn, function(facebook_id) {
-        if (callback) {
-          callback(pool_id);
+      pool.shares += 1;
+      storePool(conn, pool, function(pool_id) {
+        var buyin = null;
+        for (var i = 0; i < info.user.pools.length; i += 1) {
+          if (info.user.pools[i].id == pool_id) {
+            buyin = info.user.pools[i];
+          }
         }
+        if (buyin != null) {
+          buyin.tickets.push(ticket_id);
+        } else {
+          buyin = {id: pool_id, tickets: [ticket_id]};
+          info.user.pools.push(buyin);
+        }
+        storeUser(info.user, conn, function(facebook_id) {
+          if (callback) {
+            callback(pool_id);
+          }
+        });
       });
     });
   });
