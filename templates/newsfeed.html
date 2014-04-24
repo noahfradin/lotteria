@@ -3,7 +3,9 @@
 <head>
     <title>Lotteria</title>
     <link rel="stylesheet" href="../public/css/newsfeed.css" type="text/css" />
-    <script type="text/javascript" src="../public/javascript/newsfeed.js"></script>
+
+    <link rel="stylesheet" href="../public/css/ticket.css" type="text/css" />
+    <script type="text/javascript" src="/public/javascript/newsfeed.js"></script>
 </head>
 <body>
     <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -19,7 +21,9 @@
 		</div>
 	</header>
     <div id="mid">
-        <div id = "poolFeed">
+        <h1 id="jackpot">Current Jackpot: $80,000,000</h1>
+    </div>
+            <div id = "poolFeed">
         
                      <p id="poolText">Pool Feed:</p>
            
@@ -29,6 +33,7 @@
          <h2 id ="noPool">No Pools Match Your Search</h2>
        
         </div>
+<<<<<<< HEAD
         <div id="ticketscroll">
             <ul id="tickets">
                 
@@ -159,9 +164,32 @@
                 
                 
             </ul>
+=======
+    <p id="yourtix">Everybody's Pools:</p>
+    <div id="ticketscroll">
+        <ul id="tickets">
+            {{#pools}}
+            <div class="tickwrapper">
+              <li class="pool_entry">
+              <a href="/ticketProfile/{{id}}"><img src = '{{info.main_pic_url}}' class= "tickpic" ></a>
+              <a href="/ticketProfile/{{id}}" class = "titlelink"><h2>{{info.name}}</h2></a>
+              <p class="drawdate">Draw on {{info.draw_string}}</p>
+              <h3>Players:</h3>
+            <div class="playerpics">
+              {{#info.sample_users}}
+                <img src = "http://graph.facebook.com/{{facebook_id}}/picture?type=normal" class= "playerpic" >
+              {{/info.sample_users}}
+            </div>
+              <p class="more">{{info.more_text}}</p>
+              <button class="invite">INVITE FRIENDS</button>
+            </li>
+            </div>
+            {{/pools}}
+          </ul>
+>>>>>>> 92b645340b7a71115c093fba313d8e2af5ad2a35
     </div>
-        </div>
-
+    <div id="feed"></div>
+    <div id="footer"></div>
 </body>
     
     

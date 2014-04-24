@@ -4,6 +4,7 @@ var db = require('./db_utils.js');
 var express = require('express');
 var engines = require('consolidate');
 var passport = require('passport');
+var https = require('https');
 
 var app = express();
 app.engine('html', engines.hogan);
@@ -45,7 +46,7 @@ passport.use(new FacebookStrategy({
   }
 ));
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['user_friends'] }));
 
 app.get('/auth/facebook/callback', 
   passport.authenticate('facebook', { successRedirect: '/home',
@@ -55,12 +56,6 @@ app.get('/dummy_page', function(request, response) {
   console.log("user is: " + request.user.profile.displayName);
   console.log(request.user);
   response.render('dummy.html', {name: request.user.profile.displayName});
-});
-
-app.get('/home', function(request, response) {
-  // this is the user's personal homepage with their tickets and friend tickets
-  // right now it just redirects to your tickets
-  response.redirect('/mytickets');
 });
 
 app.get('/mytickets', function(request, response) {
@@ -126,8 +121,23 @@ app.get('/ticketprofile/:id', function(request, response) {
   }
 });
 
-app.get('/rewards', function(request, response){
+app.get('/rewards', function(request, response) {
   response.render('rewards.html');
+});
+
+app.get('/home', function(request, response) {
+  if (request.user) {
+    fb.getFriendIDs(request.user, https, function(friend_ids) {
+      db.filterUsers(conn, friend_ids, function(ids) {
+        ids.push(request.user.facebook_id);
+        db.loadAllPoolsForGroup(conn, ids, function(pools) {
+          response.render('newsfeed.html', {pools: pools});
+        });
+      });
+    });
+  } else {
+    response.redirect('/');
+  }
 });
 
 app.get('/', function(request, response) {
