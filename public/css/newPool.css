@@ -300,9 +300,29 @@ textarea{
     margin-left:20px;
 }
 
-#invite{
+.powerbutton {
+    width: 250px;
+}
+
+#invite {
+    position:absolute;
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
     height: 50px;
-    margin-top:5px;
+    width: 243px;
+    padding-right: 20px;
+    font: 14pt "Futura", sans-serif;
+    color: white;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.pbstar {
+    width: 60px;
+    position: absolute;
+    left: 643px;
+
 }
 
 .invite{

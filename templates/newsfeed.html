@@ -24,13 +24,13 @@
     </div>
             <div id = "poolFeed">
         
-                     <p id="poolText">Pool Feed:</p>
+                     <p id="poolText">Pool Feed:&nbsp;&nbsp;&nbsp;&nbsp;</p>
            
         
             <input type="text" id="chatText" value="Find a Pool and Join the Fun!">  
        
         </div>
-    <p id="yourtix">Everybody's Pools:</p>
+    <p id="yourtix">Your Friends' Pools:</p>
     <div id="ticketscroll">
         <ul id="tickets">
             {{#pools}}
@@ -46,7 +46,10 @@
               {{/info.sample_users}}
             </div>
               <p class="more">{{info.more_text}}</p>
-              <button class="invite">INVITE FRIENDS</button>
+            <div class="powerbutton">
+              <button class="invite">INVITE FRIENDS&nbsp;&nbsp;&nbsp;+10</button>
+                <img class="pbstar" src="../public/images/Powerbucks.png" alt="powerbucks">
+            </div>
             </li>
             </div>
             {{/pools}}

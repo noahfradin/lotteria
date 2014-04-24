@@ -99,7 +99,7 @@ ul#top_nav li p {
     height: 30px;
     margin-top: 20px;
     text-decoration: none;
-    color: #404040;
+    color: #404040 !important;
     font: 16pt "Futura", sans-serif;
 }
 
@@ -114,7 +114,7 @@ ul#top_nav li a {
 
 #nav_nticket {
     padding-top:1px;
-    height: 75px !important;
+    height: 74px !important;
 }
 
 #nav_nticket:hover {
@@ -123,15 +123,19 @@ ul#top_nav li a {
 
 #nav_tickets {
     padding-top: 2px;
+    height: 74px !important;
+    color: #404040 !important;
+    background-color:#FFCC33 !important;
+
 }
 
 #nav_tickets:hover {
-    background-color: #FFD018;
+    background-color: #FFD018 !important;
 }
 
 #nav_rewards {
     padding-top: 2px;
-    height: 75px !important;
+    height: 74px !important;
 }
 
 #nav_rewards:hover {
@@ -140,7 +144,7 @@ ul#top_nav li a {
 
 #nav_settings {
     padding-top: 2px;
-    height: 75px !important;
+    height: 74px !important;
 }
 
 #nav_settings:hover {
@@ -155,7 +159,6 @@ ul#top_nav li a {
     margin: 150px auto 50px auto;
     width: 1000px;
     color: #FFCC33;
-    
 }
 
 #yourtix {
@@ -165,7 +168,15 @@ ul#top_nav li a {
 }
 
 #tickets{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 600px;
+}
 
+.ticketwrapper {
+    position: relative;
+    width: 850px;
+    height: 160px;
 }
 
 #tickets li {
@@ -174,75 +185,100 @@ ul#top_nav li a {
     margin: 20px auto;
     list-style-type: none;
     border: solid #FFCC33 1px;
+    position: relative;
 }
 
-
 .tickpic {
+    position: absolute;
     height: 140px;
+    width: 140px;
     margin: 12px;
     display:inline-block;
-    margin-left:-450px;
 }
 
 #tickets li h2 {
     position: relative;
     font: 20pt "Futura", sans-serif;
     display: inline-block;
-    top: -110px;
-    left: -10px;
-    color:black;
+    top: 15px;
+    left: 170px;
+}
+
+.titlelink {
+    width: 100%;
+    top: 15px;
 }
 
 #tickets li h3 {
-    position: relative;
+    position: absolute;
     font: 16pt "GeosansLight", sans-serif;
     display: inline-block;
-    left: 165px;
-    top: -155px;
+    left: 180px;
+    bottom: 40px;
+    text-align: left;
+}
+
+.playerpics {
+    position: absolute;
+    height: 80px;
+    width: 230px;
 }
 
 .playerpic {
     height: 70px;
+    width: 70px;
     margin-left: 5px;
     display: inline-block;
     position: relative;
-    left: 180px;
-    top: -120px
+    top: 40px;
+    left: 260px;
+    float: left;
 }
 
 .more {
     width: 100px;
-    position: relative;
+    position: absolute;
     left: 500px;
-    bottom: 175px;
+    /*bottom: 175px; */
     font: 12pt "GeosansLight", sans-serif;
 }
 
 .drawdate {
-    position: relative;
-    top: -165px;
+    position: absolute;
+    bottom: 120px;
+    left: 630px;
+    width: 200px;
     color: #FFCC33;
     font: 16pt "GeosansLight", sans-serif;
-    margin-right: 30px;
-    text-align:right
-    
+    text-align: right;
+}
+
+.powerbutton {
+    width: 250px;
 }
 
 .invite {
-    position: relative;
-    top: -165px;
+    position:absolute;
     background-color: #FFCC33;
     border: solid 1px;
     border-color: #E5E6E5;
     height: 30px;
-    width: 200px;
+    width: 230px;
+    padding-right: 20px;
     font: 12pt "Futura", sans-serif;
     color: white;
-    left: 280px;
-    top: -180px;
-    
+    left: 630px;
+    bottom: 20px;
+    text-align: center;
 }
 
+.pbstar {
+    width: 50px;
+    position: absolute;
+    left: 805px;
+    top: 100px;
+
+}
 
 #tickets{
     height:100%;   
@@ -255,16 +291,16 @@ ul#top_nav li a {
 
 #poolText{
     text-align:center;
-    color:black;
+    color:#404040;
     height:74px;
+    font: 20pt "GeosansLight", sans-serif;
 }
 #poolFeed{
-    background-color: #FFCC33;
     height:74px;
-    width: 842px;
+    width: 850px;
     margin-left:auto;
-    border: solid 1px black;
     margin-right:auto;
+    margin-bottom: 40px;
     
 }
 
