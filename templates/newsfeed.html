@@ -3,8 +3,9 @@
 <head>
     <title>Lotteria</title>
     <link rel="stylesheet" href="../public/css/newsfeed.css" type="text/css" />
+
     <link rel="stylesheet" href="../public/css/ticket.css" type="text/css" />
-    <script type="text/javascript" src="/public/javascript/home.js"></script>
+    <script type="text/javascript" src="/public/javascript/newsfeed.js"></script>
 </head>
 <body>
     <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -24,13 +25,16 @@
     </div>
             <div id = "poolFeed">
         
-                     <p id="poolText">Pool Feed:</p>
+                     <p id="poolText">Pool Feed:&nbsp;&nbsp;&nbsp;&nbsp;</p>
            
         
             <input type="text" id="chatText" value="Find a Pool and Join the Fun!">  
+            
+         <h2 id ="noPool">No Pools Match Your Search</h2>
        
         </div>
-    <p id="yourtix">Everybody's Pools:</p>
+    <p id="yourtix">Your Friends' Pools:</p>
+
     <div id="ticketscroll">
         <ul id="tickets">
             {{#pools}}
@@ -46,7 +50,10 @@
               {{/info.sample_users}}
             </div>
               <p class="more">{{info.more_text}}</p>
-              <button class="invite">INVITE FRIENDS</button>
+            <div class="powerbutton">
+              <button class="invite">INVITE FRIENDS&nbsp;&nbsp;&nbsp;+10</button>
+                <img class="pbstar" src="../public/images/Powerbucks.png" alt="powerbucks">
+            </div>
             </li>
             </div>
             {{/pools}}
