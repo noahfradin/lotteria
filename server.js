@@ -182,10 +182,12 @@ app.post('/buyin/:id', function(request, response) {
     info.user = request.user;
     info.pool_id = request.params.id;
     info.n1 = request.body.n1;
-    info.n1 = request.body.n2;
-    info.n1 = request.body.n3;
-    info.n1 = request.body.n4;
-    info.n1 = request.body.n5;
+    info.n2 = request.body.n2;
+    info.n3 = request.body.n3;
+    info.n4 = request.body.n4;
+    info.n5 = request.body.n5;
+    info.powerball = request.body.powerball;
+    info.powerplay = request.body.powerplay;
     db.recordBuyin(conn, info, function(pool_id) {
       console.log("bought into pool...");
       response.redirect('/ticketprofile/' + pool_id);
