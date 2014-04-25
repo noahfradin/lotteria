@@ -80,6 +80,8 @@ padding: 0;
 #logo a {
     color: transparent;
     margin: 0 auto;
+    width: 200px;
+    height: 73px;
 }
 
 ul#top_nav {

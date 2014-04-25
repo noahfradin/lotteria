@@ -71,6 +71,8 @@ body{
 #logo a {
     color: transparent;
     margin: 0 auto;
+    width: 200px;
+    height: 73px;
 }
 
 ul#top_nav {
@@ -302,6 +304,7 @@ textarea{
 
 .powerbutton {
     width: 250px;
+    position: relative;
 }
 
 #invite {
@@ -321,7 +324,7 @@ textarea{
 .pbstar {
     width: 60px;
     position: absolute;
-    left: 643px;
+    left: 220px;
 
 }
 
