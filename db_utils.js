@@ -87,7 +87,7 @@ function findOrCreate(accessToken, refreshToken, profile, done, conn) {
 // user: the user object that created the pool
 // callback: called with id of created pool after insertion
 function createPool(conn, info, user, callback) {
-  var sql = 'INSERT INTO pools (info, tickets, created, buyins, shares, messages) VALUES ($1, $2, $3, $4, $5, $6)';
+  var sql = 'INSERT INTO pools (info, created, buyins, shares, messages, numbers) VALUES ($1, $2, $3, $4, $5, $6)';
   info.more_text = "";
   info.sample_users = new Array();
   info.sample_users.push({facebook_id: user.facebook_id});
@@ -96,10 +96,10 @@ function createPool(conn, info, user, callback) {
   buyins.push({id: user.facebook_id, tickets: []});
   var vars = [
     JSON.stringify(info),
-    new Array(),
     moment().unix(),
     JSON.stringify(buyins),
     0,
+    JSON.stringify(new Array()),
     JSON.stringify(new Array())];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
@@ -121,13 +121,13 @@ function createPool(conn, info, user, callback) {
 
 // stores the given pool in database, then calls callback with the pool id
 function storePool(conn, pool, callback) {
-  var sql = 'UPDATE pools SET info=$1, tickets=$2, buyins=$3, shares=$4, messages=$5 WHERE id=$6';
+  var sql = 'UPDATE pools SET info=$1, buyins=$2, shares=$3, messages=$4, numbers=$5 WHERE id=$6';
   var vars = [
     JSON.stringify(pool.info),
-    JSON.stringify(pool.tickets),
     JSON.stringify(pool.buyins),
     pool.shares,
     JSON.stringify(pool.messages),
+    JSON.stringify(pool.numbers),
     pool.id];
   var q = conn.query(sql, vars, function(error, result) {
     if (callback) {
@@ -145,10 +145,12 @@ function loadPoolByID(conn, id, callback) {
       callback(null);
     } else if (result.rowCount == 1) {
       var pool = result.rows[0];
+      console.log("pool: ");
+      console.log(pool);
       pool.info = JSON.parse(pool.info);
-      pool.tickets = JSON.parse(pool.tickets);
       pool.buyins = JSON.parse(pool.buyins);
       pool.messages = JSON.parse(pool.messages);
+      pool.numbers = JSON.parse(pool.numbers);
       callback(pool);
     } else if (result.rowCount > 1) {
       console.log("too many pools with id " + id + "!!");
@@ -228,7 +230,8 @@ function recordMessage(conn, pool_id, user, message, callback) {
 function recordBuyin(conn, info, callback) {
   createTicket(conn, info.pool_id, info.user.facebook_id,
       [info.n1, info.n2, info.n3, info.n4, info.n5, info.powerball],
-      info.powerplay, function(ticket_id) {
+      info.powerplay, function(ticket) {
+    var ticket_id = ticket.id;
     loadPoolByID(conn, info.pool_id, function(pool) {
       var buyin = null;
       for (var i = 0; i < pool.buyins.length; i += 1) {
@@ -244,6 +247,7 @@ function recordBuyin(conn, info, callback) {
         pool.info.sample_users.push({facebook_id: info.user.facebook_id});
       }
       pool.shares += 1;
+      pool.numbers.push({value: ticket.string});
       storePool(conn, pool, function(pool_id) {
         var buyin = null;
         for (var i = 0; i < info.user.pools.length; i += 1) {
@@ -291,20 +295,30 @@ function filterUsers(conn, ids, callback) {
 // the numbers are in the form [n1, n2, n3, n4, n5, powerball]
 // callback is called with id of new ticket
 function createTicket(conn, pool_id, user_id, numbers, powerplay, callback) {
-  var sql = 'INSERT INTO tickets (pool_id, user_id, n1, n2, n3, n4, n5, powerball, powerplay) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
+  var sql = 'INSERT INTO tickets (pool_id, user_id, n1, n2, n3, n4, n5, powerball, powerplay, string) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
+  var string = "";
+  for (var i = 0; i < 5; i += 1) {
+    if (i > 0) string += "-";
+    string += numbers[i];
+  }
+  string += " ";
+  string += numbers[5];
   var vars = [
     pool_id,
     user_id,
     numbers[0], numbers[1], numbers[2], numbers[3], numbers[4],
     numbers[5],
-    powerplay ? 1 : 0];
+    powerplay ? 1 : 0,
+    string];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
     var q = conn.query(sql, [], function(error, result) {
       if (error) { console.error(error); }
       var id = result.rows[0]['last_insert_rowid()'];
       if (callback) {
-        callback(id);
+        loadTicketByID(conn, id, function(ticket) {
+          callback(ticket);
+        });
       }
     });
   });
@@ -339,10 +353,10 @@ function newTables(conn) {
   conn.query("CREATE TABLE users (facebook_id TEXT PRIMARY KEY, access_token TEXT, profile BLOB, pools BLOB)")
   .on('error', console.error);
   conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT, pool_id TEXT, user_id TEXT, n1 TEXT, " +
-      "n2 TEXT, n3 TEXT, n4 TEXT, n5 TEXT, powerball TEXT, powerplay INTEGER)")
+      "n2 TEXT, n3 TEXT, n4 TEXT, n5 TEXT, powerball TEXT, powerplay INTEGER, string TEXT)")
   .on('error', console.error);
-  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, tickets BLOB, created INTEGER, " +
-      "buyins BLOB, shares INTEGER, messages BLOB)")
+  conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, created INTEGER, " +
+      "buyins BLOB, shares INTEGER, messages BLOB, numbers BLOB)")
   .on('error', console.error);
 }
 

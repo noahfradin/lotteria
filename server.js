@@ -186,10 +186,9 @@ app.post('/buyin/:id', function(request, response) {
     info.n3 = request.body.n3;
     info.n4 = request.body.n4;
     info.n5 = request.body.n5;
-    info.powerball = request.body.powerball;
+    info.powerball = request.body.powernum;
     info.powerplay = request.body.powerplay;
     db.recordBuyin(conn, info, function(pool_id) {
-      console.log("bought into pool...");
       response.redirect('/ticketprofile/' + pool_id);
     });
   } else {

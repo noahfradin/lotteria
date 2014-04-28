@@ -81,10 +81,20 @@
             <div class = "players">
             {{#pool.buyins}}
                 <div class = "player">
-                    <img class ="otherPlayers" src = "http://graph.facebook.com/{{id}}/picture?type=normal"  > <p class = "otherPlayerName"> </p>
+                    <img class ="otherPlayers" src = "http://graph.facebook.com/{{id}}/picture?type=normal" title="{{tickets.length}} shares">
+                    <p class = "otherPlayerName"> </p>
                 </div>
             {{/pool.buyins}}
             </div> 
+        </div>
+        
+        <div>
+          <p>Bought numbers</p>
+          <ul>
+          {{#pool.numbers}}
+            <li><p>{{value}}</p></li>
+          {{/pool.numbers}}
+          </ul>
         </div>
             
         <div class = "chatTextBox">

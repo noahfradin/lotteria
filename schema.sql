@@ -14,16 +14,17 @@ CREATE TABLE tickets (
   n4 TEXT,
   n5 TEXT,
   powerball TEXT,
-  powerplay INTEGER
+  powerplay INTEGER,
+  string TEXT
 );
 CREATE TABLE pools (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   info BLOB,
-  tickets BLOB,
   created INTEGER,
   buyins BLOB,
   shares INTEGER,
-  messages BLOB
+  messages BLOB,
+  numbers BLOB
 )
 
 
