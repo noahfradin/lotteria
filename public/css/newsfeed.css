@@ -76,6 +76,8 @@ body{
 #logo a {
     color: transparent;
     margin: 0 auto;
+    width: 200px;
+    height: 73px;
 }
 
 ul#top_nav {
@@ -254,7 +256,7 @@ ul#top_nav li a {
 }
 
 .powerbutton {
-    width: 250px;
+    width: 210px;
 }
 
 .invite {
@@ -263,8 +265,8 @@ ul#top_nav li a {
     border: solid 1px;
     border-color: #E5E6E5;
     height: 30px;
-    width: 230px;
-    padding-right: 20px;
+    width: 210px;
+    padding-right: 5px;
     font: 12pt "Futura", sans-serif;
     color: white;
     left: 630px;

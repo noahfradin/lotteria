@@ -76,6 +76,8 @@ body{
 #logo a {
     color: transparent;
     margin: 0 auto;
+    width: 200px;
+    height: 73px;
 }
 
 ul#top_nav {
@@ -251,18 +253,31 @@ ul#top_nav li a {
     text-align: right;
 }
 
+.powerbutton {
+    width: 210px;
+}
+
 .invite {
     position:absolute;
     background-color: #FFCC33;
     border: solid 1px;
     border-color: #E5E6E5;
     height: 30px;
-    width: 200px;
+    width: 210px;
+    padding-right: 5px;
     font: 12pt "Futura", sans-serif;
     color: white;
     left: 630px;
     bottom: 20px;
     text-align: center;
+}
+
+.pbstar {
+    width: 50px;
+    position: absolute;
+    left: 805px;
+    top: 100px;
+
 }
 
 a {

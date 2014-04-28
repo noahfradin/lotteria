@@ -76,6 +76,8 @@ body{
 #logo a {
     color: transparent;
     margin: 0 auto;
+    width: 200px;
+    height: 73px;
 }
 
 ul#top_nav {
@@ -239,6 +241,21 @@ button {
     font: 12pt "Futura", sans-serif;
     left: 475px;
     top: -170px;
+}
+
+.powerbutton {
+    width: 250px;
+    position: relative;
+    display:inline-block;
+}
+
+
+.pbstar {
+    width: 50px;
+    position: absolute;
+    left: 655px;
+    bottom: 160px;
+
 }
 
 #buyButton{
