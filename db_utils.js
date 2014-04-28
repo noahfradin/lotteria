@@ -5,11 +5,12 @@ var moment = require('moment');
 // stores the user in the database, then calls callback with that user's id
 // this should NOT be used for new users
 function storeUser(user, conn, callback) {
-  var sql = 'UPDATE users SET access_token=$1, profile=$2, pools=$3 WHERE facebook_id=$4';
+  var sql = 'UPDATE users SET access_token=$1, profile=$2, pools=$3, powerbucks=$4 WHERE facebook_id=$5';
   var vars = [
     user.access_token,
     JSON.stringify(user.profile),
     JSON.stringify(user.pools),
+    user.powerbucks,
     user.facebook_id];
   var q = conn.query(sql, vars, function(error, result) {
     if (callback) {
@@ -53,8 +54,14 @@ function createUser(accessToken, refreshToken, profile, done, conn) {
   newUser.facebook_id = profile.id;
   newUser.access_token = accessToken;
   newUser.pools = [];
-  var sql = 'INSERT INTO users (facebook_id, access_token, profile, pools) VALUES ($1, $2, $3, $4)';
-  var vars = [profile.id, accessToken, JSON.stringify(profile), JSON.stringify(newUser.pools)];
+  newUser.powerbucks = 100;
+  var sql = 'INSERT INTO users (facebook_id, access_token, profile, pools, powerbucks) VALUES ($1, $2, $3, $4, $5)';
+  var vars = [
+    profile.id,
+    accessToken,
+    JSON.stringify(profile),
+    JSON.stringify(newUser.pools),
+    newUser.powerbucks];
   var q = conn.query(sql, vars);
   q.on('end', function() {
     if (done) {
@@ -419,7 +426,8 @@ function newTables(conn) {
   conn.query("DROP TABLE pools").on('error', console.error);
   
   // create anew!!
-  conn.query("CREATE TABLE users (facebook_id TEXT PRIMARY KEY, access_token TEXT, profile BLOB, pools BLOB)")
+  conn.query("CREATE TABLE users (facebook_id TEXT PRIMARY KEY, access_token TEXT, profile BLOB, pools BLOB, " +
+      "powerbucks INTEGER)")
   .on('error', console.error);
   conn.query("CREATE TABLE tickets (id INTEGER PRIMARY KEY AUTOINCREMENT, pool_id TEXT, user_id TEXT, n1 TEXT, " +
       "n2 TEXT, n3 TEXT, n4 TEXT, n5 TEXT, powerball TEXT, powerplay INTEGER, string TEXT)")
