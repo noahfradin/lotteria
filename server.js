@@ -181,15 +181,16 @@ app.post('/buyin/:id', function(request, response) {
     var info = new Object();
     info.user = request.user;
     info.pool_id = request.params.id;
-    info.n1 = request.body.n1;
-    info.n2 = request.body.n2;
-    info.n3 = request.body.n3;
-    info.n4 = request.body.n4;
-    info.n5 = request.body.n5;
-    info.powerball = request.body.powernum;
+    info.n1 = parseInt(request.body.n1);
+    info.n2 = parseInt(request.body.n2);
+    info.n3 = parseInt(request.body.n3);
+    info.n4 = parseInt(request.body.n4);
+    info.n5 = parseInt(request.body.n5);
+    info.powerball = parseInt(request.body.powernum);
     info.powerplay = request.body.powerplay;
-    db.recordBuyin(conn, info, function(pool_id) {
-      response.redirect('/ticketprofile/' + pool_id);
+    info.shares = request.body.shares;
+    db.recordBuyin(conn, info, function(pool) {
+      response.redirect('/ticketprofile/' + pool.id);
     });
   } else {
     response.redirect('/');

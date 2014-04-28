@@ -145,8 +145,6 @@ function loadPoolByID(conn, id, callback) {
       callback(null);
     } else if (result.rowCount == 1) {
       var pool = result.rows[0];
-      console.log("pool: ");
-      console.log(pool);
       pool.info = JSON.parse(pool.info);
       pool.buyins = JSON.parse(pool.buyins);
       pool.messages = JSON.parse(pool.messages);
@@ -228,6 +226,66 @@ function recordMessage(conn, pool_id, user, message, callback) {
 // records the user as having bought into a pool
 // most args are stored in the info blob and collected from POST params
 function recordBuyin(conn, info, callback) {
+  var loadFunc = function(created, info2) {
+    internalRecordBuyin(conn, info2, created, function(pool) {
+      created += 1;
+      if (created == info2.shares) {
+        callback(pool);
+      } else {
+        info2 = incrementTicket(pool, info2);
+        loadFunc(created, info2);
+      }
+    });
+  };
+  loadFunc(0, info);
+}
+
+// mutates the ticket information so that it contains a number unique in pool
+function incrementTicket(pool, info) {
+  // this method is not very safe, no guarantee a unique # exists
+  // also jesus this thing is ugly
+  while (poolHas(pool, info)) {
+    info.n5 += 1;
+    if (info.n5 > 59) {
+      info.n5 = 1;
+      info.n4 += 1;
+      if (info.n4 > 59) {
+        info.n4 = 1;
+        info.n3 += 1;
+        if (info.n3 > 59) {
+          info.n3 = 0;
+          info.n2 += 1;
+          if (info.n2 > 59) {
+            info.n2 = 0;
+            info.n1 += 1;
+            if (info.n1 > 50) {
+              console.log("warning: wrapped ticket number");
+              info.n1 = 0;
+              return incrementTicket(pool, info);
+            }
+          }
+        }
+      }
+    }
+  }
+  return info;
+}
+
+// return true if pool already has ticket with that number
+// because js has no arraycontains for some reason
+function poolHas(pool, info) {
+  var string = createStringFromInfo(info);
+  for (var i = 0; i < pool.numbers.length; i += 1) {
+    if (pool.numbers[i].value == string) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// co-recursive function for record buyin
+// seq is the sequence number of this ticket, ie 2 out of 4 shares to create
+function internalRecordBuyin(conn, info, seq, callback) {
   createTicket(conn, info.pool_id, info.user.facebook_id,
       [info.n1, info.n2, info.n3, info.n4, info.n5, info.powerball],
       info.powerplay, function(ticket) {
@@ -263,7 +321,7 @@ function recordBuyin(conn, info, callback) {
         }
         storeUser(info.user, conn, function(facebook_id) {
           if (callback) {
-            callback(pool_id);
+            callback(pool);
           }
         });
       });
@@ -296,13 +354,7 @@ function filterUsers(conn, ids, callback) {
 // callback is called with id of new ticket
 function createTicket(conn, pool_id, user_id, numbers, powerplay, callback) {
   var sql = 'INSERT INTO tickets (pool_id, user_id, n1, n2, n3, n4, n5, powerball, powerplay, string) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)';
-  var string = "";
-  for (var i = 0; i < 5; i += 1) {
-    if (i > 0) string += "-";
-    string += numbers[i];
-  }
-  string += " ";
-  string += numbers[5];
+  var string = createString(numbers);
   var vars = [
     pool_id,
     user_id,
@@ -322,6 +374,23 @@ function createTicket(conn, pool_id, user_id, numbers, powerplay, callback) {
       }
     });
   });
+}
+
+// converts info into human-readable ticket no
+function createString(numbers) {
+  var string = "";
+  for (var i = 0; i < 5; i += 1) {
+    if (i > 0) string += "-";
+    string += numbers[i];
+  }
+  string += " ";
+  string += numbers[5];
+  return string;
+}
+
+// see above
+function createStringFromInfo(info) {
+  return createString([info.n1, info.n2, info.n3, info.n4, info.n5, info.powerball]);
 }
 
 // loads the ticket with the given id, then calls callback with the json ticket
