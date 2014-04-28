@@ -2,7 +2,8 @@ CREATE TABLE users (
   facebook_id TEXT PRIMARY KEY,
   access_token TEXT,
   profile BLOB,
-  pools BLOB
+  pools BLOB,
+  powerbucks INTEGER
 );
 CREATE TABLE tickets (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

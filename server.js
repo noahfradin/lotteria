@@ -62,7 +62,7 @@ app.get('/mytickets', function(request, response) {
   // page with all your tickets
   if (request.user) {
     db.loadAllPoolsForUser(conn, request.user, function(pools) {
-      response.render('mytickets.html', {pools: pools});
+      response.render('mytickets.html', {pools: pools, user: request.user});
     });
   } else {
     response.redirect('/');
@@ -73,7 +73,7 @@ app.get('/picker/:id', function(request, response) {
   // buy into a pool
   if (request.user) {
     db.loadPoolByID(conn, request.params.id, function(pool) {
-      response.render('picker.html', {pool: pool});
+      response.render('picker.html', {pool: pool, user: request.user});
     });
   } else {
     response.redirect('/');
@@ -83,7 +83,7 @@ app.get('/picker/:id', function(request, response) {
 app.get('/newPool', function(request, response) {
   // create a new pool
   if (request.user) {
-    response.render('newPool.html', {user: request.user});
+    response.render('newPool.html', {user: request.user, user: request.user});
   } else {
     response.redirect('/');
   }
@@ -114,7 +114,7 @@ app.get('/ticketprofile/:id', function(request, response) {
   if (request.user) {
     db.loadPoolByID(conn, request.params.id, function(pool) {
       var usernumber = pool.buyins.length;
-      response.render('ticketProfile.html', {pool: pool, usernumber: usernumber});
+      response.render('ticketProfile.html', {pool: pool, usernumber: usernumber, user: request.user});
     });
   } else {
     response.redirect('/');
@@ -122,7 +122,11 @@ app.get('/ticketprofile/:id', function(request, response) {
 });
 
 app.get('/rewards', function(request, response) {
-  response.render('rewards.html');
+  if (request.user) {
+    response.render('rewards.html', {user: request.user});
+  } else {
+    response.redirect('/');
+  }
 });
 
 app.get('/home', function(request, response) {
@@ -131,7 +135,7 @@ app.get('/home', function(request, response) {
       db.filterUsers(conn, friend_ids, function(ids) {
         ids.push(request.user.facebook_id);
         db.loadAllPoolsForGroup(conn, ids, function(pools) {
-          response.render('newsfeed.html', {pools: pools});
+          response.render('newsfeed.html', {pools: pools, user: request.user});
         });
       });
     });
@@ -181,15 +185,16 @@ app.post('/buyin/:id', function(request, response) {
     var info = new Object();
     info.user = request.user;
     info.pool_id = request.params.id;
-    info.n1 = request.body.n1;
-    info.n2 = request.body.n2;
-    info.n3 = request.body.n3;
-    info.n4 = request.body.n4;
-    info.n5 = request.body.n5;
-    info.powerball = request.body.powernum;
+    info.n1 = parseInt(request.body.n1);
+    info.n2 = parseInt(request.body.n2);
+    info.n3 = parseInt(request.body.n3);
+    info.n4 = parseInt(request.body.n4);
+    info.n5 = parseInt(request.body.n5);
+    info.powerball = parseInt(request.body.powernum);
     info.powerplay = request.body.powerplay;
-    db.recordBuyin(conn, info, function(pool_id) {
-      response.redirect('/ticketprofile/' + pool_id);
+    info.shares = request.body.shares;
+    db.recordBuyin(conn, info, function(pool) {
+      response.redirect('/ticketprofile/' + pool.id);
     });
   } else {
     response.redirect('/');

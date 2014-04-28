@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="../public/css/picker.css" type="text/css" />
     </head>
     <body>
-    <div id="powerbucks">You have: $120 PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <div id="powerbucks">You have: ${{user.powerbucks}} PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
     <header>
 		<div id="header_wrapper">
 			<h1 id="logo"><a href="/home"><img src ="../public/images/Logo-Large.png" alt = "Pool Party Logo" id="logoimage">Lotteria</a></h1>
@@ -53,8 +53,8 @@
         </div>
         
         <div class = "drawingSelector">
-            <p>Draws</p>
-            <select class="customSelect" id="draws" name="duration" tabindex="10" autocomplete="off" >
+            <p>Shares</p>
+            <select class="customSelect" id="draws" name="shares" tabindex="10" autocomplete="off" >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
