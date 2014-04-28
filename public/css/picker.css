@@ -243,6 +243,21 @@ button {
     top: -170px;
 }
 
+.powerbutton {
+    width: 250px;
+    position: relative;
+    display:inline-block;
+}
+
+
+.pbstar {
+    width: 50px;
+    position: absolute;
+    left: 655px;
+    bottom: 160px;
+
+}
+
 #buyButton{
     color: white;
     background-color: #FFCC33 !important;
