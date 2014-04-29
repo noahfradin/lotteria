@@ -53,7 +53,7 @@ function addDayDefault(day,year){
 
 function addYearDefault(year,description){
     var year = document.getElementById("year");
-     if(year.value.length ==4 && day.value != "YYYY" ){
+     if(year.value.length ==4 && year.value != "YYYY" ){
         description.focus();
     }
 }
