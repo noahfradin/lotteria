@@ -37,23 +37,23 @@ function deleteYearDefault(field){
 
 function addMonthDefault(month1,day){
     var month = document.getElementById("month");
-    if(month.value.length ==2){
-        day.value = "";
+    if(month.value.length ==2 && month.value != 'MM'){
+//        day.value = "";
         day.focus();
     }
 }
 
 function addDayDefault(day,year){
      var day = document.getElementById("day");
-     if(day.value.length ==2){
-        year.value = "";
+     if(day.value.length ==2 && day.value != "DD"){
+//        year.value = "";
         year.focus();
     }
 }
 
 function addYearDefault(year,description){
     var year = document.getElementById("year");
-     if(year.value.length ==4){
+     if(year.value.length ==4 && day.value != "YYYY" ){
         description.focus();
     }
 }
