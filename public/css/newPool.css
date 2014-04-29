@@ -281,16 +281,22 @@ textarea{
     
 }
 
+#ticketTitle{
+    font: 16pt "GeosansLight", sans-serif;   
+}
+
 #day{
     margin-left:30px;
+      font: 16pt "GeosansLight", sans-serif;
 }
 
 #year{
     margin-left:24px;
+      font: 16pt "GeosansLight", sans-serif;
 }
 
 #month{
-    
+      font: 16pt "GeosansLight", sans-serif;
 }
 
 #month, #day, #year{
