@@ -32,11 +32,11 @@
                 <div class="form-row">
                     <label>
                       <span>First Name:</span>
-                      <input autocomplete="off" type="text" id = "first" size="20" data-stripe="number"/ value="{{user.profile.name.givenName}}">
+                      <input name="firstName" autocomplete="off" type="text" id = "first" size="20" data-stripe="number"/ value="{{user.profile.name.givenName}}">
                     </label>
                     <label>
                       <span>Last Name:</span>
-                      <input autocomplete="off" type="text" id = "last" size="20" data-stripe="number" value="{{user.profile.name.familyName}}"/>
+                      <input name="lastName" autocomplete="off" type="text" id = "last" size="20" data-stripe="number" value="{{user.profile.name.familyName}}"/>
                     </label>
                          </div>
                   
@@ -80,7 +80,7 @@
                     <div class="form-row">
                     <label>
                       <span>City:</span>
-                      <input autocomplete="off" type="text" id = "email" size="20" data-stripe="number"/>
+                      <input name="email" autocomplete="off" type="text" id = "email" size="20" data-stripe="number"/>
                     </label>
 
                
@@ -128,10 +128,7 @@
                     <span> / </span>
                     <input autocomplete="off"  type="text" id = "cardExpYear" size="4" data-stripe="exp-year"/>
                   </div>
-                  <div> 
-                      <span>Save Credit Card Information?</span>
-                      <input type="checkbox" tabindex="401" name="saveInfo" tabindex="9" id="saveInfo" value="true">
-                  </div>
+               
                   <button id = "submitButton" type="submit">Submit Payment</button>
                   <button id ="cancelButton">Cancel Payment</button>
                 </form>
