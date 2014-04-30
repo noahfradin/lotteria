@@ -41,7 +41,10 @@
             <div class="tickwrapper">
               <li class="pool_entry">
               <a href="/ticketProfile/{{id}}"><img src = '{{info.main_pic_url}}' class= "tickpic" ></a>
-              <a href="/ticketProfile/{{id}}" class = "titlelink"><h2>{{info.name}}</h2></a>
+              <a href="/ticketProfile/{{id}}" class = "titlelink"><h2>
+                {{info.name}}
+                <span style="display:none">{{info.founder_name}}</span>
+              </h2></a>
               <p class="drawdate">Draw on {{info.draw_string}}</p>
               <h3>Players:</h3>
             <div class="playerpics">
