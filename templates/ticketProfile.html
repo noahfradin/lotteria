@@ -100,8 +100,10 @@
         <div class = "chatTextBox">
             <p>Send the group a message:</p>
             <form method="POST" action="/ticketprofile/{{pool.id}}/newmessage" id="sendForm">
-            <input type="text" id="chatText" name="message" value="">
+            <textarea form_id="sendForm" id="chatText" name="message" cols="36" rows="5" wrap="virtual"></textarea>
+            
             <button class="submit" id="SEND" type="submit">SEND</button>
+            </form>
         </div>
     </div>    
     </body>

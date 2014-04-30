@@ -281,6 +281,7 @@ ul#top_nav li a {
 #chatText{
     width: 770px;
     height: 70px;
+    font: 16pt "Futura", sans-serif;
 
 }
 #send {

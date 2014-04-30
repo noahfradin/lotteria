@@ -324,3 +324,9 @@ ul#top_nav li a {
     color:black;
 }
 
+#noPool{
+    font: 24pt "GeosansLight", sans-serif;
+    margin-top:80px;
+    margin-left:30px;
+    color:red;
+}
