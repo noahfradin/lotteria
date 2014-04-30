@@ -27,16 +27,16 @@
         
         <div id = "creditHeader">
             <div id = "formHeader">
-                <form method="POST" action="payment_processing">
+                <form method="POST" action="/process_payment/{{info.pool_id}}">
                 <p>Please provide us with your credit card information to complete the purchase</p>
                 <div class="form-row">
                     <label>
                       <span>First Name:</span>
-                      <input name="firstName" autocomplete="off" type="text" id = "first" size="20" data-stripe="number"/>
+                      <input name="firstName" autocomplete="off" type="text" id = "first" size="20" data-stripe="number"/ value="{{user.profile.name.givenName}}">
                     </label>
                     <label>
                       <span>Last Name:</span>
-                      <input name="lastName" autocomplete="off" type="text" id = "last" size="20" data-stripe="number"/>
+                      <input name="lastName" autocomplete="off" type="text" id = "last" size="20" data-stripe="number" value="{{user.profile.name.familyName}}"/>
                     </label>
                          </div>
                   
@@ -138,10 +138,8 @@
         </div>
         <div id = "cart">
             <h2>Pool Party Purchase</h2>
-            <p>Number of shares:</p>
-                <!--field for number of shares-->
-            <p>Price:</p>
-                <!--field for price-->
+            <p>Number of shares: {{info.shares}}</p>
+            <p>Price: ${{info.price}}.00</p>
         </div>
 
         </div>
