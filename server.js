@@ -5,6 +5,7 @@ var express = require('express');
 var engines = require('consolidate');
 var passport = require('passport');
 var https = require('https');
+var mail = require('nodemailer').mail;
 
 var app = express();
 app.engine('html', engines.hogan);
