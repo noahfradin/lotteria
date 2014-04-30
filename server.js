@@ -203,7 +203,7 @@ app.post('/buyin/:id', function(request, response) {
     info.n4 = parseInt(request.body.n4);
     info.n5 = parseInt(request.body.n5);
     info.powerball = parseInt(request.body.powernum);
-    info.powerplay = request.body.powerplay;
+    info.powerplay = request.body.multiplier;
     info.shares = request.body.shares;
     info.price = (info.powerplay ? 3 : 2) * info.shares;
     request.session.buyin_info = info;
@@ -221,7 +221,7 @@ app.post('/process_payment/:id', function(request, response) {
       form.firstName = request.body.firstName;
       form.lastName = request.body.lastName;
       form.email = request.body.email;
-      fb.mailConfirmation(user, request.session.buyin_info, form, function() {
+      fb.mailConfirmation(request.user, request.session.buyin_info, form, mail, function() {
         response.redirect('/ticketprofile/' + pool.id);
       });
     });
