@@ -145,6 +145,17 @@ app.get('/home', function(request, response) {
   }
 });
 
+app.get('/payment/:id', function(request, response) {
+  if (request.user) {
+    response.render('credit.html', {
+      user: request.user,
+      info: request.session.buyin_info
+    });
+  } else {
+    response.redirect('/');
+  }
+});
+
 app.get('/', function(request, response) {
   if (request.user) {
     response.redirect('/home');
@@ -194,6 +205,17 @@ app.post('/buyin/:id', function(request, response) {
     info.powerball = parseInt(request.body.powernum);
     info.powerplay = request.body.powerplay;
     info.shares = request.body.shares;
+    info.price = (info.powerplay ? 2 : 3) * info.shares;
+    request.session.buyin_info = info;
+    response.redirect('/payment/' + request.params.id);
+  } else {
+    response.redirect('/');
+  }
+});
+
+// TODO: this is wicked insecure
+app.post('/process_payment/:id', function(request, response) {
+  if (request.user) {
     db.recordBuyin(conn, info, function(pool) {
       response.redirect('/ticketprofile/' + pool.id);
     });
