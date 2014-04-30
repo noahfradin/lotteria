@@ -3,13 +3,14 @@ window.addEventListener('load',function(){
     var month = document.getElementById("month");
     var day = document.getElementById("day");
     var year = document.getElementById("year");
+    var description = document.getElementById("ticketDescription");
     month.addEventListener("click", function(month) { deleteMonthDefault();});
-     day.addEventListener("click", function(day) { deleteDayDefault();});
-     year.addEventListener("click", function(year) { deleteYearDefault();});
+    day.addEventListener("click", function(day) { deleteDayDefault();});
+    year.addEventListener("click", function(year) { deleteYearDefault();});
     
-    month.addEventListener("change", function(month) { addMonthDefault();});
-     day.addEventListener("change", function(day) { addDayDefault();});
-     year.addEventListener("change", function(year) { addYearDefault();});
+    month.addEventListener("keyup", function(month) { addMonthDefault(month,day);});
+    day.addEventListener("keyup", function(day) { addDayDefault(day,year);});
+    year.addEventListener("keyup", function(year) { addYearDefault(year,description);});
 
 },false);
 
@@ -34,3 +35,25 @@ function deleteYearDefault(field){
     }
 }
 
+function addMonthDefault(month1,day){
+    var month = document.getElementById("month");
+    if(month.value.length ==2 && month.value != 'MM'){
+//        day.value = "";
+        day.focus();
+    }
+}
+
+function addDayDefault(day,year){
+     var day = document.getElementById("day");
+     if(day.value.length ==2 && day.value != "DD"){
+//        year.value = "";
+        year.focus();
+    }
+}
+
+function addYearDefault(year,description){
+    var year = document.getElementById("year");
+     if(year.value.length ==4 && year.value != "YYYY" ){
+        description.focus();
+    }
+}

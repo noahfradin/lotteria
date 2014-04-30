@@ -1,54 +1,150 @@
+<!DOCTYPE html>
 <html>
-    <head>
+<head>
+    <title>Lotteria</title>
+    <link rel="stylesheet" href="../public/css/credit.css" type="text/css" />
+
+    <link rel="stylesheet" href="../public/css/ticket.css" type="text/css" />
+    <script type="text/javascript" src="/public/javascript/credit.js"></script>
+</head>
+<body>
+    <div id="powerbucks">You have: ${{user.powerbucks}} PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+    <header>
+		<div id="header_wrapper">
+			<h1 id="logo"><a href="/home"><img src ="../public/images/Logo-Large.png" alt = "Pool Party Logo" id="logoimage">Lotteria</a></h1>
+			<ul id="top_nav">
+				<li id="nav_nticket"><a href="/newPool"></a><p>NEW POOL</p></li>
+				<li id="nav_tickets"><a href="/mytickets"></a><p>MY POOLS</p></li>
+				<li id="nav_rewards"><a href="/rewards"></a><p>REWARDS</p></li>
+				<li id="nav_settings"><a href="/logout"></a><p>LOGOUT</p></li>
+			</ul>
+		</div>
+	</header>
+    <div id="mid">
+        
     
-        <script type = "text/javascript" src = "../javascript/credit.js"></script>
-        <link rel="stylesheet" href="../css/credit.css" type="text/css" />
-    </head>
-    <body>
+        
+        
         <div id = "creditHeader">
             <div id = "formHeader">
+                <form method="POST" action="/process_payment/{{info.pool_id}}">
                 <p>Please provide us with your credit card information to complete the purchase</p>
-                <!--to learn more http://www.homeandlearn.co.uk/JS/radio_buttons.html-->
-                <input type="Radio" Name="payment" Value="CC">American Express
-                <input type="Radio" Name="payment" Value="CC">Visa
-                <input type="Radio" Name="payment" Value="CC">Master Card
-                <form action="" method="POST" id="payment-form">
+                <div class="form-row">
+                    <label>
+                      <span>First Name:</span>
+                      <input name="firstName" autocomplete="off" type="text" id = "first" size="20" data-stripe="number"/ value="{{user.profile.name.givenName}}">
+                    </label>
+                    <label>
+                      <span>Last Name:</span>
+                      <input name="lastName" autocomplete="off" type="text" id = "last" size="20" data-stripe="number" value="{{user.profile.name.familyName}}"/>
+                    </label>
+                         </div>
+                  
+                    <div class="form-row">
+                    <label>
+                      <span>Address 1:</span>
+                      <input autocomplete="off" type="text" id = "address1" size="20" data-stripe="number"/>
+                    </label>
+
+               
+                  </div>
+                             
+                    <div class="form-row">
+                    <label>
+                      <span>Address 2:</span>
+                      <input autocomplete="off" type="text" id = "city" size="20" data-stripe="number"/>
+                    </label>
+
+               
+                  </div>
+                     
+                    <div class="form-row">
+                    <label>
+                      <span>State:</span>
+                      <input autocomplete="off" type="text" id = "state" size="20" data-stripe="number"/>
+                    </label>
+
+               
+                  </div>
+                 
+                    
+            <div class="form-row">
+                    <label>
+                      <span>Zip/Postal Code:</span>
+                      <input autocomplete="off" type="text" id = "zip" size="20" data-stripe="number"/>
+                    </label>
+
+               
+                  </div>
+                     
+                    <div class="form-row">
+                    <label>
+                      <span>City:</span>
+                      <input  autocomplete="off" type="text" id = "email" size="20" data-stripe="number"/>
+                    </label>
+
+               
+                  </div>
+                    <div class="form-row">
+               
+                      <span>Phone Number:</span>
+                      <input autocomplete="off" type="text" id = "phoneNumber" size="20" data-stripe="number"/>
+                   
+
+               
+                  </div>
+            
+                    <div class="form-row">
+                    <label>
+                      <span>Email:</span>
+                      <input name="email" autocomplete="off" type="text" id = "email" size="20" data-stripe="number"/>
+                    </label>
+
+               
+                  </div>
+                <input class = "radio" type="Radio" Name="payment" Value="CC"><span>American Express</span>
+                <input class = "radio" type="Radio" Name="payment" Value="CC"><span>Visa</span>
+                <input class = "radio" type="Radio" Name="payment" Value="CC"><span>Master Card</span>
+                
                   <span class="payment-errors"></span>
                 
                   <div class="form-row">
                     <label>
-                      <span>Card Number</span>
-                      <input type="text" id = "cardNumber" size="20" data-stripe="number"/>
+                      <span>Card Number:</span>
+                      <input autocomplete="off" type="text" id = "cardNumber" size="20" data-stripe="number"/>
                     </label>
-                  </div>
-                
-                  <div class="form-row">
+                  
                     <label>
-                      <span>CVC</span>
-                      <input type="text" id = "cardCVC" size="4" data-stripe="cvc"/>
+                      <span>CVC:</span>
+                      <input autocomplete="off" type="text" id = "cardCVC" size="4" data-stripe="cvc"/>
                     </label>
                   </div>
                 
                   <div class="form-row">
                     <label>
                       <span>Expiration (MM/YYYY)</span>
-                      <input type="text" id = "cardExpMonth" size="2" data-stripe="exp-month"/>
+                      <input autocomplete="off" type="text" id = "cardExpMonth" size="2" data-stripe="exp-month"/>
                     </label>
                     <span> / </span>
-                    <input type="text" id = "cardExpYear" size="4" data-stripe="exp-year"/>
+                    <input autocomplete="off"  type="text" id = "cardExpYear" size="4" data-stripe="exp-year"/>
                   </div>
-                  <div> 
-                      <p>Save Credit Card Information?</p>
-                      <input type="checkbox" tabindex="401" name="saveInfo" tabindex="9" id="saveInfo" value="true">
-                  </div>
+               
                   <button id = "submitButton" type="submit">Submit Payment</button>
                   <button id ="cancelButton">Cancel Payment</button>
                 </form>
-            </div>
-            
+            </div> 
+                 
         
         </div>
+        <div id = "cart">
+            <h2>Pool Party Purchase</h2>
+            <p>Number of shares: {{info.shares}}</p>
+            <p>Price: ${{info.price}}.00</p>
+        </div>
 
+        </div>
+    <div id="footer"></div>
+</body>
     
-    </body>
+    
 </html>

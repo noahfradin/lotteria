@@ -99,6 +99,7 @@ function createPool(conn, info, user, callback) {
   info.sample_users = new Array();
   info.sample_users.push({facebook_id: user.facebook_id});
   info.founder = user.facebook_id;
+  info.founder_name = user.profile.displayName;
   var buyins = new Array();
   buyins.push({id: user.facebook_id, tickets: []});
   var vars = [
@@ -452,11 +453,16 @@ function createSamples(conn) {
   ameade.id = 1067881337;
   crfitz.id = 599381317;
   nfradin.id = 685294752;
+  adk.name = "Aaron King";
+  ameade.name = "Alec Meade";
+  crfitz.name = "Cody Fitzgerald";
+  nfradin.name = "Noah Fradin";
   
   var i = 0;
   var poolFunc = function() {
     var user = users[i];
     user.facebook_id = user.id;
+    user.displayName = user.name;
     createUser("", "", user, null, conn);
     
     var info = new Object();

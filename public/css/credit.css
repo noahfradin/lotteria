@@ -1,0 +1,336 @@
+/* 
+Thoughts? Do you think everything should maybe be smaller?
+*/
+
+@font-face {
+font-family:"Futura";
+src:url("../fonts/Futura.ttc");
+}
+
+@font-face {
+font-family:"Arial";
+src:url("../fonts/Arial.ttf");
+}
+
+@font-face {
+font-family:"GeosansLight";
+src:url("../fonts/GeosansLight.ttf");
+}
+
+@font-face {
+font-family:"Origin-Bold";
+src:url("../fonts/Origin-Bold.ttf");
+}
+
+@font-face {
+font-family:"Gram";
+src:url("../fonts/Gram.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    min-width:1040px;
+    margin: 0;
+    padding: 0;
+}
+
+#powerbucks{
+    font: 12pt "GeosansLight", sans-serif;
+    color: black;
+    position: fixed;
+    top: 29px;
+    left: 1150px;
+    z-index: 9999;
+    width: 400px;
+}
+
+#header_wrapper {
+    position: fixed;
+    top: 0px;
+    width: 100%; 
+    background-color:#FFCC33;
+    height: 77px;
+    display: inline-block;
+    z-index: 9997;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logoimage {
+    position: relative;
+    height: 73px;
+    background-color: white;
+    padding: 2px 20px;
+    right: 10px;
+}
+
+
+#logo a {
+    color: transparent;
+    margin: 0 auto;
+    width: 200px;
+    height: 73px;
+}
+
+ul#top_nav {
+    display:inline-block;
+    position: absolute;
+    height: 70px;
+    border: 0;
+    min-width: 1024px;
+    margin-left: 40px;
+}
+
+ul#top_nav * {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    height: 69px;
+    margin-right: -1px;
+}
+
+ul#top_nav li p {
+    height: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #404040 !important;
+    font: 16pt "Futura", sans-serif;
+}
+
+ul#top_nav li a {
+    margin: auto;
+    position: absolute;
+}
+
+#nav_tickets p {
+}
+
+
+#nav_nticket {
+    padding-top:1px;
+    height: 74px !important;
+}
+
+#nav_nticket:hover {
+    background-color: #FFD018;
+}
+
+#nav_tickets {
+    padding-top: 2px;
+    height: 74px !important;
+    color: #404040 !important;
+    background-color:#FFCC33 !important;
+
+}
+
+#nav_tickets:hover {
+    background-color: #FFD018 !important;
+}
+
+#nav_rewards {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_rewards:hover {
+    background-color: #FFD018;
+}
+
+#nav_settings {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_settings:hover {
+    background-color: #FFD018;
+}
+
+
+#mid{
+    font: 24pt "GeosansLight", sans-serif;
+    text-align: center;
+    position: relative;
+    margin: 150px auto 50px auto;
+    width: 1000px;
+    color: #FFCC33;
+}
+
+#yourtix {
+    width: 850px;
+    margin: 5px auto;
+    font: 24pt "GeosansLight", sans-serif;
+}
+
+#tickets{
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 600px;
+}
+
+.ticketwrapper {
+    position: relative;
+    width: 850px;
+    height: 160px;
+}
+
+#tickets li {
+    width: 850px;
+    height: 160px;
+    margin: 20px auto;
+    list-style-type: none;
+    border: solid #FFCC33 1px;
+    position: relative;
+}
+
+.tickpic {
+    position: absolute;
+    height: 140px;
+    width: 140px;
+    margin: 12px;
+    display:inline-block;
+}
+
+#tickets li h2 {
+    position: relative;
+    font: 20pt "Futura", sans-serif;
+    display: inline-block;
+    top: 15px;
+    left: 170px;
+}
+
+.titlelink {
+    width: 100%;
+    top: 15px;
+}
+
+#tickets li h3 {
+    position: absolute;
+    font: 16pt "GeosansLight", sans-serif;
+    display: inline-block;
+    left: 180px;
+    bottom: 40px;
+    text-align: left;
+}
+
+.playerpics {
+    position: absolute;
+    height: 80px;
+    width: 230px;
+}
+
+.playerpic {
+    height: 70px;
+    width: 70px;
+    margin-left: 5px;
+    display: inline-block;
+    position: relative;
+    top: 40px;
+    left: 260px;
+    float: left;
+}
+
+.more {
+    width: 100px;
+    position: absolute;
+    left: 500px;
+    /*bottom: 175px; */
+    font: 12pt "GeosansLight", sans-serif;
+}
+
+.drawdate {
+    position: absolute;
+    bottom: 120px;
+    left: 630px;
+    width: 200px;
+    color: #FFCC33;
+    font: 16pt "GeosansLight", sans-serif;
+    text-align: right;
+}
+
+.powerbutton {
+    width: 210px;
+}
+
+.invite {
+    position:absolute;
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 30px;
+    width: 210px;
+    padding-right: 5px;
+    font: 12pt "Futura", sans-serif;
+    color: white;
+    left: 630px;
+    bottom: 20px;
+    text-align: center;
+}
+
+.pbstar {
+    width: 50px;
+    position: absolute;
+    left: 805px;
+    top: 100px;
+
+}
+
+#tickets{
+    height:100%;   
+    
+}
+
+#poolText, poolText{
+    display:inline-block;
+}
+
+#poolText{
+    text-align:center;
+    color:#404040;
+    height:74px;
+    font: 20pt "GeosansLight", sans-serif;
+}
+
+#poolFeed{
+    height:74px;
+    width: 850px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 40px;
+    
+}
+
+#chatText{
+    width: 700px;
+    height: 70px;
+    font: 24pt "GeosansLight", sans-serif;
+    text-align: left;
+    position: relative;
+    line-height:30px;
+    color:#dbdbdb;
+    font-weight:bolder;
+    
+}
+
+.otherPlayers{
+    display:inline-block;
+    margin-left:-300px;
+    color:black;
+}
+
+span , .radio{
+    color:black;
+}
+
+.form-row{
+    
+   
+}
+

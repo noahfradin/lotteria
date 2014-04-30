@@ -22,11 +22,11 @@
         <p id="pick">Pick numbers to play:</p>
         <div class = "ticketBoard">
             <div class = "ticketNumbers">
-                <input type="text" id="number1" class="number" maxlength="2" tabindex="1" name="n1" value="">
-                <input type="text" id="number2" class="number" maxlength="2" tabindex="2" name="n2" value="">
-                <input type="text" id="number3" class="number" maxlength="2" tabindex="3" name="n3" value="">
-                <input type="text" id="number4" class="number" maxlength="2" tabindex="4" name="n4" value="">
-                <input type="text" id="number5" class="number" maxlength="2" tabindex="5" name="n5" value="">
+                <input type="text" autocomplete="off" id="number1" class="number" maxlength="2" tabindex="1" name="n1" value="">
+                <input type="text" autocomplete="off" id="number2" class="number" maxlength="2" tabindex="2" name="n2" value="">
+                <input type="text" autocomplete="off" id="number3" class="number" maxlength="2" tabindex="3" name="n3" value="">
+                <input type="text" autocomplete="off" id="number4" class="number" maxlength="2" tabindex="4" name="n4" value="">
+                <input type="text" autocomplete="off" id="number5" class="number" maxlength="2" tabindex="5" name="n5" value="">
                 <p>Choose Numbers 1-59</p>
             </div>
             
@@ -35,9 +35,12 @@
                  <p>Choose Numbers 1-35</p>
             </div>
         </div>
-        
+        <div class="error">
+            
+            <span id = "error"></span>  
+        </div>
         <div class = "resetRandomizeHeader">
-           
+            
                 <button id = "resetButton" tabindex="7" type="button">RESET</button>
         
           

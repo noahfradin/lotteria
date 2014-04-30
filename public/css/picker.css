@@ -271,3 +271,10 @@ button {
     top: -180px;
     margin-left: 770px;
 }
+.error{
+
+}
+#error{
+    font: normal 12px/100% "Futura", sans-serif;
+    color:red;
+}

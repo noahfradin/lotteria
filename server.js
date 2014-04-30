@@ -5,6 +5,7 @@ var express = require('express');
 var engines = require('consolidate');
 var passport = require('passport');
 var https = require('https');
+var mail = require('nodemailer').mail;
 
 var app = express();
 app.engine('html', engines.hogan);
@@ -144,6 +145,17 @@ app.get('/home', function(request, response) {
   }
 });
 
+app.get('/payment/:id', function(request, response) {
+  if (request.user) {
+    response.render('credit.html', {
+      user: request.user,
+      info: request.session.buyin_info
+    });
+  } else {
+    response.redirect('/');
+  }
+});
+
 app.get('/', function(request, response) {
   if (request.user) {
     response.redirect('/home');
@@ -193,8 +205,25 @@ app.post('/buyin/:id', function(request, response) {
     info.powerball = parseInt(request.body.powernum);
     info.powerplay = request.body.powerplay;
     info.shares = request.body.shares;
-    db.recordBuyin(conn, info, function(pool) {
-      response.redirect('/ticketprofile/' + pool.id);
+    info.price = (info.powerplay ? 3 : 2) * info.shares;
+    request.session.buyin_info = info;
+    response.redirect('/payment/' + request.params.id);
+  } else {
+    response.redirect('/');
+  }
+});
+
+// TODO: this is wicked insecure
+app.post('/process_payment/:id', function(request, response) {
+  if (request.user) {
+    db.recordBuyin(conn, request.session.buyin_info, function(pool) {
+      var form = new Object();
+      form.firstName = request.body.firstName;
+      form.lastName = request.body.lastName;
+      form.email = request.body.email;
+      fb.mailConfirmation(user, request.session.buyin_info, form, function() {
+        response.redirect('/ticketprofile/' + pool.id);
+      });
     });
   } else {
     response.redirect('/');
