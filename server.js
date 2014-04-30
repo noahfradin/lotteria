@@ -205,7 +205,7 @@ app.post('/buyin/:id', function(request, response) {
     info.powerball = parseInt(request.body.powernum);
     info.powerplay = request.body.powerplay;
     info.shares = request.body.shares;
-    info.price = (info.powerplay ? 2 : 3) * info.shares;
+    info.price = (info.powerplay ? 3 : 2) * info.shares;
     request.session.buyin_info = info;
     response.redirect('/payment/' + request.params.id);
   } else {
@@ -216,8 +216,14 @@ app.post('/buyin/:id', function(request, response) {
 // TODO: this is wicked insecure
 app.post('/process_payment/:id', function(request, response) {
   if (request.user) {
-    db.recordBuyin(conn, info, function(pool) {
-      response.redirect('/ticketprofile/' + pool.id);
+    db.recordBuyin(conn, request.session.buyin_info, function(pool) {
+      var form = new Object();
+      form.firstName = request.body.firstName;
+      form.lastName = request.body.lastName;
+      form.email = request.body.email;
+      fb.mailConfirmation(user, request.session.buyin_info, form, function() {
+        response.redirect('/ticketprofile/' + pool.id);
+      });
     });
   } else {
     response.redirect('/');
