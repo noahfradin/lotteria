@@ -27,6 +27,7 @@
         
         <div id = "creditHeader">
             <div id = "formHeader">
+                <form method="POST" action="payment_processing">
                 <p>Please provide us with your credit card information to complete the purchase</p>
                 <div class="form-row">
                     <label>
@@ -104,7 +105,7 @@
                 <input class = "radio" type="Radio" Name="payment" Value="CC"><span>American Express</span>
                 <input class = "radio" type="Radio" Name="payment" Value="CC"><span>Visa</span>
                 <input class = "radio" type="Radio" Name="payment" Value="CC"><span>Master Card</span>
-                <form action="" method="POST" id="payment-form">
+                
                   <span class="payment-errors"></span>
                 
                   <div class="form-row">
