@@ -34,18 +34,20 @@
                 
                 <div id="profileText">
                     <p id="ticketName">{{pool.info.name}}</p>
-                    <p id="drawing">{{pool.info.draw_string}}</p>
+                    <p id="drawing">Next Drawing: {{pool.info.draw_string}}</p>
                     <p id="totalPeople">Total people: {{usernumber}}</p>
                     <p id="shares">Shares: {{pool.shares}}</p>
-                    <p>{{pool.info.desc}}</p>
+                    
                 
                 <!-- <button id = "invite">INVITE FRIENDS</button> -->
+                <div class = "buttontop">
                 <div id="invite">
                   <div class="fb-send" data-href="http://google.com" data-colorscheme="light"></div>
-                  <div id = "invite_text"><p>an invite to friends</p></div>
+                  <div id = "invite_text"><p>INVITE FRIENDS</p></div>
                 </div>
                 <button id = "buy" onclick="document.location='/picker/{{pool.id}}'">BUY SHARES</button>
                 
+                </div>
                 </div>
                 <div id= "privacyDiv">
                     <p id= "privacy">Friends Only</p>    
@@ -59,7 +61,9 @@
                   <li>
                     <div class = "message">
                       <div class = "userInfo">
+                          <div class ="cropplayer">
                         <img id ="chatProfilePicture" src="http://graph.facebook.com/{{facebook_id}}/picture?type=normal">
+                              </div>
                         <p id= "name">{{name}}:</p>
                       </div>
                       <div  class ="messageText">
@@ -75,28 +79,35 @@
         </div>
             
         <div class = "rightPage">
+            <div class = "description">
+                <p class="desctitle">Pool Description:</p>
+                <p class="desc">{{pool.info.desc}}</p>
+            </div>
             <div class = "currentPlayers">
-                <p id="currentPlayers">Current Players</p>
+                <p id="currentPlayers">Current Players:</p>
             </div>
             
             <div class = "players">
             {{#pool.buyins}}
                 <div class = "player">
+                    <div class ="cropplayer">
                     <img class ="otherPlayers" src = "http://graph.facebook.com/{{id}}/picture?type=normal" title="{{tickets.length}} shares">
+                        </div>
                     <p class = "otherPlayerName"> </p>
                 </div>
             {{/pool.buyins}}
             </div> 
-        </div>
-        
-        <div>
-          <p>Bought numbers</p>
+            <div class="tixnumbers">
+          <p>Bought Numbers:</p>
           <ul>
           {{#pool.numbers}}
             <li><p>{{value}}</p></li>
           {{/pool.numbers}}
           </ul>
         </div>
+        </div>
+        
+        
             
         <div class = "chatTextBox">
             <p>Send the group a message:</p>
