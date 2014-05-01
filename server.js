@@ -6,6 +6,7 @@ var engines = require('consolidate');
 var passport = require('passport');
 var https = require('https');
 var mail = require('nodemailer').mail;
+var fs = require('fs');
 
 var app = express();
 app.engine('html', engines.hogan);
@@ -234,4 +235,31 @@ app.listen(8080, function() {
   db.newTables(conn);
   db.createSamples(conn);
 	console.log("- Server listening on port 8080");
+});
+
+app.post('/upload/image', function(request, response) {
+    fs.readFile(req.files.image.path, function (err, data) {
+
+		var imageName = request.files.image.name
+
+		/// If there's an error
+		if(!imageName){
+
+			console.log("There was an error")
+			response.redirect("/");
+			response.end();
+
+		} else {
+
+		  var newPath = __dirname + "/uploads/fullsize/" + imageName;
+
+		  /// write file to uploads/fullsize folder
+		  fs.writeFile(newPath, data, function (err) {
+
+		  	/// let's see it
+		  	response.redirect("/uploads/fullsize/" + imageName);
+
+		  });
+		}
+	});
 });
