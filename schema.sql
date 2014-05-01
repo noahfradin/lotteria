@@ -3,7 +3,8 @@ CREATE TABLE users (
   access_token TEXT,
   profile BLOB,
   pools BLOB,
-  powerbucks INTEGER
+  powerbucks INTEGER,
+  registered INTEGER
 );
 CREATE TABLE tickets (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

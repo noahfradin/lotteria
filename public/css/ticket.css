@@ -225,14 +225,11 @@ ul#top_nav li a {
 }
 
 .playerpic {
-    height: 70px;
     width: 70px;
     margin-left: 5px;
     display: inline-block;
-    position: relative;
-    top: 40px;
-    left: 260px;
-    float: left;
+    position: absolute;
+
 }
 
 .more {
@@ -295,4 +292,13 @@ a {
     height: 40px;
 }
 
+
+.cropplayer {
+    position:relative;
+    width: 70px;
+    height: 70px;
+    overflow:hidden;
+    top: 40px;
+    left: 260px;
+    float: left;
 }

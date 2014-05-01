@@ -30,6 +30,7 @@ src:url("../fonts/Gram.ttf");
 * {
     margin: 0;
     padding: 0;
+    
 }
 
 body{
@@ -152,7 +153,7 @@ ul#top_nav li a {
 
 
 #mid{
-    font: 24pt "GeosansLight", sans-serif;
+    font: 20pt "GeosansLight", sans-serif;
     text-align: center;
     position: relative;
     margin: 150px auto 50px auto;
@@ -162,61 +163,87 @@ ul#top_nav li a {
 }
 
 .profile{
+    position:relative;
     height:185px;
     width:500px;
     margin-left:30px;
     border-bottom:solid 1px black;
 }
 .profile p{
+    position:absolute;
     color:black;
     
 }
 
 #profileText,#profileImage{
+    position:absolute;
     display:inline-block;
     vertical-align:top;
-    float:left;
     
 }
 
 #profileText *{
-    float:left;
-    clear:both;
+    position:absolute;
 
 }
 
 #profileImage{
+    position:absolute;
     margin-left:30px;
 }
 
-#profileText{
-    margin-left:10px;
-}
 
 #profilePicture{
+    position:absolute;
     height: 135px;   
     width: 135px; 
     border: solid 1px black;
+    right: 120px;
+    top: 30px;
 }
 
 #ticketName{
+    position:absolute;
+    width: 400px;
+    right: -275px;
+    top: 30px;
     font: 24pt "GeosansLight", sans-serif;
 }
 
 
 #drawing {
-        font: 14pt "GeosansLight", sans-serif;
+    width: 300px;
+    right: -260px;
+    bottom: -16px;
+    position:absolute;
+    font: 14pt "GeosansLight", sans-serif;
+    color: #FFCC33;
+    text-align:right;
 }
 
 #totalPeople{
+    width: 150px;
+    top: 70px;
+    right: -50px;
+    position:absolute;
     font: 14pt "GeosansLight", sans-serif; 
 }
 
 #shares{
+    top: 95px;
+    right: -30px;
+    width: 150px;
+    position:absolute;
     font: 14pt "GeosansLight", sans-serif;
 }
 
+
+
 #privacy{
+    width: 150px;
+    top: 165px;
+    left: 400px;
+    position:absolute;
     float:right;
     display:block;
     margin-right: 10px;
@@ -229,7 +256,7 @@ ul#top_nav li a {
 }
 
 #invite, #buy {
-    position: relative;
+    position: absolute;
     display: inline-block;
     background-color: #FFCC33;
     border: solid 1px;
@@ -237,13 +264,28 @@ ul#top_nav li a {
     height: 30px;
     width: 160px;
     font: 12pt "Futura", sans-serif;
-    color: white;
+    color: white !important;
 }
+
+.buttontop {
+    position: relative;
+    top: 130px;
+    right: 80px;
+}
+
+.buttontop * {
+    color: white !important;
+}
+
+#invite {
+    
+}
+
 
 #buy {
     background-color: #ADD47A;
-    left: 170px;
-    bottom: 30px;
+    left: 175px;
+    
 }
 
 #footer {
@@ -321,13 +363,31 @@ ul#top_nav li a {
 
 .rightPage #currentPlayers{
     color:black;
+    
     font: 18pt "Futura", sans-serif;
 }
 
+.description {
+    border-bottom: solid black 1px;
+    height: 150px;
+    margin-left:8px;
+}
+
+.desc {
+    font: 12pt "GeosansLight", sans-serif; 
+    color: #404040;
+    overflow-y:scroll;
+}
 
 
 .currentPlayers{
     height: 30px;
+    margin-top: 10px;
+}
+
+#currentPlayers {
+    font: 20pt "GeosansLight", sans-serif !important; 
+    color: #FFCC33 !important;
 }
 
 .rightPage .player{
@@ -337,16 +397,27 @@ ul#top_nav li a {
 
 }
 
+.cropplayer {
+    position:relative;
+    width: 55px;
+    height: 55px;
+    overflow:hidden;
+}
+
 .otherPlayers{
     float:left;
-    width:70px;
+    width:55px;
+    clip:rect(0px,0px,70px,0px);
     border: solid 1px black;
+    
     
 }  
 .players{
     overflow-y:scroll;
-    height:540px;;
+    height:170px;;
+    border-bottom: 1px solid black;
     margin-left:8px;
+    
 }
 
 .player{
@@ -355,8 +426,21 @@ ul#top_nav li a {
     height: 90px;
     width: 70px;
     font: 14pt "Futura", sans-serif;
+    
 }
 
+.tixnumbers {
+    margin-top: 10px;
+}
+
+.tixnumbers ul {
+    overflow-y:scroll;
+    height: 180px;
+}
+
+.tixnumbers li {
+    font: 14pt "Futura", sans-serif;
+}
 
 .userInfo{
     color:black;
@@ -387,7 +471,7 @@ ul#top_nav li a {
 }
 .messageText{
     color:black;
-    font: 12pt "Futura", sans-serif;  
+    font: 10pt "GeosansLight", sans-serif;  
     margin-top:20px;
     margin-left: 15px;
     width:400px;
@@ -398,6 +482,11 @@ ul#top_nav li a {
 #messages{
     overflow-y:scroll;
     height: 380px;
+    width: 555px;
+}
+
+#name {
+    font: 12pt "GeosansLight", sans-serif;
 }
 
 #messages li{
@@ -407,16 +496,21 @@ ul#top_nav li a {
     
 }
 
-#invite p{
-   /*color:  !important;*/
-   font-size: 10;
-}
 
 #invite_text{
-    display: inline-block;
-    left: 10px;
+    position:absolute;
+    display: inline-block; 
+    width: 180px;
+    right: -24px;
+    top: 7px;
+    font: 10pt "Futura", sans-serif; 
+    color: white !important;
 }
 
 .fb-send{
+    position:absolute;
+    right: 52px;
+    top: 5px;
     display: inline-block;
+    opacity: 0.8;
 }

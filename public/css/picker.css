@@ -272,11 +272,12 @@ button {
     margin-left: 770px;
 }
 .error{
-
+    text-align:center;
 }
 #error{
-    position:relative;
-    margin-top:-30px;
+    position:absolute;
+    left: 555px;
+    bottom: 185px;
     text-align:center;
     font: normal 12px/100% "Futura", sans-serif;
     color:red;
