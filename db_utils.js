@@ -288,6 +288,15 @@ function poolHas(pool, info) {
       return true;
     }
   }
+  var nums = [info.n1, info.n2, info.n3, info.n4, info.n5];
+  for (var i = 0; i < nums.length; i += 1) {
+    for (var j = 0; j < nums.length; j += 1) {
+      if (i == j) continue;
+      if (nums[i] == nums[j]) {
+        return true;
+      }
+    }
+  }
   return false;
 }
 
