@@ -51,7 +51,7 @@ passport.use(new FacebookStrategy({
 app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['user_friends'] }));
 
 app.get('/auth/facebook/callback', 
-  passport.authenticate('facebook', { successRedirect: '/home',
+  passport.authenticate('facebook', { successRedirect: '/landing',
                                       failureRedirect: '/' }));
                                       
 app.get('/dummy_page', function(request, response) {
@@ -67,7 +67,7 @@ app.get('/mytickets', function(request, response) {
       response.render('mytickets.html', {pools: pools, user: request.user});
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/mytickets');
   }
 });
 
@@ -78,7 +78,7 @@ app.get('/picker/:id', function(request, response) {
       response.render('picker.html', {pool: pool, user: request.user});
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/ticketprofile/' + request.params.id);
   }
 });
 
@@ -87,7 +87,7 @@ app.get('/newPool', function(request, response) {
   if (request.user) {
     response.render('newPool.html', {user: request.user, user: request.user});
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/newPool');
   }
 });
 
@@ -119,7 +119,7 @@ app.get('/ticketprofile/:id', function(request, response) {
       response.render('ticketProfile.html', {pool: pool, usernumber: usernumber, user: request.user});
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/ticketprofile/' + request.params.id);
   }
 });
 
@@ -127,7 +127,7 @@ app.get('/rewards', function(request, response) {
   if (request.user) {
     response.render('rewards.html', {user: request.user});
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/rewards');
   }
 });
 
@@ -142,7 +142,7 @@ app.get('/home', function(request, response) {
       });
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/home');
   }
 });
 
@@ -153,7 +153,36 @@ app.get('/payment/:id', function(request, response) {
       info: request.session.buyin_info
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/ticketprofile/' + request.params.id);
+  }
+});
+
+app.get('/about', function(request, response) {
+  if (request.user) {
+    response.render('about.html', {user: request.user});
+  } else {
+    promptLogin(request, response, '/about');
+  }
+});
+
+app.get('/landing', function(request, response) {
+  if (request.user) {
+    if (request.user.registered == 1) {
+      if (request.session.landing) {
+        var landing = request.session.landing;
+        request.session.landing = false;
+        response.redirect(landing);
+      } else {
+        response.redirect('/home');
+      }
+    } else {
+      request.user.registered = true;
+      db.storeUser(request.user, conn, function(user_id) {
+        response.redirect('/about');
+      });
+    }
+  } else {
+    promptLogin(request, response, '/home');
   }
 });
 
@@ -178,7 +207,7 @@ app.post('/create', function(request, response) {
       response.redirect('/ticketprofile/' + pool_id);
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/create');
   }
 });
 
@@ -189,7 +218,7 @@ app.post('/ticketprofile/:id/newmessage', function(request, response) {
       response.redirect('/ticketprofile/' + pool_id);
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/ticketprofile/' + request.params.id);
   }
 });
 
@@ -210,7 +239,7 @@ app.post('/buyin/:id', function(request, response) {
     request.session.buyin_info = info;
     response.redirect('/payment/' + request.params.id);
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/ticketprofile/' + request.params.id);
   }
 });
 
@@ -229,14 +258,8 @@ app.post('/process_payment/:id', function(request, response) {
       });
     });
   } else {
-    response.redirect('/');
+    promptLogin(request, response, '/ticketprofile/' + request.params.id);
   }
-});
- 
-app.listen(8080, function() {
-  db.newTables(conn);
-  db.createSamples(conn);
-	console.log("- Server listening on port 8080");
 });
 
 app.post('/upload/image', function(request, response) {
@@ -265,3 +288,14 @@ app.post('/upload/image', function(request, response) {
 		}
 	});
 });
+ 
+app.listen(8080, function() {
+  db.newTables(conn);
+  db.createSamples(conn);
+	console.log("- Server listening on port 8080");
+});
+
+function promptLogin(request, response, landing) {
+  request.session.landing = landing;
+  response.redirect('/');
+}
