@@ -275,6 +275,9 @@ button {
 
 }
 #error{
+    position:relative;
+    margin-top:-30px;
+    text-align:center;
     font: normal 12px/100% "Futura", sans-serif;
     color:red;
 }
