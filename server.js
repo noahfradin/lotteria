@@ -5,7 +5,7 @@ var express = require('express');
 var engines = require('consolidate');
 var passport = require('passport');
 var https = require('https');
-var mail = require('nodemailer').mail;
+var mail = require('nodemailer');
 var fs = require('fs');
 
 var app = express();
@@ -217,11 +217,13 @@ app.post('/buyin/:id', function(request, response) {
 // TODO: this is wicked insecure
 app.post('/process_payment/:id', function(request, response) {
   if (request.user) {
-    db.recordBuyin(conn, request.session.buyin_info, function(pool) {
+    var info = request.session.buyin_info;
+    db.recordBuyin(conn, info, function(pool) {
       var form = new Object();
       form.firstName = request.body.firstName;
       form.lastName = request.body.lastName;
       form.email = request.body.email;
+      form.shares = info.shares;
       fb.mailConfirmation(request.user, request.session.buyin_info, form, mail, function() {
         response.redirect('/ticketprofile/' + pool.id);
       });

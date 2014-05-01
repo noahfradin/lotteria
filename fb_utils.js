@@ -36,20 +36,34 @@ function getFriendIDs(user, https, callback) {
 //   callback with nothing?
 function mailConfirmation(user, info, form, mail, callback) {
   var msg = "Dear " + form.firstName + " " + form.lastName + "\n\n";
-  msg += "Thank you for your purchase of " + form.shares + " On Pool Play.\n";
-  msg += "We've charged $" + info.price + ".00 for this purchase.\n";
+  msg += "Thank you for your purchase of " + form.shares + " shares on Pool Play.\n";
+  msg += "You've been charged $" + info.price + ".00 for this purchase.\n";
   msg += "If you have any questions, don't hesitate to contact us!\n\n";
   msg += "Thanks,\n";
   msg += "  The Pool Play team";
-  console.log("sending to: " + form.email);
-  console.log("message: " + msg);
-  mail({
-    from: "Pool Play <donotrespond@poolplay.com>",
+  console.log("mailto: " + form.email);
+  var mailInfo = {
+    from: "Pool Play <gtechpoolplay@gmail.com>",
     to: form.email,
     subject: "Confirmation of your Pool Play purchase",
     text: msg
+  };
+  
+  var smtpTransport = mail.createTransport("SMTP", {
+    service: "Gmail",
+    auth: {
+      user: "gtechpoolplay@gmail.com",
+      pass: "165198795"
+    }
   });
-  callback();
+  smtpTransport.sendMail(mailInfo, function(error, response) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Message sent: " + response.message);
+    }
+    callback();
+  });
 }
 
 exports.mailConfirmation = mailConfirmation;
