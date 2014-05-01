@@ -1,3 +1,27 @@
+@font-face {
+font-family:"Futura";
+src:url("../fonts/Futura.ttc");
+}
+
+@font-face {
+font-family:"Arial";
+src:url("../fonts/Arial.ttf");
+}
+
+@font-face {
+font-family:"GeosansLight";
+src:url("../fonts/GeosansLight.ttf");
+}
+
+html{
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
 body{
     min-width:1350px;
     margin: 0 auto;
@@ -8,7 +32,253 @@ body{
     width: 1350px;
     margin: 0 auto;
 }
-#gtech-image{
-    width: 800px;
+
+#powerbucks{
+    font: 12pt "GeosansLight", sans-serif;
+    color: black;
+    position: fixed;
+    top: 29px;
+    left: 1150px;
+    z-index: 9999;
+    width: 400px;
+}
+
+#header_wrapper {
+    position: fixed;
+    top: 0px;
+    width: 100%; 
+    background-color:#FFCC33;
+    height: 77px;
+    display: inline-block;
+    z-index: 9997;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logoimage {
+    position: relative;
+    height: 73px;
+    background-color: white;
+    padding: 2px 20px;
+    right: 10px;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logo a {
+    color: transparent;
+    margin: 0 auto;
+    width: 200px;
+    height: 73px;
+}
+
+ul#top_nav {
+    left: 250px;
+    top: 0px;
+    display:inline-block;
+    position: absolute;
+    height: 70px;
+    border: 0;
+    min-width: 1024px;
+    margin-left: 40px;
+}
+
+ul#top_nav * {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    height: 77px;
+    margin-right: -1px;
+}
+
+ul#top_nav li p {
+    height: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #404040;
+    font: 16pt "Futura", sans-serif;
+}
+
+ul#top_nav li a {
     margin: auto;
+    position: absolute;
+}
+
+#nav_tickets p {
+}
+
+
+#nav_nticket {
+    padding-top:1px;
+    height: 74px !important;
+}
+
+#nav_nticket:hover {
+    background-color: #FFD018;
+}
+
+#nav_tickets {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_tickets:hover {
+    background-color: #FFD018;
+}
+
+#nav_rewards {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_rewards:hover {
+    background-color: #FFD018;
+}
+
+#nav_settings {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_settings:hover {
+    background-color: #FFD018;
+}
+
+
+#pick{
+    font: 30pt "GeosansLight", sans-serif;
+    position: relative; 
+    margin-top: 200px;
+    text-align: center;
+}
+
+p {
+    font: 18pt "GeosansLight", sans-serif;
+    position: relative;
+}
+
+.total, .powerPlayToggle, .drawingSelector{
+    position: relative;
+    bottom: 170px;
+    margin: 0 auto;
+    text-align: center;
+    width: 120px;
+}
+
+.total{
+    left: 250px;
+    bottom: 217px;
+}
+
+.powerPlayToggle{
+    right: 250px;
+    bottom: 125px;
+}
+
+#amount {
+    font: 18pt "GeosansLight", sans-serif;
+    position: relative;
+}
+
+.ticketBoard{
+    position: relative;
+    margin-top: 80px;
+    
+}
+
+.ticketBoard p {
+    font: 18pt "GeosansLight", sans-serif;
+    position: relative;
+}
+
+.ticketNumbers p {
+    bottom: 190px;
+    margin-left: 36%;
+}
+
+.ticketPowerball p {
+    margin-left: 70%;
+    bottom: 365px;
+}
+
+.number{
+    left: 16%;
+    position: relative;
+    display: inline-block;
+    background:transparent;
+    background-image:url("../images/circle_white.png");
+    background-repeat:no-repeat;
+    background-size:140px 140px;
+}
+
+.number, textarea { 
+    padding: 9px; 
+    border: none; 
+    outline: none; 
+    font: normal 70px/100% "Futura", sans-serif; 
+    width: 150px; 
+    height: 150px;
+    line-height: 150%; 
+    text-align:center;
+    } 
+
+button {
+    position: relative;
+    font: normal 70px/100% "Futura", sans-serif;
+    background-color: white;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 30px;
+    width: 200px;
+    font: 12pt "Futura", sans-serif;
+    left: 475px;
+    top: -170px;
+}
+
+.powerbutton {
+    width: 250px;
+    position: relative;
+    display:inline-block;
+}
+
+
+.pbstar {
+    width: 50px;
+    position: absolute;
+    left: 655px;
+    bottom: 160px;
+
+}
+
+#buyButton{
+    color: white;
+    background-color: #FFCC33 !important;
+}
+
+#powerball{
+    position: relative;
+    display: inline-block;
+    background-image:url("../images/circle_red.png");
+    color: white;
+    top: -180px;
+    margin-left: 770px;
+}
+.error{
+    text-align:center;
+}
+#error{
+    position:absolute;
+    left: 555px;
+    bottom: 185px;
+    text-align:center;
+    font: normal 12px/100% "Futura", sans-serif;
+    color:red;
 }
