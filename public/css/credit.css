@@ -159,8 +159,9 @@ ul#top_nav li a {
     text-align: center;
     position: relative;
     margin: 150px auto 50px auto;
-    width: 1000px;
+    width: 1400px;
     color: #FFCC33;
+   
 }
 
 #yourtix {
@@ -307,30 +308,103 @@ ul#top_nav li a {
     
 }
 
-#chatText{
-    width: 700px;
-    height: 70px;
-    font: 24pt "GeosansLight", sans-serif;
-    text-align: left;
-    position: relative;
-    line-height:30px;
-    color:#dbdbdb;
-    font-weight:bolder;
-    
-}
-
-.otherPlayers{
-    display:inline-block;
-    margin-left:-300px;
-    color:black;
-}
 
 span , .radio{
     color:black;
 }
 
 .form-row{
+   float:left;
+    clear:both;
+    margin-top:3px;
+    margin-bottom:3px;
     
+}
+
+.form-row *{
+    vertical-align:center;
+    display:inline-block;
+}
+
+.form-row p{
+    width:180px;
+    margin-left:0;
+    text-align:left;
+    
+}
+
+#creditHeader, #cart{
+    display:inline-block;
+    vertical-align:top;
+    height:700px;
+}
+
+#creditHeader{
+
+    width:600px;
+     border-right:solid 2px black;
    
 }
 
+#cart{
+
+}
+
+.button {
+    background-color: #FFCC33;
+    border: solid 1px;
+    border-color: #E5E6E5;
+    height: 30px;
+    width: 210px;
+    padding-right: 5px;
+    font: 12pt "Futura", sans-serif;
+    color: black;
+    left: 630px;
+    bottom: 20px;
+    text-align: center;
+    
+}
+
+
+
+input{
+    height:30px;
+    font: 18pt "GeosansLight", sans-serif;
+}
+
+p{
+    color:black;
+}
+
+#exp{
+    width:20px;
+}
+
+select{
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 1px solid gray;
+   border-radius: 0;
+   height: 34px;
+}
+
+h3{
+    padding-bottom:10px;
+    text-align:left;
+    color:black;
+    
+}
+
+h2{
+    color:black;
+    padding-bottom:20px;
+}
+
+li{
+    margin-left:60px;
+    text-align:left;
+    color:black;
+}
