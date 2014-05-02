@@ -22,7 +22,7 @@
             
               <div id ="imageDiv">
                 <img src ="../public/images/eventPhoto.jpg" id="eventImage">
-                <input type="file" name="img" id="imageInput"> </input>
+                <input type="file" name="img" id="imageInput"></input>
                 <input type="text" name="imageURL" id="imageURL" style="display:none"> </input>
               </div>
                 
@@ -51,28 +51,8 @@
               <p>Year:&nbsp;&nbsp;</p>
             <input maxlength="4" type="text" class = "dateField" id="year" name="year" value="YYYY"> 
         </div>  -->
-           
-                        
-        <div class = "invite">
-                       <div class="powerbutton">
-              <button id="invite">&nbsp;&nbsp;INVITE FRIENDS</button>
-                <img class="pbstar" src="../public/images/Powerbucks25.png" alt="powerbucks">
-            </div>
-                    
-                         <div class = "fieldDiv2"> 
-        <p>Invite Only:</p>
-            <input type="checkbox" tabindex="401"  id="privacy" name="private" value="true">      
-                        
-                    </div>
-  
- 
-           
-        </div> 
-                 </div>
-                
-                
-         
-        <div class = "descriptionDiv"> 
+
+         <div class = "descriptionDiv"> 
             <p>Description:</p>
             
          </div> 
@@ -81,6 +61,30 @@
             <textarea id="ticketDescription" name="userInput" cols="36" rows="5" wrap="virtual" name="desc"></textarea>
             <input   type="hidden" name="wrapAttribute" value="virtual">
             </form>
+                        
+        <div class = "invite">
+
+          <!-- <div class = "fieldDiv2"> 
+        <p>Invite Only:</p>
+            <input type="checkbox" tabindex="401"  id="privacy" name="private" value="true">      
+                        
+                    </div> -->
+                       <div class="powerbutton">
+              <button id="invite">&nbsp;&nbsp;INVITE FRIENDS</button>
+                <img class="pbstar" src="../public/images/Powerbucks25.png" alt="powerbucks">
+            </div>
+                    
+                         
+  
+ 
+           
+        </div> 
+        <button onclick = "location.href='/picker'"class = "submit" id = "submit">SUBMIT </button>
+                 </div>
+
+
+                
+                
 
 
    
@@ -89,7 +93,7 @@
         </div>
             <div class ="footer">
 
-                <button onclick = "location.href='/picker'"class = "submit" id = "submit">SUBMIT </button>
+                
 
         
             </div>

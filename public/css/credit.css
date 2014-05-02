@@ -72,6 +72,11 @@ body{
     right: 10px;
 }
 
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
 
 #logo a {
     color: transparent;
@@ -81,6 +86,8 @@ body{
 }
 
 ul#top_nav {
+    left: 250px;
+    top: 0px;
     display:inline-block;
     position: absolute;
     height: 70px;
@@ -93,7 +100,7 @@ ul#top_nav * {
     display: inline-block;
     text-align: center;
     width: 200px;
-    height: 69px;
+    height: 77px;
     margin-right: -1px;
 }
 
@@ -101,7 +108,7 @@ ul#top_nav li p {
     height: 30px;
     margin-top: 20px;
     text-decoration: none;
-    color: #404040 !important;
+    color: #404040;
     font: 16pt "Futura", sans-serif;
 }
 
@@ -126,13 +133,10 @@ ul#top_nav li a {
 #nav_tickets {
     padding-top: 2px;
     height: 74px !important;
-    color: #404040 !important;
-    background-color:#FFCC33 !important;
-
 }
 
 #nav_tickets:hover {
-    background-color: #FFD018 !important;
+
 }
 
 #nav_rewards {
@@ -154,159 +158,6 @@ ul#top_nav li a {
 }
 
 
-#mid{
-    font: 24pt "GeosansLight", sans-serif;
-    text-align: center;
-    position: relative;
-    margin: 150px auto 50px auto;
-    width: 1400px;
-    color: #FFCC33;
-   
-}
-
-#yourtix {
-    width: 850px;
-    margin: 5px auto;
-    font: 24pt "GeosansLight", sans-serif;
-}
-
-#tickets{
-    overflow-y: auto;
-    overflow-x: hidden;
-    height: 600px;
-}
-
-.ticketwrapper {
-    position: relative;
-    width: 850px;
-    height: 160px;
-}
-
-#tickets li {
-    width: 850px;
-    height: 160px;
-    margin: 20px auto;
-    list-style-type: none;
-    border: solid #FFCC33 1px;
-    position: relative;
-}
-
-.tickpic {
-    position: absolute;
-    height: 140px;
-    width: 140px;
-    margin: 12px;
-    display:inline-block;
-}
-
-#tickets li h2 {
-    position: relative;
-    font: 20pt "Futura", sans-serif;
-    display: inline-block;
-    top: 15px;
-    left: 170px;
-}
-
-.titlelink {
-    width: 100%;
-    top: 15px;
-}
-
-#tickets li h3 {
-    position: absolute;
-    font: 16pt "GeosansLight", sans-serif;
-    display: inline-block;
-    left: 180px;
-    bottom: 40px;
-    text-align: left;
-}
-
-.playerpics {
-    position: absolute;
-    height: 80px;
-    width: 230px;
-}
-
-.playerpic {
-    height: 70px;
-    width: 70px;
-    margin-left: 5px;
-    display: inline-block;
-    position: relative;
-    top: 40px;
-    left: 260px;
-    float: left;
-}
-
-.more {
-    width: 100px;
-    position: absolute;
-    left: 500px;
-    /*bottom: 175px; */
-    font: 12pt "GeosansLight", sans-serif;
-}
-
-.drawdate {
-    position: absolute;
-    bottom: 120px;
-    left: 630px;
-    width: 200px;
-    color: #FFCC33;
-    font: 16pt "GeosansLight", sans-serif;
-    text-align: right;
-}
-
-.powerbutton {
-    width: 210px;
-}
-
-.invite {
-    position:absolute;
-    background-color: #FFCC33;
-    border: solid 1px;
-    border-color: #E5E6E5;
-    height: 30px;
-    width: 210px;
-    padding-right: 5px;
-    font: 12pt "Futura", sans-serif;
-    color: white;
-    left: 630px;
-    bottom: 20px;
-    text-align: center;
-}
-
-.pbstar {
-    width: 50px;
-    position: absolute;
-    left: 805px;
-    top: 100px;
-
-}
-
-#tickets{
-    height:100%;   
-    
-}
-
-#poolText, poolText{
-    display:inline-block;
-}
-
-#poolText{
-    text-align:center;
-    color:#404040;
-    height:74px;
-    font: 20pt "GeosansLight", sans-serif;
-}
-
-#poolFeed{
-    height:74px;
-    width: 850px;
-    margin-left:auto;
-    margin-right:auto;
-    margin-bottom: 40px;
-    
-}
 
 
 span , .radio{
@@ -358,22 +209,25 @@ span , .radio{
     width: 210px;
     padding-right: 5px;
     font: 12pt "Futura", sans-serif;
-    color: black;
+    color: white;
     left: 630px;
     bottom: 20px;
     text-align: center;
     
 }
 
+footer {
+    top: 30px;
+}
 
 
 input{
     height:30px;
-    font: 18pt "GeosansLight", sans-serif;
+    font: 14pt "GeosansLight", sans-serif;
 }
 
-p{
-    color:black;
+#mid p{
+    color:#404040;
 }
 
 #exp{
@@ -384,27 +238,29 @@ select{
    background: transparent;
    width: 268px;
    padding: 5px;
-   font-size: 16px;
+   font-size: 14px;
    line-height: 1;
    border: 1px solid gray;
    border-radius: 0;
    height: 34px;
 }
 
-h3{
+#mid h3{
     padding-bottom:10px;
     text-align:left;
-    color:black;
+    color:#404040;
     
 }
 
-h2{
-    color:black;
+#mid h2{
+    color:#404040;
     padding-bottom:20px;
 }
 
-li{
+#mid li{
     margin-left:60px;
     text-align:left;
-    color:black;
+    color:#404040;
+    font: 14pt "GeosansLight", sans-serif;
+    
 }
