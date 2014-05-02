@@ -43,7 +43,16 @@ body{
     padding: 0;
 }
 #explanation{
+    position:relative;
     font-size: 20;
+    float: left;
+    width: 300px;
+    text-align:justify;
+    left: 30px;
+}
+
+.imagi {
+    float: right;
 }
 
 #gtech-image{
@@ -51,8 +60,9 @@ body{
     padding-top: 5;
 }
 #centerables {
-    width: 1350px;
+    width: 600px;
     margin: 0 auto;
+    top: 400px;
 }
 
 #powerbucks{
@@ -93,6 +103,11 @@ body{
     margin-left: 50px;
     width: 200px;
     display:inline-block;
+}
+
+#centerables h1 {
+    margin-top: 100px;
+    font: 24pt "GeosansLight", sans-serif;
 }
 
 #logo a {
@@ -176,6 +191,47 @@ ul#top_nav li a {
 
 #centerables{
     margin-top:80px;
+    
+}
+
+
+footer {
+    margin-top: 580px;
+    background-color: #FFCC33;
+    width: 100%;
+    height: 40px;
+    position:relative;
+}
+
+footer * {
+    text-decoration:none;
+    color: #404040;
+    font: 12pt "Futura", sans-serif;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+footer ul{
+    position: absolute;
+    margin-left: 44%;
+    bottom: 10px;
+}
+
+footer li {
+    width: 130px;
+    text-align: center;
+    
+}
+
+.footerlink a:hover {
+    color: #605f5f !important;
+    
+}
+
+footer p{
+    width: 400px;
+    
+    font: 8pt "GeosansLight", sans-serif;
 }
 
 
