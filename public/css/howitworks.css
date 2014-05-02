@@ -1,0 +1,179 @@
+@font-face {
+font-family:"Futura";
+src:url("../fonts/Futura.ttc");
+}
+
+@font-face {
+font-family:"Arial";
+src:url("../fonts/Arial.ttf");
+}
+
+@font-face {
+font-family:"GeosansLight";
+src:url("../fonts/GeosansLight.ttf");
+}
+
+html{
+    
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+body{
+    min-width:1350px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+#centerables {
+    width: 1350px;
+    margin: 0 auto;
+}
+
+#powerbucks{
+    font: 12pt "GeosansLight", sans-serif;
+    color: black;
+    position: fixed;
+    top: 29px;
+    left: 1150px;
+    z-index: 9999;
+    width: 400px;
+}
+
+#header_wrapper {
+    position: fixed;
+    top: 0px;
+    width: 100%; 
+    background-color:#FFCC33;
+    height: 77px;
+    display: inline-block;
+    z-index: 9997;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logoimage {
+    position: relative;
+    height: 73px;
+    background-color: white;
+    padding: 2px 20px;
+    right: 10px;
+}
+
+#logo {
+    margin-left: 50px;
+    width: 200px;
+    display:inline-block;
+}
+
+#logo a {
+    color: transparent;
+    margin: 0 auto;
+    width: 200px;
+    height: 73px;
+}
+
+ul#top_nav {
+    left: 250px;
+    top: 0px;
+    display:inline-block;
+    position: absolute;
+    height: 70px;
+    border: 0;
+    min-width: 1024px;
+    margin-left: 40px;
+}
+
+ul#top_nav * {
+    display: inline-block;
+    text-align: center;
+    width: 200px;
+    height: 77px;
+    margin-right: -1px;
+}
+
+ul#top_nav li p {
+    height: 30px;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #404040;
+    font: 16pt "Futura", sans-serif;
+}
+
+ul#top_nav li a {
+    margin: auto;
+    position: absolute;
+}
+
+#nav_tickets p {
+}
+
+
+#nav_nticket {
+    padding-top:1px;
+    height: 74px !important;
+}
+
+#nav_nticket:hover {
+    background-color: #FFD018;
+}
+
+#nav_tickets {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_tickets:hover {
+    background-color: #FFD018;
+}
+
+#nav_rewards {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_rewards:hover {
+    background-color: #FFD018;
+}
+
+#nav_settings {
+    padding-top: 2px;
+    height: 74px !important;
+}
+
+#nav_settings:hover {
+    background-color: #FFD018;
+}
+
+.mid{
+    width:1270px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:80px;
+    font: 12pt "GeosansLight", sans-serif;
+}
+
+#powerbucksImg{
+    width:200px;
+}
+
+h1{
+    
+}
+
+h2{
+    
+}
+
+p{
+    
+    
+}
