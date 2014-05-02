@@ -5,6 +5,7 @@ var moment = require('moment');
 // stores the user in the database, then calls callback with that user's id
 // this should NOT be used for new users
 function storeUser(user, conn, callback) {
+  console.log("powerbucks " + user.powerbucks);
   var sql = 'UPDATE users SET access_token=$1, profile=$2, pools=$3, powerbucks=$4, registered=$5 WHERE facebook_id=$6';
   var vars = [
     user.access_token,
@@ -62,8 +63,8 @@ function createUser(accessToken, refreshToken, profile, done, conn) {
     accessToken,
     JSON.stringify(profile),
     JSON.stringify(newUser.pools),
-    0,
-    newUser.powerbucks];
+    newUser.powerbucks,
+    0];
   var q = conn.query(sql, vars);
   q.on('end', function() {
     if (done) {
@@ -338,6 +339,7 @@ function internalRecordBuyin(conn, info, seq, callback) {
           buyin = {id: pool_id, tickets: [ticket_id]};
           info.user.pools.push(buyin);
         }
+        info.user.powerbucks += 100;
         storeUser(info.user, conn, function(facebook_id) {
           if (callback) {
             callback(pool);
