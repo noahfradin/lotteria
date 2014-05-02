@@ -274,7 +274,6 @@ app.post('/process_payment/:id', function(request, response) {
 });
 
 app.post('/upload/image', function(request, response) {
-  console.log("User clicked upload image");
   fs.readFile(request.files.img.path, function (err, data) {
 
     var userImageName = request.files.img.name;
@@ -286,11 +285,9 @@ app.post('/upload/image', function(request, response) {
           console.log("Error uploading data: ", err);
         } else {
           console.log("Successfully uploaded data to myBucket/myKey");
-          console.log(data);
           var imgurl = "http://s3.amazonaws.com/Lotteria/" + imageName;
           var jsonToReturn = { };
           jsonToReturn.url = imgurl;
-          console.log(jsonToReturn);
           response.json(jsonToReturn);
         }
       });
