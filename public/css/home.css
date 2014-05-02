@@ -105,12 +105,12 @@ footer * {
 
 footer ul{
     position: absolute;
-    margin-left: 55%;
+    margin-left: 44%;
     bottom: 10px;
 }
 
 footer li {
-    width: 100px;
+    width: 130px;
     text-align: center;
     
 }
@@ -121,7 +121,8 @@ footer li {
 }
 
 footer p{
-    width: 240px;
+    width: 400px;
+    
     font: 8pt "GeosansLight", sans-serif;
 }
 

@@ -67,6 +67,10 @@ app.get('/dummy_page', function(request, response) {
   response.render('dummy.html', {name: request.user.profile.displayName});
 });
 
+app.get('/about', function(request, response) {
+    response.render('about.html');
+});
+
 app.get('/mytickets', function(request, response) {
   // page with all your tickets
   if (request.user) {
@@ -164,11 +168,11 @@ app.get('/payment/:id', function(request, response) {
   }
 });
 
-app.get('/about', function(request, response) {
+app.get('/howitworks', function(request, response) {
   if (request.user) {
-    response.render('about.html', {user: request.user});
+    response.render('howitworks.html', {user: request.user});
   } else {
-    promptLogin(request, response, '/about');
+    promptLogin(request, response, '/howitworks');
   }
 });
 
@@ -185,7 +189,7 @@ app.get('/landing', function(request, response) {
     } else {
       request.user.registered = true;
       db.storeUser(request.user, conn, function(user_id) {
-        response.redirect('/about');
+        response.redirect('/howitworks');
       });
     }
   } else {
