@@ -213,7 +213,9 @@ ul#top_nav li a {
 #imageDiv{
     width: 320px;
 }
-
+#imageInputDiv{
+    background-color: #FFCC33;
+}
 #imageDiv .button{
     margin-top:2px;
     margin-left:20;
@@ -240,7 +242,7 @@ ul#top_nav li a {
 
 .dateFieldDiv{
     
-    width: 300px;
+    width: 600px;
     height:40px;
     font: 24pt "GeosansLight", sans-serif;
     margin-top: 7px;
@@ -251,8 +253,9 @@ ul#top_nav li a {
     display: inline-block;
 }
 .dateFieldDiv input{
+    margin-left: -7;
     height:40px;
-  
+    width: 300;
 }
 
 #date_picker_box{
@@ -266,24 +269,24 @@ textarea{
 }
 
 .descriptionDiv{
-    margin-top:20px;
-    text-align:center;
+    margin-top:-50px;
+    /*text-align:center;*/
     width:980px;
-    margin-left:20px;
-     background-color: #FFCC33;
+    /*margin-left:0px;*/
+     /*background-color: #FFCC33;*/
 }
 
 .descriptionDiv p{
-    font: 30pt "GeosansLight", sans-serif;
+    font: 25pt "GeosansLight", sans-serif;
 }
 
 #ticketDescription{ 
-    width:960px;
-    margin-top:15px;
-    margin-left:30px;
-    height: 200px;
+    width:300px;
+    margin-top:-35px;
+    margin-left:163px;
+    height: 100px;
     margin-bottom:3px;
-    
+
     
 }
 
@@ -332,12 +335,14 @@ textarea{
     color: white;
     text-align: center;
     margin-top: 5px;
+    margin-left: 0;
 }
 
 .pbstar {
     width: 60px;
     position: absolute;
     left: 220px;
+    margin-left: 0;
 
 }
 
@@ -354,7 +359,7 @@ textarea{
 .fieldDiv2{
     margin-top:6px;
     width: 300px;
-    margin-left:30px;
+    margin-left:0px;
     height:50px;
     font: 24pt "GeosansLight", sans-serif;
 }
@@ -380,10 +385,16 @@ textarea{
     margin-top:12px;
     text-align:center;
         width:400px;
-    margin-left:340px;
+    /*margin-left:340px;*/
      background-color: #FFCC33;
     margin-bottom:20px;
-    
+    /*margin-top: 50;*/
+}
+
+#submit{
+    margin-left: 285;
+    margin-top: 7;
+    width: 300;
 }
 
 footer {
@@ -417,6 +428,13 @@ footer li {
     color: #605f5f !important;
     
 }
+#imageInput {
+    background-color: #FFCC33;
+    /*opacity: 0;*/
+    margin-left: 20;
+    padding-right: 83;
+}
+
 
 footer p{
     width: 400px;
