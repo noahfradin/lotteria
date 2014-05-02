@@ -1,6 +1,6 @@
 <html>
     <head>
-        // <script type = "text/javascript" src = "../public/javascript/newPool.js"></script>
+        <script type = "text/javascript" src = "../public/javascript/newPool.js"></script>
         <link rel="stylesheet" href="../public/css/newPool.css" type="text/css" />
     </head>
     <body>
@@ -35,20 +35,21 @@
                            
                             </div> 
                     <div class = "dateFieldDiv">   
-                           <p>Draw Date</p>
+                           <!-- <p>Draw Date</p> -->
                     </div>
         <div class = "dateFieldDiv">   
-            <p>Month:&nbsp;&nbsp;</p>
-            <input maxlength="2" type="text" class = "dateField" id="month" name="month" value="MM"> 
+            <p>Draw Date:&nbsp;&nbsp;</p>
+            <!-- <input type="text" id="datepicker"> -->
+            <input type="text" id="datepicker" name="month"> 
         </div> 
-            <div class = "dateFieldDiv"> 
+        <!--     <div class = "dateFieldDiv"> 
             <p>Day:&nbsp;&nbsp;</p>
             <input maxlength="2" type="text" class = "dateField" id="day" name="day" value="DD"> 
        </div> 
         <div class = "dateFieldDiv">  
               <p>Year:&nbsp;&nbsp;</p>
             <input maxlength="4" type="text" class = "dateField" id="year" name="year" value="YYYY"> 
-        </div> 
+        </div>  -->
            
                         
         <div class = "invite">
@@ -94,5 +95,53 @@
             </div>
         </form>
 
+<div id ="imageDiv">
+                     <img src ="../public/images/eventPhoto.jpg" id="eventImage">
+                     <form enctype="multipart/form-data" action="/upload/image" method="post" id="upform"> 
+                     <!-- <form action="/upload/image" method="POST" id="upform">  -->
+                        <input type="file" name="img" </input>
+                        <button id = "upload" type="submit" action="submit">Upload</button>
+                     </form>
+                     <!-- <form action="/upload/image" method="POST">
+                        Select a file: <input type="file" name="img">
+                        <input type="submit"> 
+                      </form> -->
+                     
+
+                </div>
+    <footer>
+			<div id="footer_nav">
+				<div id="footer_nav_wrapper">
+					<ul>
+						<li class="footerlink"><a href="/about">About Us</a></li>
+						<li class="footerlink"><a href="/howitworks">How it Works</a></li>
+						<li class="footerlink"><p>GTechPoolPlay@gmail.com   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1-888-732-1124&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></li>
+                        <li class="footerlink"><p>© 2014 GTech - All Rights Reserved</p></li>
+					</ul>
+				</div>
+			</div>
+		</footer>
+
     </body>
+    <script src="../public/javascript/Pikaday-master/pikaday.js"></script>
+    <link rel="stylesheet" href="../public/javascript/Pikaday-master/css/pikaday.css" type="text/css" />
+      <script>
+      // var picker = new Pikaday({ field: document.getElementById('datepicker') });
+      var field = document.getElementById('datepicker');
+var picker = new Pikaday({
+    onSelect: function(date) {
+        field.value = picker.toString();
+        picker.el.style.visibility = "hidden";
+
+    }
+});
+field.parentNode.insertBefore(picker.el, field.nextSibling);
+picker.el.style.visibility = "hidden";
+
+field.onclick= function(){
+  picker.el.style.visibility = "visible";
+};
+
+
+      </script>
 </html>

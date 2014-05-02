@@ -33,7 +33,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 #powerbucks{
     font: 12pt "GeosansLight", sans-serif;
     color: black;
@@ -235,6 +234,9 @@ ul#top_nav li a {
     clear: both;
 
 }
+#datepicker{
+    z-index: 5000;
+}
 
 .dateFieldDiv{
     
@@ -251,6 +253,10 @@ ul#top_nav li a {
 .dateFieldDiv input{
     height:40px;
   
+}
+
+#date_picker_box{
+    visibility: hidden;
 }
 
 textarea{
@@ -297,6 +303,7 @@ textarea{
 
 #month{
       font: 16pt "GeosansLight", sans-serif;
+      display: inline-block;
 }
 
 #month, #day, #year{
@@ -378,6 +385,45 @@ textarea{
     margin-bottom:20px;
     
 }
+
+footer {
+    background-color: #FFCC33;
+    width: 100%;
+    height: 40px;
+    position:relative;
+}
+
+footer * {
+    text-decoration:none;
+    color: #404040;
+    font: 12pt "Futura", sans-serif;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+footer ul{
+    position: absolute;
+    margin-left: 44%;
+    bottom: 10px;
+}
+
+footer li {
+    width: 130px;
+    text-align: center;
+    
+}
+
+.footerlink a:hover {
+    color: #605f5f !important;
+    
+}
+
+footer p{
+    width: 400px;
+    
+    font: 8pt "GeosansLight", sans-serif;
+}
+
 
 
 
