@@ -36,11 +36,12 @@
                             </div> 
                     <div class = "dateFieldDiv">   
                            <!-- <p>Draw Date</p> -->
-                    </div>
-        <div class = "dateFieldDiv">   
-            <p>Draw Date:&nbsp;&nbsp;</p>
+                           <p>Draw Date:&nbsp;&nbsp;</p>
             <!-- <input type="text" id="datepicker"> -->
             <input type="text" id="datepicker" name="month"> 
+                    </div>
+        <div class = "dateFieldDiv">   
+            
         </div> 
         <!--     <div class = "dateFieldDiv"> 
             <p>Day:&nbsp;&nbsp;</p>
@@ -94,21 +95,7 @@
             </div>
             </div>
         </form>
-
-<div id ="imageDiv">
-                     <img src ="../public/images/eventPhoto.jpg" id="eventImage">
-                     <form enctype="multipart/form-data" action="/upload/image" method="post" id="upform"> 
-                     <!-- <form action="/upload/image" method="POST" id="upform">  -->
-                        <input type="file" name="img" </input>
-                        <button id = "upload" type="submit" action="submit">Upload</button>
-                     </form>
-                     <!-- <form action="/upload/image" method="POST">
-                        Select a file: <input type="file" name="img">
-                        <input type="submit"> 
-                      </form> -->
-                     
-
-                </div>
+   
     <footer>
 			<div id="footer_nav">
 				<div id="footer_nav_wrapper">
@@ -141,6 +128,11 @@ picker.el.style.visibility = "hidden";
 field.onclick= function(){
   picker.el.style.visibility = "visible";
 };
+
+// var off_screen = document.getElementById('whole_body');
+// off_screen.onclick = function(){
+//   picker.el.style.visibility = "hidden";
+// };
 
 
       </script>
