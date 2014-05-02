@@ -68,7 +68,7 @@ app.get('/dummy_page', function(request, response) {
 });
 
 app.get('/about', function(request, response) {
-    response.render('about.html');
+    response.render('about.html', {user: request.user});
 });
 
 app.get('/mytickets', function(request, response) {
@@ -258,14 +258,16 @@ app.post('/buyin/:id', function(request, response) {
 app.post('/process_payment/:id', function(request, response) {
   if (request.user) {
     var info = request.session.buyin_info;
-    db.recordBuyin(conn, info, function(pool) {
-      var form = new Object();
-      form.firstName = request.body.firstName;
-      form.lastName = request.body.lastName;
-      form.email = request.body.email;
-      form.shares = info.shares;
-      fb.mailConfirmation(request.user, request.session.buyin_info, form, mail, function() {
-        response.redirect('/ticketprofile/' + pool.id);
+    db.storeUser(request.user, conn, function(user_id) {
+      db.recordBuyin(conn, info, function(pool) {
+        var form = new Object();
+        form.firstName = request.body.firstName;
+        form.lastName = request.body.lastName;
+        form.email = request.body.email;
+        form.shares = info.shares;
+        fb.mailConfirmation(request.user, request.session.buyin_info, form, mail, function() {
+          response.redirect('/ticketprofile/' + pool.id);
+        });
       });
     });
   } else {
@@ -292,6 +294,19 @@ app.post('/upload/image', function(request, response) {
         }
       });
 	});
+});
+
+app.post('/addbucks', function(request, response) {
+  if (request.user) {
+    request.user.powerbucks += parseInt(request.body.powerbucks);
+    db.storeUser(request.user, conn, function(id) {
+      // yeah we're done
+      response.json({powerbucks: request.user.powerbucks});
+    });
+    db.store
+  } else {
+    promptLogin(request, response, '/home');
+  }
 });
  
 app.listen(8080, function() {
