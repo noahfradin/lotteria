@@ -16,11 +16,15 @@
             <div id="powerbucks">You have: ${{user.powerbucks}} PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
 		</div>
 	</header>
-        <form method="POST" action="create" id="sendForm">
+        <form method="POST" enctype="multipart/form-data" action="create" id="sendForm">
           <div id = "poolFields">
             <div id ="mainFields">
             
-            
+              <div id ="imageDiv">
+                <img src ="../public/images/eventPhoto.jpg" id="eventImage">
+                <input type="file" name="img" id="imageInput"> </input>
+                <input type="text" name="imageURL" id="imageURL" style="display:none"> </input>
+              </div>
                 
                 <div id = "textDivs">
                        <div class = "fieldDiv">  
@@ -89,21 +93,6 @@
             </div>
             </div>
         </form>
-
-<div id ="imageDiv">
-                     <img src ="../public/images/eventPhoto.jpg" id="eventImage">
-                     <form enctype="multipart/form-data" action="/upload/image" method="post" id="upform"> 
-                     <!-- <form action="/upload/image" method="POST" id="upform">  -->
-                        <input type="file" name="img" </input>
-                        <button id = "upload" type="submit" action="submit">Upload</button>
-                     </form>
-                     <!-- <form action="/upload/image" method="POST">
-                        Select a file: <input type="file" name="img">
-                        <input type="submit"> 
-                      </form> -->
-                     
-
-                </div>
 
     </body>
 </html>
