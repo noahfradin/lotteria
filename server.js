@@ -212,7 +212,7 @@ app.post('/create', function(request, response) {
     info.desc = request.body.desc;
     info.private = request.body.private;
     info.draw_string = request.body.year + "/" + request.body.day + "/" + request.body.month;
-    info.main_pic_url = '/public/images/eventPhoto.jpg';
+    info.main_pic_url = request.body.imageURL;
     db.createPool(conn, info, request.user, function(pool_id) {
       console.log("created pool...");
       response.redirect('/ticketprofile/' + pool_id);
@@ -274,49 +274,23 @@ app.post('/process_payment/:id', function(request, response) {
 });
 
 app.post('/upload/image', function(request, response) {
-    console.log("User clicked upload image");
-    fs.readFile(request.files.img.path, function (err, data) {
+  fs.readFile(request.files.img.path, function (err, data) {
 
-		var imageName = request.files.img.name
+    var userImageName = request.files.img.name;
 
-    var imgname = 'img_'+new Date().getTime().toString()+Math.floor((Math.random() * 10) + 1).toString() + ".png";
-        var data_params = {Key: imgname, Body: data};
-        s3.putObject(data_params, function(err, data) {
-             if (err) {
-               console.log("##########Error uploading data: ", err);
-             } else {
-               console.log("##########Successfully uploaded data to myBucket/myKey");
-               console.log(data);
-             }
-        });
-
-        console.log(imgname);
-        var imgurl = "http://s3.amazonaws.com/Lotteria/" + imgname; //request.body.images[0].image;
-        // var jsonToReturn = JSON.stringify({'url':imgurl});
-        var jsonToReturn = { };
-        jsonToReturn.url = imgurl;
-        console.log(JSON.stringify(jsonToReturn));
-        response.json(JSON.stringify(jsonToReturn));
-
-		/// If there's an error
-		// if(!imageName){
-
-		// 	console.log("There was an error")
-		// 	response.redirect("/");
-		// 	response.end();
-
-		// } else {
-
-		//   var newPath = __dirname + "/uploads/fullsize/" + imageName;
-
-		//   /// write file to uploads/fullsize folder
-		//   fs.writeFile(newPath, data, function (err) {
-
-		//   	/// let's see it
-		//   	response.redirect("/uploads/fullsize/" + imageName);
-
-		//   });
-		// }
+    var imageName = 'img_'+new Date().getTime().toString()+Math.floor((Math.random() * 10) + 1).toString() + userImageName;
+      var data_params = {Key: imageName, Body: data};
+      s3.putObject(data_params, function(err, data) {
+        if (err) {
+          console.log("Error uploading data: ", err);
+        } else {
+          console.log("Successfully uploaded data to myBucket/myKey");
+          var imgurl = "http://s3.amazonaws.com/Lotteria/" + imageName;
+          var jsonToReturn = { };
+          jsonToReturn.url = imgurl;
+          response.json(jsonToReturn);
+        }
+      });
 	});
 });
  
