@@ -21,18 +21,17 @@ html{
     padding: 0;
 }
 h1{
-    font-family: 'Futura';
+    font-family: 'GeosansLight';
     text-align: center;
     color: #666666;
 }
 p{
-    padding-top: 20; 
+
     font-family: 'GeosansLight';
     color: #666666;
 }
 
-a{ 
-    margin-top: 20; 
+a{  
     font-family: 'GeosansLight';
     color: #666666;
 }
@@ -86,7 +85,7 @@ body{
 }
 
 #logo {
-    margin-left: 50px;
+    margin-left: 24px;
     width: 200px;
     display:inline-block;
 }
@@ -97,17 +96,6 @@ body{
     background-color: white;
     padding: 2px 20px;
     right: 10px;
-}
-
-#logo {
-    margin-left: 50px;
-    width: 200px;
-    display:inline-block;
-}
-
-#centerables h1 {
-    margin-top: 100px;
-    font: 24pt "GeosansLight", sans-serif;
 }
 
 #logo a {
@@ -191,6 +179,15 @@ ul#top_nav li a {
 
 #centerables{
     margin-top:80px;
+    
+}
+
+#centerables h1{
+    margin-top:120px;
+    
+}
+#centerables p{
+    margin-top:40px;
     
 }
 
