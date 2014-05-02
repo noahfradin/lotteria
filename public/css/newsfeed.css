@@ -263,20 +263,27 @@ ul#top_nav li a {
     border-color: #E5E6E5;
     height: 30px;
     width: 210px;
-    padding-right: 5px;
+    padding-left: 5px;
     font: 12pt "Futura", sans-serif;
     color: white;
     left: 630px;
     bottom: 20px;
-    text-align: center;
+    text-align: left;
+}
+
+.fb-send{
+    position:absolute;
+    left: 780px;
+    top: 79px;
+    display: inline-block;
+    z-index: 8888;
 }
 
 .pbstar {
-    width: 50px;
+    width: 35px;
     position: absolute;
-    left: 805px;
-    top: 100px;
-
+    left: 810px;
+    top: 85px;
 }
 
 #tickets{
