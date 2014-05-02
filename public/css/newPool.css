@@ -33,7 +33,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 #powerbucks{
     font: 12pt "GeosansLight", sans-serif;
     color: black;
@@ -235,6 +234,9 @@ ul#top_nav li a {
     clear: both;
 
 }
+#datepicker{
+    z-index: 5000;
+}
 
 .dateFieldDiv{
     
@@ -251,6 +253,10 @@ ul#top_nav li a {
 .dateFieldDiv input{
     height:40px;
   
+}
+
+#date_picker_box{
+    visibility: hidden;
 }
 
 textarea{
@@ -297,6 +303,7 @@ textarea{
 
 #month{
       font: 16pt "GeosansLight", sans-serif;
+      display: inline-block;
 }
 
 #month, #day, #year{
