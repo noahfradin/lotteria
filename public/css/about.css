@@ -20,14 +20,36 @@ html{
     margin: 0;
     padding: 0;
 }
+h1{
+    font-family: 'Futura';
+    text-align: center;
+    color: #666666;
+}
+p{
+    padding-top: 20; 
+    font-family: 'GeosansLight';
+    color: #666666;
+}
 
+a{ 
+    margin-top: 20; 
+    font-family: 'GeosansLight';
+    color: #666666;
+}
 
 body{
     min-width:1350px;
     margin: 0 auto;
     padding: 0;
 }
+#explanation{
+    font-size: 20;
+}
 
+#gtech-image{
+    max-width: 200;
+    padding-top: 5;
+}
 #centerables {
     width: 1350px;
     margin: 0 auto;

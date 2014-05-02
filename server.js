@@ -8,6 +8,13 @@ var https = require('https');
 var mail = require('nodemailer');
 var fs = require('fs');
 
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('.awsconfig.json');
+
+var util = require('util');
+
+var s3 = new AWS.S3({params: {Bucket: 'Lotteria'}});
+
 var app = express();
 app.engine('html', engines.hogan);
 app.set('views', __dirname + '/templates');
@@ -58,6 +65,10 @@ app.get('/dummy_page', function(request, response) {
   console.log("user is: " + request.user.profile.displayName);
   console.log(request.user);
   response.render('dummy.html', {name: request.user.profile.displayName});
+});
+
+app.get('/about', function(request, response) {
+    response.render('about.html');
 });
 
 app.get('/mytickets', function(request, response) {
@@ -157,11 +168,11 @@ app.get('/payment/:id', function(request, response) {
   }
 });
 
-app.get('/about', function(request, response) {
+app.get('/howitworks', function(request, response) {
   if (request.user) {
-    response.render('about.html', {user: request.user});
+    response.render('howitworks.html', {user: request.user});
   } else {
-    promptLogin(request, response, '/about');
+    promptLogin(request, response, '/howitworks');
   }
 });
 
@@ -178,7 +189,7 @@ app.get('/landing', function(request, response) {
     } else {
       request.user.registered = true;
       db.storeUser(request.user, conn, function(user_id) {
-        response.redirect('/about');
+        response.redirect('/howitworks');
       });
     }
   } else {
@@ -263,29 +274,49 @@ app.post('/process_payment/:id', function(request, response) {
 });
 
 app.post('/upload/image', function(request, response) {
-    fs.readFile(req.files.image.path, function (err, data) {
+    console.log("User clicked upload image");
+    fs.readFile(request.files.img.path, function (err, data) {
 
-		var imageName = request.files.image.name
+		var imageName = request.files.img.name
+
+    var imgname = 'img_'+new Date().getTime().toString()+Math.floor((Math.random() * 10) + 1).toString() + ".png";
+        var data_params = {Key: imgname, Body: data};
+        s3.putObject(data_params, function(err, data) {
+             if (err) {
+               console.log("##########Error uploading data: ", err);
+             } else {
+               console.log("##########Successfully uploaded data to myBucket/myKey");
+               console.log(data);
+             }
+        });
+
+        console.log(imgname);
+        var imgurl = "http://s3.amazonaws.com/Lotteria/" + imgname; //request.body.images[0].image;
+        // var jsonToReturn = JSON.stringify({'url':imgurl});
+        var jsonToReturn = { };
+        jsonToReturn.url = imgurl;
+        console.log(JSON.stringify(jsonToReturn));
+        response.json(JSON.stringify(jsonToReturn));
 
 		/// If there's an error
-		if(!imageName){
+		// if(!imageName){
 
-			console.log("There was an error")
-			response.redirect("/");
-			response.end();
+		// 	console.log("There was an error")
+		// 	response.redirect("/");
+		// 	response.end();
 
-		} else {
+		// } else {
 
-		  var newPath = __dirname + "/uploads/fullsize/" + imageName;
+		//   var newPath = __dirname + "/uploads/fullsize/" + imageName;
 
-		  /// write file to uploads/fullsize folder
-		  fs.writeFile(newPath, data, function (err) {
+		//   /// write file to uploads/fullsize folder
+		//   fs.writeFile(newPath, data, function (err) {
 
-		  	/// let's see it
-		  	response.redirect("/uploads/fullsize/" + imageName);
+		//   	/// let's see it
+		//   	response.redirect("/uploads/fullsize/" + imageName);
 
-		  });
-		}
+		//   });
+		// }
 	});
 });
  

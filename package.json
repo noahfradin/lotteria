@@ -12,6 +12,7 @@
     "passport-facebook": "1.x",
 		"sqlite3": "2.x",
     "moment": "2.5.x",
-    "nodemailer": "0.6.x"
+    "nodemailer": "0.6.x",
+    "aws-sdk":"x"
   }
 }
