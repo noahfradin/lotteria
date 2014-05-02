@@ -1,6 +1,6 @@
 <html>
     <head>
-        <script type = "text/javascript" src = "../public/javascript/newPool.js"></script>
+        // <script type = "text/javascript" src = "../public/javascript/newPool.js"></script>
         <link rel="stylesheet" href="../public/css/newPool.css" type="text/css" />
     </head>
     <body>
@@ -21,14 +21,7 @@
             <div id ="mainFields">
             
             
-                <div id ="imageDiv">
-                     <img src ="../public/images/eventPhoto.jpg" id="eventImage">
-                     <form enctype="multipart/form-data" action="/upload/image" method="post" id="upform"> 
-                     <input type="file" class = "button" id = "upload"></input>
-                    <button id = "upload" tabindex="11" type="submit" action="submit">upload</button>
-                     </form>
-
-                </div>
+                
                 <div id = "textDivs">
                        <div class = "fieldDiv">  
 
@@ -97,6 +90,20 @@
             </div>
         </form>
 
+<div id ="imageDiv">
+                     <img src ="../public/images/eventPhoto.jpg" id="eventImage">
+                     <form enctype="multipart/form-data" action="/upload/image" method="post" id="upform"> 
+                     <!-- <form action="/upload/image" method="POST" id="upform">  -->
+                        <input type="file" name="img" </input>
+                        <button id = "upload" type="submit" action="submit">Upload</button>
+                     </form>
+                     <!-- <form action="/upload/image" method="POST">
+                        Select a file: <input type="file" name="img">
+                        <input type="submit"> 
+                      </form> -->
+                     
+
+                </div>
 
     </body>
 </html>
