@@ -218,7 +218,11 @@ app.post('/create', function(request, response) {
     } else {
       info.desc = "Mystery Pool";
     }
-    info.draw_string = request.body.month;
+    if (request.body.month) {
+      info.draw_string = request.body.month;
+    } else {
+      info.draw_string = "Wed May 28 2014";
+    }
     info.main_pic_url = request.body.imageURL;
     db.createPool(conn, info, request.user, function(pool_id) {
       console.log("created pool...");
