@@ -48,7 +48,7 @@ app.use('/public', express.static(__dirname + '/public'));
 passport.use(new FacebookStrategy({
     clientID: "220803898117351",
     clientSecret: "53edb26e9544e5b7ec79b47903746798",
-    callbackURL: "http://c2-54-187-156-41.us-west-2.compute.amazonaws.com/auth/facebook/callback"
+    callbackURL: "http://ec2-54-187-156-41.us-west-2.compute.amazonaws.com/auth/facebook/callback"
   },
   function (accessToken, refreshToken, profile, done) {
     db.findOrCreate(accessToken, refreshToken, profile, done, conn);
