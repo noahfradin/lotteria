@@ -560,3 +560,7 @@ footer p{
     
     font: 8pt "GeosansLight", sans-serif;
 }
+
+#numbers p{
+    color:black;
+}
