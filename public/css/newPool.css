@@ -233,7 +233,7 @@ ul#top_nav li a {
     margin-top:20px;
     width:300px;
 }
-#textDivs *{
+#textDivs fieldDivs{
     clear: both;
 
 }
@@ -249,7 +249,7 @@ ul#top_nav li a {
     margin-top: 7px;
 }
 
-.dateFieldDiv *{
+.dateFieldDiv p,input{
     vertical-align:top;
     display: inline-block;
 }
