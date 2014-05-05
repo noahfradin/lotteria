@@ -14,6 +14,14 @@
 				<li id="nav_settings"><a href="/logout"></a><p>LOGOUT</p></li>
 			</ul>
             <div id="powerbucks">You have: ${{user.powerbucks}} PowerBucks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+            <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=133478780189051";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 		</div>
 	</header>
         <form method="POST" enctype="multipart/form-data" action="create" id="sendForm">
@@ -58,7 +66,7 @@
          </div> 
          
             <form method="get" action="http://www.web-wise-wizard.com/cgi-bin/cgi-tests/textarea-wrap-test.cgi">
-            <textarea id="ticketDescription" name="userInput" cols="36" rows="5" wrap="virtual" name="desc"></textarea>
+            <textarea id="ticketDescription" cols="36" rows="5" wrap="virtual" name="desc"></textarea>
             <input   type="hidden" name="wrapAttribute" value="virtual">
             </form>
                         
@@ -70,7 +78,9 @@
                         
                     </div> -->
                        <div class="powerbutton">
+                           
               <button id="invite">&nbsp;&nbsp;INVITE FRIENDS</button>
+                           <div class="fb-send" data-href="http://google.com" data-colorscheme="light"></div>
                 <img class="pbstar" src="../public/images/Powerbucks25.png" alt="powerbucks">
             </div>
                     

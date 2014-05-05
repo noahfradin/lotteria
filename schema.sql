@@ -26,7 +26,8 @@ CREATE TABLE pools (
   buyins BLOB,
   shares INTEGER,
   messages BLOB,
-  numbers BLOB
+  numbers BLOB,
+  promoted INTEGER
 )
 
 

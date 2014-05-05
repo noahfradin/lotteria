@@ -5,7 +5,6 @@ var moment = require('moment');
 // stores the user in the database, then calls callback with that user's id
 // this should NOT be used for new users
 function storeUser(user, conn, callback) {
-  console.log("powerbucks " + user.powerbucks);
   var sql = 'UPDATE users SET access_token=$1, profile=$2, pools=$3, powerbucks=$4, registered=$5 WHERE facebook_id=$6';
   var vars = [
     user.access_token,
@@ -97,7 +96,7 @@ function findOrCreate(accessToken, refreshToken, profile, done, conn) {
 // user: the user object that created the pool
 // callback: called with id of created pool after insertion
 function createPool(conn, info, user, callback) {
-  var sql = 'INSERT INTO pools (info, created, buyins, shares, messages, numbers) VALUES ($1, $2, $3, $4, $5, $6)';
+  var sql = 'INSERT INTO pools (info, created, buyins, shares, messages, numbers, promoted) VALUES ($1, $2, $3, $4, $5, $6, $7)';
   info.more_text = "";
   info.sample_users = new Array();
   info.sample_users.push({facebook_id: user.facebook_id});
@@ -111,7 +110,8 @@ function createPool(conn, info, user, callback) {
     JSON.stringify(buyins),
     0,
     JSON.stringify(new Array()),
-    JSON.stringify(new Array())];
+    JSON.stringify(new Array()),
+    info.promoted ? 1 : 0];
   var q = conn.query(sql, vars, function(error, result) {
     var sql = 'SELECT last_insert_rowid()';
     var q = conn.query(sql, [], function(error, result) {
@@ -177,7 +177,6 @@ function loadAllPoolsForUser(conn, user, callback) {
     if (loaded == user.pools.length) {
       callback(pools);
     } else {
-      console.log("loading pool with id: " + user.pools[loaded].id);
       loadPoolByID(conn, user.pools[loaded].id, loadFunc);
     }
   }
@@ -198,12 +197,28 @@ function loadAllPoolsForGroup(conn, ids, callback) {
         if (loaded < ids.length) {
           loadFunc(loaded, pools);
         } else {
-          callback(arrayUnique(pools));
+          addPromoted(conn, arrayUnique(pools), callback);
         }
       });
     });
   };
   loadFunc(0, []);
+}
+
+// appends promoted pools to the list of pools
+function addPromoted(conn, pools, callback) {
+  var sql = "SELECT * FROM pools WHERE promoted=1";
+  var q = conn.query(sql, [], function(error, result) {
+    for (var i = 0; i < result.rows.length; i += 1) {
+      var pool = result.rows[i];
+      pool.info = JSON.parse(pool.info);
+      pool.buyins = JSON.parse(pool.buyins);
+      pool.messages = JSON.parse(pool.messages);
+      pool.numbers = JSON.parse(pool.numbers);
+      pools.push(pool);
+    }
+    callback(pools);
+  });
 }
 
 // removes duplicates from an array
@@ -447,7 +462,7 @@ function newTables(conn) {
       "n2 TEXT, n3 TEXT, n4 TEXT, n5 TEXT, powerball TEXT, powerplay INTEGER, string TEXT)")
   .on('error', console.error);
   conn.query("CREATE TABLE pools (id INTEGER PRIMARY KEY AUTOINCREMENT, info BLOB, created INTEGER, " +
-      "buyins BLOB, shares INTEGER, messages BLOB, numbers BLOB)")
+      "buyins BLOB, shares INTEGER, messages BLOB, numbers BLOB, promoted INTEGER)")
   .on('error', console.error);
 }
 
@@ -481,11 +496,20 @@ function createSamples(conn) {
     var info = new Object();
     info.name = "Sample Pool " + user.facebook_id;
     info.desc = "My first sample pool!";
-    info.private = true;
+    info.private = false;
     info.draw_string = 12 + "/" + 12 + "/" + 14;
     info.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
+    info.promoted = false;
     loadUser(user.facebook_id, conn, function(user2) {
       createPool(conn, info, user2, function(pool) {
+        if (user.facebook_id == 1831215604) {
+          info.promoted = true;
+          info.name = "Promoted Pool!"
+          info.desc = "Save the animals!"
+          info.draw_string = 10 + "/" + 10 + "/" + 14;
+          info.main_pic_url = "http://www.wombatrpgs.net/misc/eEGpq.jpg";
+          createPool(conn, info, user2, function(p) { });
+        }
         i += 1;
         if (i < users.length) {
           poolFunc();
@@ -494,6 +518,8 @@ function createSamples(conn) {
     });
   }
   poolFunc();
+  
+  
 }
 
 exports.newTables = newTables;
