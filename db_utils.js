@@ -480,7 +480,7 @@ function createSamples(conn) {
     info.name = "Sample Pool " + user.facebook_id;
     info.desc = "My first sample pool!";
     info.private = false;
-    info.draw_string = 12 + "/" + 12 + "/" + 14;
+    info.draw_string = "Mon May 26 2014";
     info.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
     info.promoted = false;
     loadUser(user.facebook_id, conn, function(user2) {
@@ -489,7 +489,7 @@ function createSamples(conn) {
           info.promoted = true;
           info.name = "Promoted Pool!"
           info.desc = "Save the animals!"
-          info.draw_string = 10 + "/" + 10 + "/" + 14;
+          info.draw_string = "Wed May 28 2014";
           info.main_pic_url = "http://www.wombatrpgs.net/misc/eEGpq.jpg";
           createPool(conn, info, user2, function(p) { });
         }

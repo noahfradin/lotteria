@@ -211,7 +211,7 @@ app.post('/create', function(request, response) {
     info.name = request.body.name;
     info.desc = request.body.desc;
     info.private = request.body.private;
-    info.draw_string = request.body.year + "/" + request.body.day + "/" + request.body.month;
+    info.draw_string = request.body.month;
     info.main_pic_url = request.body.imageURL;
     db.createPool(conn, info, request.user, function(pool_id) {
       console.log("created pool...");
