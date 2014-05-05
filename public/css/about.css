@@ -59,11 +59,14 @@ body{
     padding-top: 5;
 }
 #centerables {
-    width: 600px;
+    width: 700px;
     margin: 0 auto;
     top: 400px;
 }
 
+.imagi{
+    margin-left:30px;
+}
 #powerbucks{
     font: 12pt "GeosansLight", sans-serif;
     color: black;

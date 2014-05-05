@@ -197,7 +197,7 @@ function loadAllPoolsForGroup(conn, ids, callback) {
         if (loaded < ids.length) {
           loadFunc(loaded, pools);
         } else {
-          addPromoted(conn, arrayUnique(pools), callback);
+          addPromoted(conn, pools, callback);
         }
       });
     });
@@ -217,7 +217,7 @@ function addPromoted(conn, pools, callback) {
       pool.numbers = JSON.parse(pool.numbers);
       pools.push(pool);
     }
-    callback(pools);
+    callback(arrayUnique(pools));
   });
 }
 
@@ -269,30 +269,13 @@ function recordBuyin(conn, info, callback) {
 // mutates the ticket information so that it contains a number unique in pool
 function incrementTicket(pool, info) {
   // this method is not very safe, no guarantee a unique # exists
-  // also jesus this thing is ugly
   while (poolHas(pool, info)) {
-    info.n5 += 1;
-    if (info.n5 > 59) {
-      info.n5 = 1;
-      info.n4 += 1;
-      if (info.n4 > 59) {
-        info.n4 = 1;
-        info.n3 += 1;
-        if (info.n3 > 59) {
-          info.n3 = 0;
-          info.n2 += 1;
-          if (info.n2 > 59) {
-            info.n2 = 0;
-            info.n1 += 1;
-            if (info.n1 > 50) {
-              console.log("warning: wrapped ticket number");
-              info.n1 = 0;
-              return incrementTicket(pool, info);
-            }
-          }
-        }
-      }
-    }
+    info.n5 = Math.floor((Math.random() * 59) + 1);
+    info.n4 = Math.floor((Math.random() * 59) + 1);
+    info.n3 = Math.floor((Math.random() * 59) + 1);
+    info.n2 = Math.floor((Math.random() * 59) + 1);
+    info.n1 = Math.floor((Math.random() * 59) + 1);
+    info.powerball = Math.floor((Math.random() * 35) + 1);
   }
   return info;
 }
@@ -497,7 +480,7 @@ function createSamples(conn) {
     info.name = "Sample Pool " + user.facebook_id;
     info.desc = "My first sample pool!";
     info.private = false;
-    info.draw_string = 12 + "/" + 12 + "/" + 14;
+    info.draw_string = "Mon May 26 2014";
     info.main_pic_url = "http://www.wombatrpgs.net/block/images/widget.gif";
     info.promoted = false;
     loadUser(user.facebook_id, conn, function(user2) {
@@ -506,7 +489,7 @@ function createSamples(conn) {
           info.promoted = true;
           info.name = "Promoted Pool!"
           info.desc = "Save the animals!"
-          info.draw_string = 10 + "/" + 10 + "/" + 14;
+          info.draw_string = "Wed May 28 2014";
           info.main_pic_url = "http://www.wombatrpgs.net/misc/eEGpq.jpg";
           createPool(conn, info, user2, function(p) { });
         }

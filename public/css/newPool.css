@@ -186,6 +186,7 @@ ul#top_nav li a {
 
 #eventImage{
     width:320px;
+    height:240px;
     margin-left:20px;
     margin-top:20px;
 }
@@ -228,11 +229,11 @@ ul#top_nav li a {
 }
 
 #textDivs{
-       margin-left:20px;
+    margin-left:20px;
     margin-top:20px;
     width:300px;
 }
-#textDivs *{
+#textDivs fieldDivs{
     clear: both;
 
 }
@@ -248,7 +249,7 @@ ul#top_nav li a {
     margin-top: 7px;
 }
 
-.dateFieldDiv *{
+.dateFieldDiv p,input{
     vertical-align:top;
     display: inline-block;
 }

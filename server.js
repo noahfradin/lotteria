@@ -208,10 +208,17 @@ app.get('/', function(request, response) {
 app.post('/create', function(request, response) {
   if (request.user) {
     var info = new Object();
-    info.name = request.body.name;
-    info.desc = request.body.desc;
-    info.private = request.body.private;
-    info.draw_string = request.body.year + "/" + request.body.day + "/" + request.body.month;
+    if (request.body.name) {
+      info.name = request.body.name;
+    } else {
+      info.name = "Pool that I Forgot to Name";
+    }
+    if (request.body.desc) {
+      info.desc = request.body.desc;
+    } else {
+      info.desc = "Mystery Pool";
+    }
+    info.draw_string = request.body.month;
     info.main_pic_url = request.body.imageURL;
     db.createPool(conn, info, request.user, function(pool_id) {
       console.log("created pool...");

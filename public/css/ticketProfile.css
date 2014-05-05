@@ -1,6 +1,4 @@
-/* 
 Thoughts? Do you think everything should maybe be smaller?
-*/
 
 @font-face {
 font-family:"Futura";
@@ -559,4 +557,8 @@ footer p{
     width: 400px;
     
     font: 8pt "GeosansLight", sans-serif;
+}
+
+#numbers p{
+    color:black;
 }
