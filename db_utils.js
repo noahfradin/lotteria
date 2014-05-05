@@ -269,30 +269,13 @@ function recordBuyin(conn, info, callback) {
 // mutates the ticket information so that it contains a number unique in pool
 function incrementTicket(pool, info) {
   // this method is not very safe, no guarantee a unique # exists
-  // also jesus this thing is ugly
   while (poolHas(pool, info)) {
-    info.n5 += 1;
-    if (info.n5 > 59) {
-      info.n5 = 1;
-      info.n4 += 1;
-      if (info.n4 > 59) {
-        info.n4 = 1;
-        info.n3 += 1;
-        if (info.n3 > 59) {
-          info.n3 = 0;
-          info.n2 += 1;
-          if (info.n2 > 59) {
-            info.n2 = 0;
-            info.n1 += 1;
-            if (info.n1 > 50) {
-              console.log("warning: wrapped ticket number");
-              info.n1 = 0;
-              return incrementTicket(pool, info);
-            }
-          }
-        }
-      }
-    }
+    info.n5 = Math.floor((Math.random() * 59) + 1);
+    info.n4 = Math.floor((Math.random() * 59) + 1);
+    info.n3 = Math.floor((Math.random() * 59) + 1);
+    info.n2 = Math.floor((Math.random() * 59) + 1);
+    info.n1 = Math.floor((Math.random() * 59) + 1);
+    info.powerball = Math.floor((Math.random() * 35) + 1);
   }
   return info;
 }
