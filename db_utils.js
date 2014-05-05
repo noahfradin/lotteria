@@ -197,7 +197,7 @@ function loadAllPoolsForGroup(conn, ids, callback) {
         if (loaded < ids.length) {
           loadFunc(loaded, pools);
         } else {
-          addPromoted(conn, arrayUnique(pools), callback);
+          addPromoted(conn, pools, callback);
         }
       });
     });
@@ -217,7 +217,7 @@ function addPromoted(conn, pools, callback) {
       pool.numbers = JSON.parse(pool.numbers);
       pools.push(pool);
     }
-    callback(pools);
+    callback(arrayUnique(pools));
   });
 }
 
